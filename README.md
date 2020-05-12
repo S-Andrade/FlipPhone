@@ -8,11 +8,11 @@ Tem o papel de intermediário, vem eliminar as incertezas envolvidas em comprar 
 
 É constituído por uma aplicação web para todos os utilizadores e uma aplicação móvel destinada ao cliente final.
 
-## Equipa
+### Equipa
 - André Catarino
 - Bruno Rabaçal
 - Rui Melo
 - Sandra Andrade
 
-## Recursos relevantes
+### Recursos relevantes
 [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2448184)
