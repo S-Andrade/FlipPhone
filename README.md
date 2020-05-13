@@ -9,10 +9,10 @@ Tem o papel de intermediário, vem eliminar as incertezas envolvidas em comprar 
 É constituído por uma aplicação web para todos os utilizadores e uma aplicação móvel destinada ao cliente final.
 
 ### Equipa
-- André Catarino
-- Bruno Rabaçal
-- Rui Melo
-- Sandra Andrade
+- André Catarino - 89337
+- Bruno Rabaçal - 83563
+- Rui Melo - 88889
+- Sandra Andrade - 84904
 
 ### Documentação
 - [Relatório de especificação do produto](https://uapt33090-my.sharepoint.com/:w:/r/personal/sandraandrade_ua_pt/_layouts/15/Doc.aspx?sourcedoc=%7B20EA77B5-B403-4C9A-BDFD-FA12246322AD%7D&file=TQS%20Product%20Specification%20Report.docx&wdOrigin=OFFICECOM-WEB.START.MRU-OIB&action=default&mobileredirect=true)
