@@ -65,7 +65,6 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
          flutter-version: '1.9.1+hotfix.6'
-      - run: cd flipphone_app
       - name: get the dependencies
         run: flutter pub get
       - name: run testes Flutter
