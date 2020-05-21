@@ -62,6 +62,8 @@ public class Product {
         this.product_name = product_name;
     }
 
+
+
     public Integer getProduct_id() {
         return product_id;
     }

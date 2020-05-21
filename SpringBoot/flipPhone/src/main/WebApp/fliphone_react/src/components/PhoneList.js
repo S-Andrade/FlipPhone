@@ -13,7 +13,7 @@ export default class PhoneList extends Component {
     }
 
     componentDidMount() {
-        axios.get("http://localhost:8080/phones")
+        axios.get("http://localhost:8080/product/all")
             .then(response => response.data)
             .then((data) => {
             this.setState({phones: data});
@@ -28,23 +28,35 @@ export default class PhoneList extends Component {
                     <Table striped bordered hover variant="dark">
                         <thead>
                         <tr>
-                            <th>id</th>
-                            <th>name</th>
-                            <th>price</th>
-                            <th>description</th>
+                            <th>product_name</th>
+                            <th>cpu_gpu</th>
+                            <th>ram_rom</th>
+                            <th>image</th>
+                            <th>screen_size</th>
+                            <th>screen_type</th>
+                            <th>battery</th>
+                            <th>os</th>
+                            <th>selfie_cam</th>
+                            <th>camera</th>
                         </tr>
                         </thead>
                         <tbody>
                         {this.state.phones.length === 0 ?
                             <tr align={'center'}>
-                                <td colSpan={"6"}> Phones Available</td>
+                                <td colSpan={"10"}> No Phones Available</td>
                             </tr> :
                             this.state.phones.map((phone) => (
                                <tr key={phone.id}>
-                                  <td>{phone.id}</td>
-                                   <td>{phone.name}</td>
-                                   <td>{phone.salary}</td>
-                                   <td>{phone.age}</td>
+                                   <td>{phone.product_name}</td>
+                                   <td>{phone.cpu_gpu}</td>
+                                   <td>{phone.ram_rom}</td>
+                                   <td>{phone.image}</td>
+                                   <td>{phone.screen_size}</td>
+                                   <td>{phone.screen_type}</td>
+                                   <td>{phone.battery}</td>
+                                   <td>{phone.os}</td>
+                                   <td>{phone.selfie_cam}</td>
+                                   <td>{phone.camera}</td>
                                </tr>
                             ))
 

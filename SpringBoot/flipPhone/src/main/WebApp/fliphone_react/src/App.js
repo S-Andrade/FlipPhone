@@ -9,6 +9,7 @@ import NavigationBar from "./components/NavigationBar";
 import Welcome from "./components/Welcome";
 import Phone from './components/Phone'
 import PhoneList from "./components/PhoneList";
+import UserList from "./components/UserList";
 
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
                         <Route path="/" exact component={Welcome}/>
                         <Route path="/add" exact component={Phone}/>
                         <Route path="/list" exact component={PhoneList}/>
+                        <Route path="/users" exact component={UserList}/>
+                        <Route path="/logout" exact component={Welcome}/>
                     </Switch>
                 </Col>
             </Row>

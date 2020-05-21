@@ -34,7 +34,7 @@ export default class Phone extends Component{
 
         };
 
-        axios.post("http://localhost:8080/phones",phone)
+        axios.post("http://localhost:8080/product/add",phone)
             .then(response => {
                 if(response.data != null){
                     this.setState(this.initialState);
