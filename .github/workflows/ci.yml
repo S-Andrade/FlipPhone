@@ -67,7 +67,7 @@ jobs:
          flutter-version: '1.12.x'
       - name: get the dependencies
         run: flutter pub get
-      #- name: run testes Flutter
-        #run: flutter test
+      - name: run testes Flutter
+        run: flutter test
       - name: run app Flutter
-        run: flutter run 
+        run: flutter build apk
