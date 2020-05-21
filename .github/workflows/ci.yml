@@ -14,8 +14,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - run: cd /flipPhone
+      - run: cd flipPhone
       - run: ls 
+      - run: pwd
       - name: run testes SpringBoot 
         run: mvn test
       - name: run SpringBoot
