@@ -68,6 +68,6 @@ jobs:
       - name: get the dependencies
         run: flutter pub get
       - name: run testes Flutter
-        run: flutter test
+        #run: flutter test
       - name: run app Flutter
         run: flutter build apk 
