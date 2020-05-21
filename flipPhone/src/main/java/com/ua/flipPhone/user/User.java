@@ -40,8 +40,7 @@ public class User {
 
     public User(){}
     
-    public User(Integer user_id, String password, String name, String salt, String email, String address, String nif, String type) {
-        this.user_id = user_id;
+    public User(String password, String name, String salt, String email, String address, String nif, String type) {
         this.password = password;
         this.name = name;
         this.salt = salt;

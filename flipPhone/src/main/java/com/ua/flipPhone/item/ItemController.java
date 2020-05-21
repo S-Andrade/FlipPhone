@@ -87,10 +87,10 @@ public class ItemController {
     
     @GetMapping(path="/filter")
     public @ResponseBody String getAllItemsByFilter(
-            @RequestParam(requerid=false) String brand,
-            @RequestParam(requerid=false) String color,
-            @RequestParam(requerid=false) String price,
-            @RequestParam(requerid=false) String version){
+            @RequestParam String brand,
+            @RequestParam String color,
+            @RequestParam String price,
+            @RequestParam String version){
         return brand;
     }
 }

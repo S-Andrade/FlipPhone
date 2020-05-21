@@ -34,7 +34,7 @@ public class Order {
 
     public Order(){}
     
-    public Order(Integer order_id, Date date, double total, User client_id) {
+    public Order(Date date, double total, User client_id) {
         this.order_id = order_id;
         this.date = date;
         this.total = total;

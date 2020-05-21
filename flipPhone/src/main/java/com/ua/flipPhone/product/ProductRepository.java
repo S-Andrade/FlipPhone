@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.ua.flipPhone.product.Product;
 
 
-public interface ProductRepository extends CrudRepository<Product, String> {
+public interface ProductRepository extends CrudRepository<Product, Integer> {
 
 }

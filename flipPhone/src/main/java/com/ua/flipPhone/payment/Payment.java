@@ -49,8 +49,7 @@ public class Payment {
 
     public Payment(){}
     
-    public Payment(Integer payment_id, String status, String gateway, Date date, Order order_id, User client_id, User seller_id) {
-        this.payment_id = payment_id;
+    public Payment( String status, String gateway, Date date, Order order_id, User client_id, User seller_id) {
         this.status = status;
         this.gateway = gateway;
         this.date = date;

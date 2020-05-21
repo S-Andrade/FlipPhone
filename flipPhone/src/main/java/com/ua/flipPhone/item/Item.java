@@ -51,8 +51,7 @@ public class Item {
 
     public Item(){}
     
-    public Item(Integer item_id, String grade, String color, Double price, String version, Product product_id, Order order_id, User seller_id) {
-        this.item_id = item_id;
+    public Item(String grade, String color, Double price, String version, Product product_id, Order order_id, User seller_id) {
         this.grade = grade;
         this.color = color;
         this.price = price;

@@ -1,13 +1,11 @@
 package com.ua.flipPhone.payment;
 
-/*
-package com.ua.flipPhone.Payment;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.ua.flipPhone.Payment.Payment;
+import com.ua.flipPhone.payment.Payment;
 
 
-public interface PaymentRepository extends CrudRepository<Payment, String> {
+public interface PaymentRepository extends CrudRepository<Payment, Integer> {
 
-}*/
+}
