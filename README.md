@@ -22,3 +22,4 @@ Tem o papel de intermediário, vem eliminar as incertezas envolvidas em comprar 
 
 ### Recursos relevantes
 - [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2448184)
+- [Codacy](http://app.codacy.com/manual/S-Andrade/FlipPhone/dashboard?bid=18249433)
