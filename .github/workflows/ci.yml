@@ -64,7 +64,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-         flutter-version: '1.9.1+hotfix.6'
+         flutter-version: '1.12.x'
       - name: get the dependencies
         run: flutter pub get
       - name: run testes Flutter
