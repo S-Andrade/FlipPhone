@@ -70,4 +70,4 @@ jobs:
       #- name: run testes Flutter
         #run: flutter test
       - name: run app Flutter
-        run: flutter build apk 
+        run: flutter run 
