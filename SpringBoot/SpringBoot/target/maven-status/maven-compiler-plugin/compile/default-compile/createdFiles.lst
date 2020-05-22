@@ -1,0 +1,13 @@
+com/ua/flipPhone/payment/Payment.class
+com/ua/flipPhone/FlipPhoneApplication.class
+com/ua/flipPhone/admin/AdminRepository.class
+com/ua/flipPhone/item/Item.class
+com/ua/flipPhone/user/UserRepository.class
+com/ua/flipPhone/product/Product.class
+com/ua/flipPhone/product/ProductController.class
+com/ua/flipPhone/product/ProductRepository.class
+com/ua/flipPhone/order/Order.class
+com/ua/flipPhone/product/Resource.class
+com/ua/flipPhone/admin/Admin.class
+com/ua/flipPhone/user/User.class
+com/ua/flipPhone/order/OrderRepository.class
