@@ -45,7 +45,7 @@ export default class PhoneList extends Component {
             <div>
                 <input type="text" placeholder="Search product name" value={this.state.search} onChange={this.updateSearch.bind(this)}/>
                 <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header> All phones ({this.state.phones.length} total phones available) </Card.Header>
+                <Card.Header> All phones ({this.state.phones.length} phones available in total) </Card.Header>
 
                 <Card.Body>
                     <Table striped bordered hover variant="dark">

@@ -13,7 +13,7 @@ class NavigationBar extends React.Component {
                 </Link>
 
                 <Nav className="mr-auto">
-                    <Link to={"add"} className="nav-link">Add Phones</Link>
+                    <Link to={"add"} className="nav-link">Sell Phones</Link>
                     <Link to={"list"} className="nav-link">Phone List</Link>
                     <Link to={"users"} className="nav-link">User List</Link>
                 </Nav>

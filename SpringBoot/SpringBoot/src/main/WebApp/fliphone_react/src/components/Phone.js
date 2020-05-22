@@ -8,13 +8,13 @@ export default class Phone extends Component{
 
     constructor(props){
         super(props);
-        this.state = {name:'', price:'',description:'',PhotoURL:''}
+        this.state = { cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:''}
         this.phoneChange = this.phoneChange.bind(this);
         this.submitPhone = this.submitPhone.bind(this);
     }
 
     initialState = {
-        name:'', price:'',description:'',PhotoURL:''
+         cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:''
     }
 
     resetSellOrder = () => {
@@ -23,19 +23,27 @@ export default class Phone extends Component{
 
 
     submitPhone = event => {
-        //alert("name: "+this.state.name+" price: "+this.state.price+" description: "+this.state.description);
+        alert("name: "+this.state.product_name+" ram_rom: "+this.state.ram_rom+" image: "+this.state.image+ "screen_size:" + this.state.screen_size + "battery:" + this.state.battery + " os:"+this.state.os + " selfie_cam" + this.state.selfie_cam + " camera" + this.state.camera );
         event.preventDefault();
 
         const phone = {
-            name : this.state.name,
-            price : this.state.price,
-            description : this.state.description,
-            PhotoURL : this.state.PhotoURL
+
+            cpu_gpu : this.state.cpu_gpu,
+            ram_rom : this.state.ram_rom,
+            image : this.state.image,
+            screen_size : this.state.screen_size,
+            screen_type : this.state.screen_type,
+            battery : this.state.battery,
+            os : this.state.os,
+            selfie_cam : this.state.selfie_cam,
+            camera : this.state.camera,
+            product_name : this.state.product_name
 
         };
 
-        axios.post("http://localhost:8080/product/add",phone)
+        axios.post("http://localhost:8080/product/add?cpu_gpu="+this.state.cpu_gpu+"&ram_rom="+this.state.ram_rom+"&image="+this.state.image+"&screen_size="+this.state.screen_size+"&screen_type="+this.state.screen_type+"&battery="+this.state.battery+"&os="+this.state.os+"&selfie_cam="+this.state.selfie_cam+"&camera="+this.state.camera+"&product_name="+this.state.product_name)
             .then(response => {
+                alert(this.state.initialState);
                 if(response.data != null){
                     this.setState(this.initialState);
                     alert("Sell order successfull");
@@ -52,7 +60,7 @@ export default class Phone extends Component{
     }
 
     render() {
-        const {name,price,description,PhotoURL} = this.state;
+        const {cpu_gpu,ram_rom,image,screen_size,screen_type,battery, os,selfie_cam , camera, product_name} = this.state;
 
         return(
            <Card className={"border border-dark bg-dark text-white"}>
@@ -62,23 +70,53 @@ export default class Phone extends Component{
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridName">
                        <Form.Label> Phone's Model </Form.Label>
-                       <Form.Control required autoComplete="off" type="text" name="name" value={name} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's model" />
+                       <Form.Control required autoComplete="off" type="text" name="product_name" value={product_name} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's model" />
                      </Form.Group>
-                     <Form.Group as={Col}FontAwesomeIcon controlId="formGridPrice">
-                        <Form.Label> Phone's Price </Form.Label>
-                        <Form.Control required autoComplete="off" type="text" name="price" value={price} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter the sell price" />
+                     <Form.Group as={Col} FontAwesomeIcon controlId="formGridPrice">
+                        <Form.Label> cpu_gpu </Form.Label>
+                        <Form.Control required autoComplete="off" type="text" name="cpu_gpu" value={cpu_gpu} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter cpu_gpu" />
                      </Form.Group >
                 </Form.Row>
                 <Form.Row>
-                     <Form.Group as={Col} controlId="formGridDescription">
-                        <Form.Label> Phone's Description </Form.Label>
-                        <Form.Control required autoComplete="off" type="text" name="description" value={description} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's description" />
+                     <Form.Group as={Col} controlId="formGridRam_rom">
+                        <Form.Label> Phone's ram_rom </Form.Label>
+                        <Form.Control required autoComplete="off" type="text" name="ram_rom" value={ram_rom} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's description" />
                      </Form.Group>
-                    <Form.Group as={Col} controlId="formGridPhotoURL">
-                        <Form.Label> Phone Photo URL </Form.Label>
-                        <Form.Control required autoComplete="off" type="text" name="PhotoURL" value={PhotoURL} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter picture of the phone URL " />
+                    <Form.Group as={Col} controlId="formGridImageL">
+                        <Form.Label> Phone's Image </Form.Label>
+                        <Form.Control required autoComplete="off" type="text" name="image" value={image} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter picture of the phone URL " />
                     </Form.Group>
                  </Form.Row>
+                  <Form.Row>
+                      <Form.Group as={Col} controlId="formGridDescription">
+                          <Form.Label> Phone's Screen_size </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="screen_size" value={screen_size} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's description" />
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="formGridPhotoscreen_type">
+                          <Form.Label> Phone Screen_type </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="screen_type" value={screen_type} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter picture of the phone URL " />
+                      </Form.Group>
+                  </Form.Row>
+                  <Form.Row>
+                      <Form.Group as={Col} controlId="formGridbattery">
+                          <Form.Label> Phone's Battery </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="battery" value={battery} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's description" />
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="formGridOS">
+                          <Form.Label> Phone OS </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="os" value={os} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter picture of the phone URL " />
+                      </Form.Group>
+                  </Form.Row>
+                  <Form.Row>
+                      <Form.Group as={Col} controlId="formGridSelfieCamera">
+                          <Form.Label> Phone's Selfie Cam </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="selfie_cam" value={selfie_cam} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's description" />
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="formGridCamera">
+                          <Form.Label> Phone camera </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="camera" value={camera} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter picture of the phone URL " />
+                      </Form.Group>
+                  </Form.Row>
                </Card.Body>
                <Card.Footer style={{"textAlign":"center"}}>
                    <Button size="sm" variant="success" type="submit">
