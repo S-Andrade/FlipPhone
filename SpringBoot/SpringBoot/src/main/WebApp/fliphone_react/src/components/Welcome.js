@@ -1,5 +1,6 @@
 import React from 'react';
 import {Jumbotron} from "react-bootstrap";
+import {Link} from 'react-router-dom'
 
 class Welcome extends React.Component {
 

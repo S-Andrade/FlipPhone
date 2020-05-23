@@ -16,32 +16,31 @@ public class User {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="user_id")
     private Integer user_id;
-    
+
     @Column(name="password")
     private String password;
-    
+
     @Column(name="name")
     private String name;
-    
+
     @Column(name="salt")
     private String salt;
-    
+
     @Column(name="email")
     private String email;
-    
+
     @Column(name="address")
     private String address;
-    
+
     @Column(name="nif")
     private String nif;
-    
+
     @Column(name="type")
     private String type;
 
     public User(){}
-    
-    public User(Integer user_id, String password, String name, String salt, String email, String address, String nif, String type) {
-        this.user_id = user_id;
+
+    public User(String password, String name, String salt, String email, String address, String nif, String type) {
         this.password = password;
         this.name = name;
         this.salt = salt;
@@ -114,7 +113,7 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
-    
+
+
+
 }

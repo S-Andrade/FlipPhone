@@ -10,6 +10,7 @@ import Welcome from "./components/Welcome";
 import Phone from './components/Phone'
 import PhoneList from "./components/PhoneList";
 import UserList from "./components/UserList";
+import {FormUserLogin} from "./components/FormUserLogin";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                         <Route path="/list" exact component={PhoneList}/>
                         <Route path="/users" exact component={UserList}/>
                         <Route path="/logout" exact component={Welcome}/>
+                        <Route path="/login" exact component={FormUserLogin}/>
                     </Switch>
                 </Col>
             </Row>
