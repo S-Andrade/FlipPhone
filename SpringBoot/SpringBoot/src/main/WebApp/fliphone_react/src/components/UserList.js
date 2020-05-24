@@ -13,7 +13,6 @@ export default class UserList extends Component {
             currentPage :1,
             usersPerPage: 5
 
-
         };
     }
 
