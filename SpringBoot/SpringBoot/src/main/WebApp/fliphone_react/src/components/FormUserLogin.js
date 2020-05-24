@@ -54,6 +54,7 @@ export class FormUserLogin extends Component {
                 if(response.data != null){
                     this.setState(this.initialState);
                     alert("Register successfull");
+                    window.location.replace = "http://localhost:8080/list"; //cant go back from this url
                 }
             })
 
@@ -83,6 +84,8 @@ export class FormUserLogin extends Component {
 
                         <Form  onReset={this.resetLoginData} onSubmit={this.submitLoginData} >
                         <TextField
+                            required
+                            autoComplete="off"
                             placeholder="Enter Your name"
                             label="name"
                             type="text"
@@ -95,6 +98,8 @@ export class FormUserLogin extends Component {
                         <br />
 
                         <TextField
+                            required
+                            autoComplete="off"
                             placeholder="Enter Your address"
                             label="address"
                             type="text"
@@ -107,6 +112,8 @@ export class FormUserLogin extends Component {
                         <br />
 
                         <TextField
+                            required
+                            autoComplete="off"
                             placeholder="Enter Your nif"
                             label="nif"
                             type="text"
@@ -119,6 +126,8 @@ export class FormUserLogin extends Component {
                         <br />
 
                         <TextField
+                            required
+                            autoComplete="off"
                             placeholder="Enter Your type"
                             label="type"
                             type="text"
@@ -131,6 +140,8 @@ export class FormUserLogin extends Component {
                         <br />
 
                         <TextField
+                            required
+                            autoComplete="off"
                             placeholder="Enter Your Email"
                             label="Email"
                             type="text"
@@ -142,6 +153,8 @@ export class FormUserLogin extends Component {
                         />
                         <br />
                         <TextField
+                            required
+                            autoComplete="off"
                             placeholder="Enter Your Password"
                             label="Password"
                             type="text"

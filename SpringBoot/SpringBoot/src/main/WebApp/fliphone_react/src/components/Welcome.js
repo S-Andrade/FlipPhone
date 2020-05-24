@@ -10,7 +10,7 @@ class Welcome extends React.Component {
                 <div className="hero-container">
                     <h1 className="bg-dark text-white">Welcome to FlipPhone</h1>
                     <h2 className="bg-dark text-white">A marketplace for used/new phones </h2>
-                    <a href="#about" className="btn-get-started">Login here</a>
+                    <a href="/login" className="btn-get-started">Login here</a>
                 </div>
             </section>
 

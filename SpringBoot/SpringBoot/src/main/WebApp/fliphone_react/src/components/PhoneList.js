@@ -21,7 +21,7 @@ export default class PhoneList extends Component {
             .then(response => response.data)
             .then((data) => {
             this.setState({phones: data});
-            console.log(this.state.phones);
+            //console.log(this.state.phones);
             });
 
     }
@@ -40,10 +40,20 @@ export default class PhoneList extends Component {
                 return phone.product_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
             }
         );
-
+        const elementStyle ={
+            border:'solid',
+            borderRadius:'10px',
+            position:'relative',
+            left:'0vh',
+            height:'3vh',
+            width:'20vh',
+            marginTop:'0vh',
+            marginBottom:'0vh'
+        }
         return(
+
             <div>
-                <input type="text" placeholder="Search product name" value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+                <input type="text" placeholder="Search product name"  style={elementStyle} value={this.state.search} onChange={this.updateSearch.bind(this)}/>
                 <Card className={"border border-dark bg-dark text-white"}>
                 <Card.Header> All phones ({this.state.phones.length} phones available in total) </Card.Header>
 
@@ -92,23 +102,7 @@ export default class PhoneList extends Component {
             </div>
         )
 
-        const elementStyle ={
-            border:'solid',
-            borderRadius:'10px',
-            position:'relative',
-            left:'10vh',
-            height:'3vh',
-            width:'20vh',
-            marginTop:'5vh',
-            marginBottom:'10vh'
-        }
 
-        return (
-            <div>
-                <input type="text" placeholder="Search product name" style={elementStyle} onChange={(e)=>this.searchSpace(e)} />
-                {this.state.phones}
-            </div>
-        )
     }
 }
 
