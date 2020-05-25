@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,6 +82,12 @@ public class PaymentController {
     @GetMapping(path="/{payment_id}")
     public @ResponseBody Optional<Payment> getPaymentById(@PathVariable Integer payment_id){       
         return paymentRepository.findById(payment_id);
+    }
+    
+    @DeleteMapping(path="/delete")
+    public @ResponseBody String deletePaymentById(@RequestParam Integer payment_id){
+        paymentRepository.deleteById(payment_id);
+        return "Deleted";
     }
     
 }

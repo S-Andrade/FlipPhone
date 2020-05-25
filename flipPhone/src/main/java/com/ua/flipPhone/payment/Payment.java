@@ -58,6 +58,16 @@ public class Payment {
         this.seller_id = seller_id;
     }
 
+    public Payment(Integer payment_id, String status, String gateway, Date date, Order order_id, User client_id, User seller_id) {
+        this.payment_id = payment_id;
+        this.status = status;
+        this.gateway = gateway;
+        this.date = date;
+        this.order_id = order_id;
+        this.client_id = client_id;
+        this.seller_id = seller_id;
+    }
+    
     public Integer getPayment_id() {
         return payment_id;
     }

@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name ="item")
@@ -41,8 +42,8 @@ public class Item {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product_id;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "order_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade=CascadeType.ALL)
+    @JoinColumn(name = "order_id", nullable = true)
     private Order order_id;
     
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -51,7 +52,18 @@ public class Item {
 
     public Item(){}
     
-    public Item(String grade, String color, Double price, String version, Product product_id, Order order_id, User seller_id) {
+    public Item(String grade, String color, Double price, String version, Product product_id, Order order_id ,User seller_id) {
+        this.grade = grade;
+        this.color = color;
+        this.price = price;
+        this.version = version;
+        this.product_id = product_id;
+        this.order_id = order_id;
+        this.seller_id = seller_id;
+    }
+    
+    public Item(Integer item_id, String grade, String color, Double price, String version, Product product_id, Order order_id, User seller_id) {
+        this.item_id = item_id;
         this.grade = grade;
         this.color = color;
         this.price = price;

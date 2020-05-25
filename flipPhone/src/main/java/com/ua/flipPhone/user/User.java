@@ -50,6 +50,17 @@ public class User {
         this.type = type;
     }
 
+    public User(Integer user_id, String password, String name, String salt, String email, String address, String nif, String type) {
+        this.user_id = user_id;
+        this.password = password;
+        this.name = name;
+        this.salt = salt;
+        this.email = email;
+        this.address = address;
+        this.nif = nif;
+        this.type = type;
+    }
+    
     public Integer getUser_id() {
         return user_id;
     }

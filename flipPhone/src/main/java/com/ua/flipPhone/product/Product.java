@@ -47,9 +47,12 @@ public class Product {
     @Column(name="product_name")
     private String product_name;
 
+    @Column(name="photoUrl")
+    private String photoUrl;
+    
     public Product(){}
     
-    public Product(String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name) {
+    public Product(String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name, String photoUrl) {
         this.cpu_gpu = cpu_gpu;
         this.ram_rom = ram_rom;
         this.image = image;
@@ -60,9 +63,25 @@ public class Product {
         this.selfie_cam = selfie_cam;
         this.camera = camera;
         this.product_name = product_name;
+        this.photoUrl = photoUrl;
     }
 
+    public Product(Integer product_id, String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name, String photoUrl) {
+        this.product_id = product_id;
+        this.cpu_gpu = cpu_gpu;
+        this.ram_rom = ram_rom;
+        this.image = image;
+        this.screen_size = screen_size;
+        this.screen_type = screen_type;
+        this.battery = battery;
+        this.os = os;
+        this.selfie_cam = selfie_cam;
+        this.camera = camera;
+        this.product_name = product_name;
+        this.photoUrl = photoUrl;
+    }
 
+    
 
     public Integer getProduct_id() {
         return product_id;
@@ -150,6 +169,14 @@ public class Product {
 
     public void setProduct_name(String product_name) {
         this.product_name = product_name;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     
