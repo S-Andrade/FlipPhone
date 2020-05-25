@@ -54,7 +54,7 @@ export class FormUserLogin extends Component {
                 if(response.data != null){
                     this.setState(this.initialState);
                     alert("Register successfull");
-                    window.location.replace = "http://localhost:8080/list"; //cant go back from this url
+                    window.location.replace("http://localhost:3000/main"); //cant go back from this url
                 }
             })
 

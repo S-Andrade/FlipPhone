@@ -8,8 +8,9 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import NavigationBar from "./components/NavigationBar";
 import Welcome from "./components/Welcome";
 import Phone from './components/Phone'
-import PhoneList from "./components/PhoneList";
+import Filters from "./components/Filters";
 import UserList from "./components/UserList";
+import MainPage from "./components/MainPage";
 import {FormUserLogin} from "./components/FormUserLogin";
 
 
@@ -27,10 +28,11 @@ function App() {
                     <Switch>
                         <Route path="/" exact component={Welcome}/>
                         <Route path="/add" exact component={Phone}/>
-                        <Route path="/list" exact component={PhoneList}/>
+                        <Route path="/list" exact component={Filters}/>
                         <Route path="/users" exact component={UserList}/>
                         <Route path="/logout" exact component={Welcome}/>
                         <Route path="/login" exact component={FormUserLogin}/>
+                        <Route path="/main" exact component={MainPage}/>
                     </Switch>
                 </Col>
             </Row>
