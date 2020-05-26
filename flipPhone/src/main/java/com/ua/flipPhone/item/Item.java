@@ -40,7 +40,7 @@ public class Item {
     
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "product_id", nullable = false)
-    private Product product_id;
+    private Product productId;
     
     @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade=CascadeType.ALL)
     @JoinColumn(name = "order_id", nullable = true)
@@ -57,7 +57,7 @@ public class Item {
         this.color = color;
         this.price = price;
         this.version = version;
-        this.product_id = product_id;
+        this.productId = productId;
         this.order_id = order_id;
         this.seller_id = seller_id;
     }
@@ -68,7 +68,7 @@ public class Item {
         this.color = color;
         this.price = price;
         this.version = version;
-        this.product_id = product_id;
+        this.productId = productId;
         this.order_id = order_id;
         this.seller_id = seller_id;
     }
@@ -113,12 +113,12 @@ public class Item {
         this.version = version;
     }
 
-    public Product getProduct_id() {
-        return product_id;
+    public Product getProductId() {
+        return this.productId;
     }
 
-    public void setProduct_id(Product product_id) {
-        this.product_id = product_id;
+    public void setProductId(Product productId) {
+        this.productId = productId;
     }
 
     public Order getOrder_id() {

@@ -83,6 +83,20 @@ public class ItemController {
         return "Deleted";
     }
     
+    @GetMapping(path="/byProduct")
+    public @ResponseBody Iterable<Item> getItemByProductId(@RequestParam Integer product_id) {
+        Product product;
+      
+       /// try{
+            Optional<Product> op_product = productRepository.findById(product_id);
+            product = op_product.get();
+        //}catch(Exception e){
+            //throw EntityNotFoundExceptio("This product does not exist");
+       // }
+        return itemRepository.findByProductId(product);
+    }
+    
+    
     @GetMapping(path="/filter")
     public @ResponseBody String getAllItemsByFilter(
             @RequestParam(required=false) String grade,
@@ -95,5 +109,9 @@ public class ItemController {
         
         
         return "";
+    }
+
+    private Exception EntityNotFoundExceptio(String this_product_does_not_exist) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
   }
