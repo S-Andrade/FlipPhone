@@ -1,11 +1,11 @@
 
 package com.ua.flipPhone.product;
 
-import org.springframework.data.repository.CrudRepository;
 
-import com.ua.flipPhone.product.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 
-public interface ProductRepository extends CrudRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer>, JpaSpecificationExecutor<Product> {
 
 }

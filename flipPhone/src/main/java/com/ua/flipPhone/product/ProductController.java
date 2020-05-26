@@ -1,6 +1,8 @@
 
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.specifications.SearchCriteria;
+import com.ua.flipPhone.specifications.SearchOperation;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,5 +49,52 @@ public class ProductController {
     public @ResponseBody String deleteProductById(@RequestParam Integer product_id){
         productRepository.deleteById(product_id);
         return "Deleted";
+    }
+    
+    @GetMapping(path="/filter")
+    public @ResponseBody Iterable<Product> getAllProductsByFilter(
+            @RequestParam(required=false) String cpu_gpu, 
+            @RequestParam(required=false) String ram_rom, 
+            @RequestParam(required=false) String image, 
+            @RequestParam(required=false) String screen_size, 
+            @RequestParam(required=false) String screen_type, 
+            @RequestParam(required=false) String battery,
+            @RequestParam(required=false) String os,
+            @RequestParam(required=false) String selfie_cam,
+            @RequestParam(required=false) String camera,
+            @RequestParam(required=false) String product_name){
+        
+        ProductSpecification filter = new ProductSpecification();
+        if(cpu_gpu != null){
+            filter.add(new SearchCriteria("cpu_gpu",cpu_gpu, SearchOperation.EQUAL));
+        }
+        if(ram_rom != null){
+            filter.add(new SearchCriteria("ram_rom",ram_rom, SearchOperation.EQUAL));
+        }
+        if(image != null){
+            filter.add(new SearchCriteria("image",image, SearchOperation.EQUAL));
+        }
+        if(screen_size != null){
+            filter.add(new SearchCriteria("screen_size",screen_size, SearchOperation.EQUAL));
+        }
+        if(screen_type != null){
+            filter.add(new SearchCriteria("screen_type",screen_type, SearchOperation.EQUAL));
+        }
+         if(battery != null){
+            filter.add(new SearchCriteria("battery",battery, SearchOperation.EQUAL));
+        }
+        if(os != null){
+            filter.add(new SearchCriteria("os",os, SearchOperation.EQUAL));
+        }
+        if(selfie_cam != null){
+            filter.add(new SearchCriteria("selfie_cam",selfie_cam, SearchOperation.EQUAL));
+        }
+        if(camera != null){
+            filter.add(new SearchCriteria("camera",camera, SearchOperation.EQUAL));
+        }
+        if(product_name != null){
+            filter.add(new SearchCriteria("product_name",product_name, SearchOperation.EQUAL));
+        }
+        return productRepository.findAll(filter);
     }
 }

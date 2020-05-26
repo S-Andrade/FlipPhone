@@ -52,14 +52,14 @@ public class OrderController {
             Optional<User> user = userRepository.findById(client_id);
             client = user.get();            
         }catch (Exception e){
-            return "This user does not exist";
+            return null;
         }
         
         try{
             Optional<Item> op_item = itemRepository.findById(item_id);
             item=op_item.get();
         }catch (Exception e){
-            return "This item does not exist";
+            return null;
         }
         
                 
@@ -70,7 +70,7 @@ public class OrderController {
             orderRepository.save(newOrder);
             return "Saved";
         }else{
-            return "This item is already assigned to anather order";
+            return null;
         }
               
     }

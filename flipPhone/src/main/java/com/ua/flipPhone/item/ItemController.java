@@ -4,8 +4,12 @@ import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.order.OrderRepository;
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.product.ProductRepository;
+import com.ua.flipPhone.specifications.SearchCriteria;
+import com.ua.flipPhone.specifications.SearchOperation;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import org.springframework.data.jpa.domain.Specification;
+
 
 @Controller
 @RequestMapping(path="/item")
@@ -47,15 +55,16 @@ public class ItemController {
             @RequestParam String version,
             @RequestParam Integer product_id,
             @RequestParam Integer seller_id){
-        
+        System.out.println(product_id);
         Product product;
         User seller;
         
         try{
             Optional<Product> op_product = productRepository.findById(product_id);
             product = op_product.get();
+            System.out.println(product);
         }catch(Exception e){
-            return "This product does not exist";
+            return null;
         }
         
         
@@ -63,10 +72,9 @@ public class ItemController {
             Optional<User> op_user = userRepository.findById(seller_id);
             seller = op_user.get();
         }catch(Exception e){
-            return "This user does not exist";
+            return null;
         }
-        
-        Item newItem = new Item(grade, color, price, version, product,null, seller);
+        Item newItem = new Item(grade, color, price, version, product, null, seller);
         itemRepository.save(newItem);
         return "Saved";
     }
@@ -86,31 +94,73 @@ public class ItemController {
     public @ResponseBody Iterable<Item> getItemByProductId(@RequestParam Integer product_id) {
         Product product;
       
-       /// try{
+        try{
             Optional<Product> op_product = productRepository.findById(product_id);
             product = op_product.get();
-        //}catch(Exception e){
-            //throw EntityNotFoundExceptio("This product does not exist");
-       // }
+        }catch(Exception e){
+            return null;
+        }
         return itemRepository.findByProductId(product);
     }
     
-    
     @GetMapping(path="/filter")
-    public @ResponseBody String getAllItemsByFilter(
+    public @ResponseBody Iterable<Item> getAllItemsByFilter(
             @RequestParam(required=false) String grade,
             @RequestParam(required=false) String color,
             @RequestParam(required=false) String price,
             @RequestParam(required=false) String version,
-            @RequestParam(required=false) String product,
-            @RequestParam(required=false) String seller){
+            @RequestParam(required=false) Integer product,
+            @RequestParam(required=false) Integer seller){
         
+        ItemSpecification filter = new ItemSpecification();
         
+        if(grade != null){
+            filter.add(new SearchCriteria("grade",grade, SearchOperation.EQUAL));
+        }
+        if(color != null){
+            filter.add(new SearchCriteria("color",color, SearchOperation.EQUAL));
+        }
+        if(version != null){
+            filter.add(new SearchCriteria("version",version, SearchOperation.EQUAL));
+        }
+        if(price != null){
+            String op = price.substring(0, 1);
+            String n = price.substring(1);
+            Double number = Double.parseDouble(n);
+            if(op.equals("<")){
+                filter.add(new SearchCriteria("price", number, SearchOperation.LESS_THAN_EQUAL));
+            }
+            if(op.equals(">")){
+               filter.add(new SearchCriteria("price", number, SearchOperation.GREATER_THAN_EQUAL)); 
+            }
+        }
         
-        return "";
+        if(product != null){
+            Product pro;
+      
+            try{
+                Optional<Product> op_product = productRepository.findById(product);
+                pro = op_product.get();
+            }catch(Exception e){
+                return null;
+            }
+            filter.add(new SearchCriteria("productId",pro, SearchOperation.EQUAL));
+        }
+        if(seller != null){
+            User user;
+      
+            try{
+                Optional<User> op_user = userRepository.findById(seller);
+                user = op_user.get();
+            }catch(Exception e){
+                return null;
+            }
+            filter.add(new SearchCriteria("seller_id",seller, SearchOperation.EQUAL));
+        }
+        
+         
+        return itemRepository.findAll(filter);
     }
 
-    private Exception EntityNotFoundExceptio(String this_product_does_not_exist) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
   }

@@ -6,12 +6,14 @@ import org.springframework.data.repository.CrudRepository;
 import com.ua.flipPhone.item.Item;
 import com.ua.flipPhone.product.Product;
 import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 
-public interface ItemRepository extends CrudRepository<Item, Integer> {
+public interface ItemRepository extends JpaRepository<Item, Integer>, JpaSpecificationExecutor<Item> {
    
     Iterable<Item> findByProductId(Product productId);
     /*@Modifying

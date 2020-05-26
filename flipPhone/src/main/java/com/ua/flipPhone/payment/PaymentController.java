@@ -55,21 +55,21 @@ public class PaymentController {
             Optional<Order> op_order = orderRepository.findById(order_id);
             order = op_order.get();
         }catch(Exception e){
-           return "This order does not exist"; 
+           return null; 
         }
         
         try{
             Optional<User> op_client = userRepository.findById(client_id);
             client = op_client.get();
         }catch(Exception e){
-            return "This user does not exist";
+            return null;
         }
         
         try{
             Optional<User> op_seller = userRepository.findById(seller_id);
             seller = op_seller.get();
         }catch(Exception e){
-            return "This user does not exist";
+            return null;
         }
         
         
