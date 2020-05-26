@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FlipPhoneApplication  implements CommandLineRunner {
+public class FlipPhoneApplication  {//implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -17,7 +17,7 @@ public class FlipPhoneApplication  implements CommandLineRunner {
 		SpringApplication.run(FlipPhoneApplication.class, args);
 	}
 
-	@Override
+	/*@Override
 	public void run(String... args) throws Exception { //Populating DB with 10 Samsung phones
 		for(int i=1; i<=10; i++) {
 			Product phone = new Product();
@@ -34,6 +34,6 @@ public class FlipPhoneApplication  implements CommandLineRunner {
 
 			productRepository.save(phone);
 		}
-	}
+	}*/
 
 }
