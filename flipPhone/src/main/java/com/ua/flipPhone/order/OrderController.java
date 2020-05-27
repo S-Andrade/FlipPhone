@@ -4,7 +4,9 @@ import com.ua.flipPhone.item.Item;
 import com.ua.flipPhone.item.ItemRepository;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,10 +44,11 @@ public class OrderController {
             @RequestParam  @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm:ss") Date date, 
             @RequestParam double total, 
             @RequestParam Integer client_id,
-            @RequestParam Integer item_id){
+            @RequestParam String item_id){
         
         User client;
-        Item item;
+        List<Item> itemList = new ArrayList<>();
+        
         
         
         try{
@@ -55,24 +58,51 @@ public class OrderController {
             return null;
         }
         
+        String[] list_item = item_id.split(",");
+        for(String i: list_item){
+            try{
+                Optional<Item> op_item = itemRepository.findById(Integer.parseInt(i));
+                itemList.add(op_item.get());
+            }catch (Exception e){
+                return null;
+            }
+        }
+        
+        
+        Order newOrder = new Order(date,total,client);
+        orderRepository.save(newOrder);
+        for(Item i : itemList){
+            if(i.getOrder_id() == null){
+                i.setOrder_id(newOrder);
+                itemRepository.save(i);
+            }
+        }
+        return "Saved";
+                   
+    }
+    
+    @PostMapping(path="/addItem")
+    public @ResponseBody String addItem(@RequestParam Integer item_id, @RequestParam Integer order_id){
+        Item item;
+        Order order;
+        
         try{
-            Optional<Item> op_item = itemRepository.findById(item_id);
-            item=op_item.get();
+            Optional<Order> op_order = orderRepository.findById(order_id);
+            order = op_order.get();
         }catch (Exception e){
             return null;
         }
         
-                
-        Order newOrder = new Order(date,total,client);
-        if(item.getOrder_id() == null){
-            item.setOrder_id(newOrder);
-            itemRepository.save(item);
-            orderRepository.save(newOrder);
-            return "Saved";
-        }else{
+        try{
+            Optional<Item> op_item = itemRepository.findById(item_id);
+            item = op_item.get();
+        }catch (Exception e){
             return null;
         }
-              
+        
+        item.setOrder_id(order);
+        itemRepository.save(item);
+        return "Saved";
     }
     
     @GetMapping(path="/{order_id}")
