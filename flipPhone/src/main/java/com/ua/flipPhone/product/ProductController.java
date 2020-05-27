@@ -1,14 +1,12 @@
 
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.specifications.SearchCriteria;
+import com.ua.flipPhone.specifications.SearchOperation;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Pageable;
 
 @Controller
 @RequestMapping(path="/product")
@@ -17,11 +15,7 @@ public class ProductController {
     
     @Autowired
     private ProductRepository productRepository;
-
-    public ResponseEntity<Page<Product>> findAll(Pageable pageable, String searchText) {
-        return new ResponseEntity<>(productRepository.findAllPhones(pageable, searchText), HttpStatus.OK);
-    }
-
+    
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Product> getAllProducts(){
         return productRepository.findAll();
@@ -38,14 +32,69 @@ public class ProductController {
             @RequestParam String os,
             @RequestParam String selfie_cam,
             @RequestParam String camera,
-            @RequestParam String product_name){
-        Product newProduct = new Product(cpu_gpu, ram_rom, image, screen_size, screen_type, battery, os, selfie_cam,camera,product_name);
+            @RequestParam String product_name,
+            @RequestParam String photoUrl){
+        Product newProduct = new Product(cpu_gpu, ram_rom, image, screen_size, screen_type, battery, os, selfie_cam,camera,product_name,photoUrl);
         productRepository.save(newProduct);
         
         return "Saved";
     }
 
+    @GetMapping(path="/{product_id}")
+    public @ResponseBody Optional<Product> getAdminById(@PathVariable Integer product_id){       
+        return productRepository.findById(product_id);
+    }
 
-
-
+    @DeleteMapping(path="/delete")
+    public @ResponseBody String deleteProductById(@RequestParam Integer product_id){
+        productRepository.deleteById(product_id);
+        return "Deleted";
+    }
+    
+    @GetMapping(path="/filter")
+    public @ResponseBody Iterable<Product> getAllProductsByFilter(
+            @RequestParam(required=false) String cpu_gpu, 
+            @RequestParam(required=false) String ram_rom, 
+            @RequestParam(required=false) String image, 
+            @RequestParam(required=false) String screen_size, 
+            @RequestParam(required=false) String screen_type, 
+            @RequestParam(required=false) String battery,
+            @RequestParam(required=false) String os,
+            @RequestParam(required=false) String selfie_cam,
+            @RequestParam(required=false) String camera,
+            @RequestParam(required=false) String product_name){
+        
+        ProductSpecification filter = new ProductSpecification();
+        if(cpu_gpu != null){
+            filter.add(new SearchCriteria("cpu_gpu",cpu_gpu, SearchOperation.EQUAL));
+        }
+        if(ram_rom != null){
+            filter.add(new SearchCriteria("ram_rom",ram_rom, SearchOperation.EQUAL));
+        }
+        if(image != null){
+            filter.add(new SearchCriteria("image",image, SearchOperation.EQUAL));
+        }
+        if(screen_size != null){
+            filter.add(new SearchCriteria("screen_size",screen_size, SearchOperation.EQUAL));
+        }
+        if(screen_type != null){
+            filter.add(new SearchCriteria("screen_type",screen_type, SearchOperation.EQUAL));
+        }
+         if(battery != null){
+            filter.add(new SearchCriteria("battery",battery, SearchOperation.EQUAL));
+        }
+        if(os != null){
+            filter.add(new SearchCriteria("os",os, SearchOperation.EQUAL));
+        }
+        if(selfie_cam != null){
+            filter.add(new SearchCriteria("selfie_cam",selfie_cam, SearchOperation.EQUAL));
+        }
+        if(camera != null){
+            filter.add(new SearchCriteria("camera",camera, SearchOperation.EQUAL));
+        }
+        if(product_name != null){
+            filter.add(new SearchCriteria("product_name",product_name, SearchOperation.EQUAL));
+        }
+        return productRepository.findAll(filter);
+    }
 }

@@ -1,3 +1,4 @@
+
 package com.ua.flipPhone.user;
 
 import com.ua.flipPhone.admin.Admin;
@@ -10,33 +11,39 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path="/user")
 @CrossOrigin(origins="http://localhost:3000")
 public class UserController {
-
+    
     @Autowired
     private UserRepository userRepository;
-
+    
     @GetMapping(path="/all")
     public @ResponseBody Iterable<User> getAllUsers(){
         return userRepository.findAll();
     }
-
+    
     @PostMapping(path="/add")
     public @ResponseBody String addNewAdmin(
-            @RequestParam String password,
-            @RequestParam String name,
+            @RequestParam String password, 
+            @RequestParam String name, 
             @RequestParam String salt,
             @RequestParam String email,
             @RequestParam String address,
             @RequestParam String nif,
             @RequestParam String type){
-
+        
         User newUser = new User(password, name, salt, email, address, nif, type);
         userRepository.save(newUser);
-
+        
         return "Saved";
     }
-
+    
     @GetMapping(path="/{user_id}")
-    public @ResponseBody Optional<User> getUserById(@PathVariable Integer user_id){
+    public @ResponseBody Optional<User> getUserById(@PathVariable Integer user_id){       
         return userRepository.findById(user_id);
+    }
+    
+    @DeleteMapping(path="/delete")
+    public @ResponseBody String deleteUserById(@RequestParam Integer user_id){
+        userRepository.deleteById(user_id);
+        return "Deleted";
     }
 }

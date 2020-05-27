@@ -12,14 +12,15 @@ public class ProductTest {
         product = new Product(
                 "Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                 "4 GB", 
-                "image.png", 
+                "300DPI", 
                 "6,5 \"", 
                 "sAMOLED Infinity-O FHD+ tátil capacitivo com multi-touch", 
                 "Li-Ion 4000 mAh", 
                 "Android 10.0", 
                 "32.0 MP\n f/2.2",
                 "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
-                "Smartphone Samsung Galaxy A51 - A515F");
+                "Smartphone Samsung Galaxy A51 - A515F",
+                "url/image");
     }
     
    /* @Test
@@ -39,7 +40,7 @@ public class ProductTest {
     
     @Test
     public void testGetImage(){
-        assertEquals("image.png",product.getImage());
+        assertEquals("300DPI",product.getImage());
     }
     
     @Test
@@ -78,6 +79,11 @@ public class ProductTest {
     }
     
     @Test
+    public void testGetPhotoUrl(){
+        assertEquals("url/image",product.getPhotoUrl());
+    }
+    
+    @Test
     public void testSetProduct_id(){
         product.setProduct_id(2);
         assertEquals(2,product.getProduct_id());
@@ -97,8 +103,8 @@ public class ProductTest {
     
     @Test
     public void testSetImage(){
-        product.setImage("new_image.png");
-        assertEquals("new_image.png",product.getImage());
+        product.setImage("125DPI");
+        assertEquals("125DPI",product.getImage());
     }
     
     @Test
@@ -141,5 +147,11 @@ public class ProductTest {
     public void testSetProduct_name(){
         product.setProduct_name("Smartphone OnePlus 8");
         assertEquals("Smartphone OnePlus 8",product.getProduct_name());
+    }
+    
+    @Test
+    public void testSetPhotoUrl(){
+        product.setPhotoUrl("url/new_Image");
+        assertEquals("url/new_Image",product.getPhotoUrl());
     }
 }

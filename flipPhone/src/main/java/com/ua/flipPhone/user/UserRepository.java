@@ -1,10 +1,8 @@
 package com.ua.flipPhone.user;
 
-import org.springframework.data.repository.CrudRepository;
-
-import com.ua.flipPhone.user.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Integer> {
 
 }

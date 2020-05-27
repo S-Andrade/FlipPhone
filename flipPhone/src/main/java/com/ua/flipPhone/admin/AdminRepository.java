@@ -1,10 +1,9 @@
 package com.ua.flipPhone.admin;
 
-import org.springframework.data.repository.CrudRepository;
 
-import com.ua.flipPhone.admin.Admin;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface AdminRepository extends CrudRepository<Admin, String> {
+public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
 }
