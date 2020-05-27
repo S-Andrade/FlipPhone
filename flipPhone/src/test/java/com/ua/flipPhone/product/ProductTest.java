@@ -1,15 +1,21 @@
 
 package com.ua.flipPhone.product;
 
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ProductTest {
     
     private Product product;
     
-    public ProductTest(){
-        product = new Product(
+    public ProductTest(){}
+    
+    @BeforeEach
+    public void setUp() {
+         product = new Product(
+                 1,
                 "Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                 "4 GB", 
                 "300DPI", 
@@ -23,10 +29,16 @@ public class ProductTest {
                 "url/image");
     }
     
-   /* @Test
+    
+    @AfterEach
+    public void tearDown(){
+        product = null;
+    }
+    
+    @Test
     public void testGetProduct_id(){
-        assertEquals(2,product.getProduct_id());
-    }*/
+        assertEquals(1,product.getProduct_id());
+    }
     
     @Test
     public void testGetCpu_gpu(){

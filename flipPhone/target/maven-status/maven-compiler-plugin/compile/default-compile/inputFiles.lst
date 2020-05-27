@@ -13,7 +13,11 @@
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/item/Item.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/FlipPhoneApplication.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/order/Order.java
+/home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/product/ProductSpecification.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/payment/Payment.java
+/home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/item/ItemSpecification.java
+/home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/specifications/SearchCriteria.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/order/OrderRepository.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/user/User.java
+/home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/specifications/SearchOperation.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/order/OrderController.java
