@@ -15,6 +15,8 @@ import javax.persistence.Column;
 
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 
 @Entity
@@ -27,10 +29,12 @@ public class Payment {
     private Integer payment_id;
     
     @Column(name="status")
-    private String status;
+    @Enumerated(EnumType.ORDINAL)
+    private PaymentStatus status;
     
     @Column(name="gateway")
-    private String gateway;
+    @Enumerated(EnumType.ORDINAL)
+    private PaymentGateway gateway;
     
     @Column(name="date")
     private Date date;
@@ -49,7 +53,7 @@ public class Payment {
 
     public Payment(){}
     
-    public Payment( String status, String gateway, Date date, Order order_id, User client_id, User seller_id) {
+    public Payment( PaymentStatus status, PaymentGateway gateway, Date date, Order order_id, User client_id, User seller_id) {
         this.status = status;
         this.gateway = gateway;
         this.date = date;
@@ -58,7 +62,7 @@ public class Payment {
         this.seller_id = seller_id;
     }
 
-    public Payment(Integer payment_id, String status, String gateway, Date date, Order order_id, User client_id, User seller_id) {
+    public Payment(Integer payment_id, PaymentStatus status, PaymentGateway gateway, Date date, Order order_id, User client_id, User seller_id) {
         this.payment_id = payment_id;
         this.status = status;
         this.gateway = gateway;
@@ -76,19 +80,19 @@ public class Payment {
         this.payment_id = payment_id;
     }
 
-    public String getStatus() {
+    public PaymentStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PaymentStatus status) {
         this.status = status;
     }
 
-    public String getGateway() {
+    public PaymentGateway getGateway() {
         return gateway;
     }
 
-    public void setGateway(String gateway) {
+    public void setGateway(PaymentGateway gateway) {
         this.gateway = gateway;
     }
 

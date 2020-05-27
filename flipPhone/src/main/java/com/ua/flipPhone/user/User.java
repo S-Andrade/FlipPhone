@@ -2,6 +2,8 @@ package com.ua.flipPhone.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,11 +38,12 @@ public class User {
     private String nif;
     
     @Column(name="type")
-    private String type;
+    @Enumerated(EnumType.ORDINAL)
+    private UserType type;
 
     public User(){}
     
-    public User(String password, String name, String salt, String email, String address, String nif, String type) {
+    public User(String password, String name, String salt, String email, String address, String nif, UserType type) {
         this.password = password;
         this.name = name;
         this.salt = salt;
@@ -50,7 +53,7 @@ public class User {
         this.type = type;
     }
 
-    public User(Integer user_id, String password, String name, String salt, String email, String address, String nif, String type) {
+    public User(Integer user_id, String password, String name, String salt, String email, String address, String nif, UserType type) {
         this.user_id = user_id;
         this.password = password;
         this.name = name;
@@ -117,11 +120,11 @@ public class User {
         this.nif = nif;
     }
 
-    public String getType() {
+    public UserType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(UserType type) {
         this.type = type;
     }
     

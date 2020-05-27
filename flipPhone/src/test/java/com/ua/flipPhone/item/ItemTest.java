@@ -4,6 +4,7 @@ package com.ua.flipPhone.item;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.user.User;
+import com.ua.flipPhone.user.UserType;
 import java.util.Date;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,11 +36,11 @@ public class ItemTest {
                                         "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                                         "Smartphone Samsung Galaxy A51 - A515F",
                                         "url/image");
-        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", "client");
+        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
         order = new Order(new Date(), 400, client);
-        seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", "seller");
+        seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.SELLER);
         
-        item = new Item(1,"new", "black" , 300.50, "v4", product, order ,seller);
+        item = new Item(1,ItemGrade.NEW, "black" , 300.50, "v4", product, order ,seller);
     }
     
     @AfterEach
@@ -57,7 +58,7 @@ public class ItemTest {
     
     @Test
     public void testGetGrade(){
-        assertEquals("new", item.getGrade());
+        assertEquals(ItemGrade.NEW, item.getGrade());
     }
     
     @Test
@@ -98,8 +99,8 @@ public class ItemTest {
     
     @Test
     public void testSetGrade(){
-        item.setGrade("old");
-        assertEquals("old",item.getGrade());
+        item.setGrade(ItemGrade.GOOD_STATE);
+        assertEquals(ItemGrade.GOOD_STATE,item.getGrade());
     }
  
     @Test
@@ -139,7 +140,7 @@ public class ItemTest {
     
     @Test
     public void testSetOrder_id(){
-        User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", "client");
+        User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.CLIENT);
         Order o;
         o = new Order(new Date(), 500, client);
         item.setOrder_id(o);
@@ -148,7 +149,7 @@ public class ItemTest {
     
     @Test
     public void testSetSeller_id(){
-        User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", "seller");
+        User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", UserType.SELLER);
         item.setSeller_id(s);
         assertEquals(s,item.getSeller_id());
     }

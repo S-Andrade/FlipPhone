@@ -66,34 +66,34 @@ public class ProductController {
         
         ProductSpecification filter = new ProductSpecification();
         if(cpu_gpu != null){
-            filter.add(new SearchCriteria("cpu_gpu",cpu_gpu, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("cpu_gpu",cpu_gpu, SearchOperation.MATCH));
         }
         if(ram_rom != null){
-            filter.add(new SearchCriteria("ram_rom",ram_rom, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("ram_rom",ram_rom, SearchOperation.MATCH));
         }
         if(image != null){
-            filter.add(new SearchCriteria("image",image, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("image",image, SearchOperation.MATCH));
         }
         if(screen_size != null){
-            filter.add(new SearchCriteria("screen_size",screen_size, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("screen_size",screen_size, SearchOperation.MATCH));
         }
         if(screen_type != null){
-            filter.add(new SearchCriteria("screen_type",screen_type, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("screen_type",screen_type, SearchOperation.MATCH));
         }
          if(battery != null){
-            filter.add(new SearchCriteria("battery",battery, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("battery",battery, SearchOperation.MATCH));
         }
         if(os != null){
-            filter.add(new SearchCriteria("os",os, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("os",os, SearchOperation.MATCH));
         }
         if(selfie_cam != null){
-            filter.add(new SearchCriteria("selfie_cam",selfie_cam, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("selfie_cam",selfie_cam, SearchOperation.MATCH));
         }
         if(camera != null){
-            filter.add(new SearchCriteria("camera",camera, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("camera",camera, SearchOperation.MATCH));
         }
         if(product_name != null){
-            filter.add(new SearchCriteria("product_name",product_name, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("product_name",product_name, SearchOperation.MATCH));
         }
         return productRepository.findAll(filter);
     }

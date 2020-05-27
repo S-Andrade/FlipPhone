@@ -4,7 +4,9 @@ package com.ua.flipPhone.payment;
 import com.ua.flipPhone.order.OrderRepository;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,6 +39,16 @@ public class PaymentController {
         return paymentRepository.findAll();
     }
     
+    @GetMapping(path="/status")
+    public @ResponseBody List<PaymentStatus> getPaymentStatus(){
+        return Arrays.asList(PaymentStatus.values());
+    }
+    
+    @GetMapping(path="/gateway")
+    public @ResponseBody List<PaymentGateway> getPaymentGateways(){
+        return Arrays.asList(PaymentGateway.values());
+    }
+    
     @PostMapping(path="/add")
     public @ResponseBody String addNewPayment(
             @RequestParam String status,
@@ -49,6 +61,9 @@ public class PaymentController {
         Order order;
         User client;
         User seller;
+        
+        PaymentStatus s = null;
+        PaymentGateway g = null;
         
                 
         try{
@@ -73,7 +88,38 @@ public class PaymentController {
         }
         
         
-        Payment newPayment = new Payment(status, gateway, date, order, client, seller);
+        if (status.equals("PENDING")){
+            s = PaymentStatus.PENDING;
+        }
+        else if (status.equals("RECEIVED")){
+            s = PaymentStatus.RECEIVED;
+        }
+        else if (status.equals("SENT")){
+            s = PaymentStatus.SENT;
+        }
+        else{
+            return null;
+        }
+        
+        
+        if (gateway.equals("CREDIT_CARD")){
+            g = PaymentGateway.CREDIT_CARD;
+        }
+        else if (gateway.equals("DEBIT_CARD")){
+            g = PaymentGateway.DEBIT_CARD;
+        }
+        else if (gateway.equals("MBWAY")){
+            g = PaymentGateway.MBWAY;
+        }
+        else if (gateway.equals("PAYPAL")){
+            g = PaymentGateway.PAYPAL;
+        }
+        else{
+            return null;
+        }
+        
+        
+        Payment newPayment = new Payment(s, g, date, order, client, seller);
         paymentRepository.save(newPayment);
         return "Saved";
         

@@ -1,7 +1,8 @@
 
 package com.ua.flipPhone.user;
 
-import com.ua.flipPhone.admin.Admin;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,11 @@ public class UserController {
         return userRepository.findAll();
     }
     
+    @GetMapping(path="/types")
+    public @ResponseBody List<UserType> getUserTypes(){
+        return Arrays.asList(UserType.values());
+    }
+    
     @PostMapping(path="/add")
     public @ResponseBody String addNewAdmin(
             @RequestParam String password, 
@@ -35,7 +41,26 @@ public class UserController {
             @RequestParam String nif,
             @RequestParam String type){
         
-        User newUser = new User(password, name, salt, email, address, nif, type);
+        UserType t = null;
+        
+        
+        
+        if (type.equals("PROFESSIONAL")){
+            t = UserType.PROFESSIONAL;
+        }
+        else if (type.equals("CLIENT")){
+            t = UserType.CLIENT;
+        }
+        else if (type.equals("SELLER")){
+            t = UserType.SELLER;
+        }
+        else{
+            return null;
+        }
+
+       
+        
+        User newUser = new User(password, name, salt, email, address, nif, t);
         userRepository.save(newUser);
         
         return "Saved";

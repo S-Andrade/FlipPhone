@@ -9,6 +9,7 @@ import com.ua.flipPhone.specifications.SearchOperation;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +37,17 @@ public class ItemController {
     private ProductRepository productRepository;
     
     @Autowired
-    private OrderRepository orderRepository;
-    
-    @Autowired
     private UserRepository userRepository;
     
     
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Item> getAllItems(){
         return itemRepository.findAll();
+    }
+    
+    @GetMapping(path="/types")
+    public @ResponseBody List<ItemGrade> getUserTypes(){
+        return Arrays.asList(ItemGrade.values());
     }
     
     @PostMapping(path="/add")
@@ -55,9 +58,10 @@ public class ItemController {
             @RequestParam String version,
             @RequestParam Integer product_id,
             @RequestParam Integer seller_id){
-        System.out.println(product_id);
+
         Product product;
         User seller;
+        ItemGrade g = null;
         
         try{
             Optional<Product> op_product = productRepository.findById(product_id);
@@ -74,7 +78,29 @@ public class ItemController {
         }catch(Exception e){
             return null;
         }
-        Item newItem = new Item(grade, color, price, version, product, null, seller);
+        
+        
+        if (grade.equals("NEW")){
+            g = ItemGrade.NEW;
+        }
+        else if (grade.equals("LIKE_NEW")){
+            g = ItemGrade.LIKE_NEW;
+        }
+        else if (grade.equals("GOOD_STATE")){
+            g = ItemGrade.GOOD_STATE;
+        }
+        else if (grade.equals("FUNCTIONAL")){
+            g = ItemGrade.FUNCTIONAL;
+        }
+        else{
+            return null;
+        }
+            
+        
+        
+        
+        
+        Item newItem = new Item(g, color, price, version, product, null, seller);
         itemRepository.save(newItem);
         return "Saved";
     }
@@ -118,10 +144,10 @@ public class ItemController {
             filter.add(new SearchCriteria("grade",grade, SearchOperation.EQUAL));
         }
         if(color != null){
-            filter.add(new SearchCriteria("color",color, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("color",color, SearchOperation.MATCH));
         }
         if(version != null){
-            filter.add(new SearchCriteria("version",version, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("version",version, SearchOperation.MATCH));
         }
         if(price != null){
             String op = price.substring(0, 1);

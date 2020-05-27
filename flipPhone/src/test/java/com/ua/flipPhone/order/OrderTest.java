@@ -2,6 +2,7 @@
 package com.ua.flipPhone.order;
 
 import com.ua.flipPhone.user.User;
+import com.ua.flipPhone.user.UserType;
 import java.util.Date;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,7 +19,7 @@ public class OrderTest {
     
     @BeforeEach
     public void setUp() {
-        client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", "client");
+        client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
         order = new Order(1, new Date(), 400, client);
     }
     
@@ -68,7 +69,7 @@ public class OrderTest {
     
     @Test
     public void testSetClient_id() {
-        User u = new User("password", "Maria", "aswfdasf", "maria@email.com", "Maia", "52346134", "client");
+        User u = new User("password", "Maria", "aswfdasf", "maria@email.com", "Maia", "52346134", UserType.PROFESSIONAL);
         order.setClient_id(u);
        assertEquals(u, order.getClient_id());
     }

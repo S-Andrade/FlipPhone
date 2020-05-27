@@ -15,6 +15,8 @@ import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
 import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 @Table(name ="item")
@@ -26,7 +28,8 @@ public class Item {
     private Integer item_id;
     
     @Column(name="grade")
-    private String grade;
+    @Enumerated(EnumType.ORDINAL)
+    private ItemGrade grade;
     
     @Column(name="color")
     private String color;
@@ -52,7 +55,7 @@ public class Item {
 
     public Item(){}
     
-    public Item(String grade, String color, Double price, String version, Product productId, Order order_id ,User seller_id) {
+    public Item(ItemGrade grade, String color, Double price, String version, Product productId, Order order_id ,User seller_id) {
         this.grade = grade;
         this.color = color;
         this.price = price;
@@ -62,7 +65,7 @@ public class Item {
         this.seller_id = seller_id;
     }
     
-    public Item(Integer item_id, String grade, String color, Double price, String version, Product productId, Order order_id, User seller_id) {
+    public Item(Integer item_id, ItemGrade grade, String color, Double price, String version, Product productId, Order order_id, User seller_id) {
         this.item_id = item_id;
         this.grade = grade;
         this.color = color;
@@ -81,11 +84,11 @@ public class Item {
         this.item_id = item_id;
     }
 
-    public String getGrade() {
+    public ItemGrade getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(ItemGrade grade) {
         this.grade = grade;
     }
 
