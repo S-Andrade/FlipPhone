@@ -1,3 +1,4 @@
+import 'package:flipphoneapp/product_details.dart';
 import 'package:flipphoneapp/repositories/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'models/Product.dart';
@@ -23,14 +24,22 @@ class _ProductListViewState extends State<ProductListView> {
   ProductRepository _productRepository;
   var products = new List<Product>();
 
-  _getProducts() async {
-    products = await _productRepository.fetchProduct();
-  }
+  bool _isLoading = false;
 
   @override
   void initState(){
-    super.initState();
     _getProducts();
+    super.initState();
+  }
+
+  _getProducts() async {
+    setState(() {
+      _isLoading = true;
+    });
+    products = await _productRepository.fetchProducts();
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -52,6 +61,11 @@ class _ProductListViewState extends State<ProductListView> {
               style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.black)),
+          onTap: () {
+            Navigator.push(context,
+                new MaterialPageRoute(
+                    builder: (context) => ProductDetails(products[index])));
+          },
         );
       },
     );

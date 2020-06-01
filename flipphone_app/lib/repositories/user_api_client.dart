@@ -11,7 +11,7 @@ class UserAPIClient {
     @required this.httpClient,
   }) : assert(httpClient != null);
 
-  Future<List<User>> fetchUser() async {
+  Future<List<User>> fetchUsers() async {
     final url = '$_baseUrl/user/all';
     final response = await this.httpClient.get(url);
 

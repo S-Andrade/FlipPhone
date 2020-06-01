@@ -4,12 +4,12 @@ import 'package:flipphoneapp/repositories/user_api_client.dart';
 import 'package:meta/meta.dart';
 
 class UserRepository {
-  final UserAPIClient userApiClient;
+  final UserAPIClient userAPIClient;
 
-  UserRepository({@required this.userApiClient})
-      : assert(UserAPIClient != null);
+  UserRepository({@required this.userAPIClient})
+      : assert(userAPIClient != null);
 
-  Future<List<User>> fetchUser() async {
-    return await UserAPIClient.fetchUser();
+  Future<List<User>> fetchUsers() async {
+    return await userAPIClient.fetchUsers();
   }
 }

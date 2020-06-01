@@ -9,7 +9,7 @@ class ProductRepository {
   ProductRepository({@required this.productApiClient})
       : assert(productApiClient != null);
 
-  Future<List<Product>> fetchProduct() async {
-    return await productApiClient.fetchProduct();
+  Future<List<Product>> fetchProducts() async {
+    return await productApiClient.fetchProducts();
   }
 }
