@@ -30,5 +30,5 @@ jobs:
           maven-version: 3.5.4
       - name: run testes SpringBoot 
         run: mvn test
-     # - name: run SpringBoot
-     #   run: mvn spring-boot:run
+      - name: run SpringBoot
+        run: mvn -B package --file pom.xml -Dmaven.test.skip=true
