@@ -128,10 +128,9 @@ public class ProductControllerTest {
                 .andExpect(status().isOk());
     }
     
-   /* @Test
+    /*@Test
     public void whenFilter_thenReturnsJsonArray() throws Exception {
        
-
         ProductSpecification filter = new ProductSpecification();
         filter.add(new SearchCriteria("cpu_gpu", "Quad Core", SearchOperation.MATCH));
         filter.add(new SearchCriteria("ram_rom", "4", SearchOperation.MATCH));
@@ -147,12 +146,12 @@ public class ProductControllerTest {
         List<Product> allProduct = Arrays.asList(product);
         given(productRepository.findAll(filter)).willReturn(allProduct);
 
-        mvc.perform(get("/product/filter?cpu_gpu=Quad Core&ram_rom=4&image=300&screen_size=6,5&screen_type=multi-touch&battery=4000&os=Android&selfie_cam=32.0&camera=f/2.0&product_name=Samsung")
+        mvc.perform(get("/product/filter?cpu_gpu=Quad&ram_rom=4&image=300&screen_size=6,5&screen_type=multi-touch&battery=4000&os=Android&selfie_cam=32.0&camera=f/2.0&product_name=Samsung")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].product_name", is(product.getProduct_name())));
-        verify(productRepository, VerificationModeFactory.times(1)).findAll(filter);
+        //verify(productRepository, VerificationModeFactory.times(1)).findAll(filter);
 
     }*/
     

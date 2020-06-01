@@ -24,7 +24,7 @@ public class ItemSpecification implements Specification<Item>{
         list.add(criteria);
     }
     
-     @Override
+    @Override
     public Predicate toPredicate(Root<Item> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 
         //create a new predicate list

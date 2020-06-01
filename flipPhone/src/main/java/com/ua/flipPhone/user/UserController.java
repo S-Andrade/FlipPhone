@@ -1,6 +1,7 @@
 
 package com.ua.flipPhone.user;
 
+import com.ua.flipPhone.admin.Admin;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -74,5 +75,10 @@ public class UserController {
     public @ResponseBody String deleteUserById(@RequestParam Integer user_id){
         userRepository.deleteById(user_id);
         return "Deleted";
+    }
+    
+    @GetMapping(path="/byEmail")
+    public @ResponseBody User getAdminByEmail(@RequestParam String email){
+        return userRepository.findByEmail(email);
     }
 }

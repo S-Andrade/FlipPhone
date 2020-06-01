@@ -186,8 +186,8 @@ public class ItemControllerTest {
         filter.add(new SearchCriteria("productId", product, SearchOperation.EQUAL));
         filter.add(new SearchCriteria("seller_id", seller, SearchOperation.EQUAL));
 
-        List<Item> allAdmin = Arrays.asList(item);
-        given(itemRepository.findAll(filter)).willReturn(allAdmin);
+        List<Item> allItem = Arrays.asList(item);
+        given(itemRepository.findAll(filter)).willReturn(allItem);
 
         mvc.perform(get("/item/filter?grade=NEW&color=black&price=<500&version=4&product=1&seller=1")
                 .contentType(MediaType.APPLICATION_JSON))

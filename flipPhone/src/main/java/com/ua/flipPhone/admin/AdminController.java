@@ -47,4 +47,9 @@ public class AdminController {
         adminRepository.deleteById(admin_id);
         return "Deleted";
     }
+    
+    @GetMapping(path="/byEmail")
+    public @ResponseBody Admin getAdminByEmail(@RequestParam String email){
+        return adminRepository.findByEmail(email);
+    }
 }
