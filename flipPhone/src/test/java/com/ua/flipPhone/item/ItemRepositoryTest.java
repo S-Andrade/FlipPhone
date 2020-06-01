@@ -1,6 +1,7 @@
 
 package com.ua.flipPhone.item;
 
+import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.user.User;
@@ -32,6 +33,8 @@ public class ItemRepositoryTest {
     private Item item;
     
     private Product product;
+    
+    private Admin admin;
        
     @BeforeEach
     public void setUp(){
@@ -45,10 +48,10 @@ public class ItemRepositoryTest {
                                         "32.0 MP\n f/2.2",
                                         "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                                         "Smartphone Samsung Galaxy A51 - A515F",
-                                        "url/image");
-        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+                                        "url/image", admin);
+        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         Order order = new Order(new Date(), 400, client);
-        User seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.SELLER);
+        User seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.PARTICULAR);
         
         item = new Item(1,ItemGrade.NEW, "black" , 300.50, "v4", product, order ,seller);
     }
@@ -56,6 +59,8 @@ public class ItemRepositoryTest {
     @AfterEach
     public void tearDown() {
         item = null;
+        product =null;
+        admin = null;
     }
     
     @Test

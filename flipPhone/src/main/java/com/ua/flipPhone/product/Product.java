@@ -1,10 +1,15 @@
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.admin.Admin;
+import com.ua.flipPhone.user.User;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -50,9 +55,13 @@ public class Product {
     @Column(name="photoUrl")
     private String photoUrl;
     
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "admin_id", nullable = false)
+    private Admin admin_id;
+    
     public Product(){}
     
-    public Product(String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name, String photoUrl) {
+    public Product(String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name, String photoUrl,Admin admin_id) {
         this.cpu_gpu = cpu_gpu;
         this.ram_rom = ram_rom;
         this.image = image;
@@ -64,9 +73,10 @@ public class Product {
         this.camera = camera;
         this.product_name = product_name;
         this.photoUrl = photoUrl;
+        this.admin_id = admin_id;
     }
 
-    public Product(Integer product_id, String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name, String photoUrl) {
+    public Product(Integer product_id, String cpu_gpu, String ram_rom, String image, String screen_size, String screen_type, String battery, String os, String selfie_cam, String camera, String product_name, String photoUrl, Admin admin_id) {
         this.product_id = product_id;
         this.cpu_gpu = cpu_gpu;
         this.ram_rom = ram_rom;
@@ -79,6 +89,7 @@ public class Product {
         this.camera = camera;
         this.product_name = product_name;
         this.photoUrl = photoUrl;
+        this.admin_id = admin_id;
     }
 
     
@@ -179,7 +190,12 @@ public class Product {
         this.photoUrl = photoUrl;
     }
 
-    
-    
+    public Admin getAdmin_id() {
+        return admin_id;
+    }
+
+    public void setAdmin_id(Admin admin_id) {
+        this.admin_id = admin_id;
+    }
 
 }

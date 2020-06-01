@@ -1,6 +1,7 @@
 
 package com.ua.flipPhone.item;
 
+import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.user.User;
@@ -21,10 +22,13 @@ public class ItemTest {
     
     private User seller;
     
+    private Admin admin;
+    
     public ItemTest(){}
     
     @BeforeEach
     public void setUp() {
+        admin = new Admin(1,"password", "asdfsdfxzv", "barbara@email.com"); 
         product = new Product("Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                                         "4 GB", 
                                         "300DPI", 
@@ -35,10 +39,11 @@ public class ItemTest {
                                         "32.0 MP\n f/2.2",
                                         "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                                         "Smartphone Samsung Galaxy A51 - A515F",
-                                        "url/image");
-        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+                                        "url/image",
+                                        admin);
+        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         order = new Order(new Date(), 400, client);
-        seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.SELLER);
+        seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.PARTICULAR);
         
         item = new Item(1,ItemGrade.NEW, "black" , 300.50, "v4", product, order ,seller);
     }
@@ -49,6 +54,7 @@ public class ItemTest {
         product = null;
         order = null;
         seller = null;
+        admin = null;
     }
     
     @Test
@@ -133,14 +139,15 @@ public class ItemTest {
                                         "32.0 MP\n f/2.2",
                                         "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                                         "Smartphone OnePlus 8",
-                                        "url/image");
+                                        "url/image",
+                                        new Admin(1,"password", "asdfaefcwedcf", "carl@email.com"));
         item.setProductId(p);
         assertEquals(p,item.getProductId());
     }
     
     @Test
     public void testSetOrder_id(){
-        User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.CLIENT);
+        User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.PARTICULAR);
         Order o;
         o = new Order(new Date(), 500, client);
         item.setOrder_id(o);
@@ -149,7 +156,7 @@ public class ItemTest {
     
     @Test
     public void testSetSeller_id(){
-        User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", UserType.SELLER);
+        User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", UserType.PARTICULAR);
         item.setSeller_id(s);
         assertEquals(s,item.getSeller_id());
     }

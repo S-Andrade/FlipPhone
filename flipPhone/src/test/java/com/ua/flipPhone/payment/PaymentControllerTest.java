@@ -69,9 +69,9 @@ public class PaymentControllerTest {
         
     @BeforeEach
     public void setUp(){
-        client = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+        client = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         order = new Order(1,new Date(2020,5,31,21,30,30), 400, client);
-        seller = new User(1,"password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.SELLER);
+        seller = new User(1,"password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.PARTICULAR);
         payment = new Payment(1,PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, new Date(), order,  client, seller);
     }
     

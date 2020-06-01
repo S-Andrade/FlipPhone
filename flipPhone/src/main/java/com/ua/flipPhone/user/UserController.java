@@ -50,11 +50,8 @@ public class UserController {
         if (type.equals("PROFESSIONAL")){
             t = UserType.PROFESSIONAL;
         }
-        else if (type.equals("CLIENT")){
-            t = UserType.CLIENT;
-        }
-        else if (type.equals("SELLER")){
-            t = UserType.SELLER;
+        else if (type.equals("PARTICULAR")){
+            t = UserType.PARTICULAR;
         }
         else{
             return null;

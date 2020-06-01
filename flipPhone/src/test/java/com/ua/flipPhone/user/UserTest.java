@@ -13,7 +13,7 @@ public class UserTest {
     
     @BeforeEach
     public void setUp() {
-        user = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+        user = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
     }
     
     @AfterEach
@@ -58,7 +58,7 @@ public class UserTest {
     
     @Test
     public void testGetType(){
-        assertEquals(UserType.CLIENT, user.getType());
+        assertEquals(UserType.PARTICULAR, user.getType());
     }
  
     @Test
@@ -105,7 +105,7 @@ public class UserTest {
     
     @Test
     public void testSetType(){
-        user.setType(UserType.SELLER);
-        assertEquals(UserType.SELLER, user.getType());
+        user.setType(UserType.PROFESSIONAL);
+        assertEquals(UserType.PROFESSIONAL, user.getType());
     }
 }

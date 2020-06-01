@@ -1,6 +1,7 @@
 
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserType;
@@ -30,9 +31,12 @@ public class ProductRepositoryTest {
        
     private Product product;
     
+    private Admin admin;
+    
     
     @BeforeEach
     public void setUp(){
+        admin = new Admin("chave", "askfyg", "ze@mail.com");
          product = new Product(
                 "Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                 "4 GB", 
@@ -44,12 +48,13 @@ public class ProductRepositoryTest {
                 "32.0 MP\n f/2.2",
                 "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                 "Smartphone Samsung Galaxy A51 - A515F",
-                "url/image");
+                "url/image", admin);
     }
     
     @AfterEach
     public void tearDown() {
         product = null;
+        admin = null;
     }
     
     @Test

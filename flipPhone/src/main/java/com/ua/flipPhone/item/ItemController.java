@@ -47,7 +47,7 @@ public class ItemController {
     }
     
     @GetMapping(path="/grades")
-    public @ResponseBody List<ItemGrade> getUserTypes(){
+    public @ResponseBody List<ItemGrade> getItemGrades(){
         return Arrays.asList(ItemGrade.values());
     }
     

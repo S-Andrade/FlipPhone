@@ -48,8 +48,8 @@ public class UserControllerTest {
     
     @BeforeEach
     public void setUp(){
-        userJoana = new User(1,"password", "Joana", "adfqewrewq", "joana@email.com", "Porto", "52346134", UserType.CLIENT);
-        userPedro = new User(1,"paord", "Pedro", "sefrqew", "pedro@email.com", "Lisboa", "58746584", UserType.SELLER);
+        userJoana = new User(1,"password", "Joana", "adfqewrewq", "joana@email.com", "Porto", "52346134", UserType.PARTICULAR);
+        userPedro = new User(1,"paord", "Pedro", "sefrqew", "pedro@email.com", "Lisboa", "58746584", UserType.PARTICULAR);
     }
     
     @AfterEach
@@ -78,7 +78,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void whenPostuser_thenCreateuser() throws Exception {
+    public void whenPostUser_thenCreateuser() throws Exception {
         given(userRepository.save(Mockito.any())).willReturn(userJoana);
         
         mvc.perform(post("/user/add")
@@ -88,7 +88,7 @@ public class UserControllerTest {
                 .param("email","joana@email.com")
                 .param("address","Porto")
                 .param("nif","52346134")
-                .param("type","CLIENT"))
+                .param("type","PARTICULAR"))
                 .andExpect(status().isOk());
 
         verify(userRepository, VerificationModeFactory.times(1)).save(Mockito.any());

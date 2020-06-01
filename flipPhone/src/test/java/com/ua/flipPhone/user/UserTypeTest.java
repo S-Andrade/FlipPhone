@@ -11,8 +11,7 @@ public class UserTypeTest {
     @Test
     public void testEnum(){
        assertThat(UserType.valueOf("PROFESSIONAL"), is(notNullValue()));
-       assertThat(UserType.valueOf("CLIENT"), is(notNullValue()));
-       assertThat(UserType.valueOf("SELLER"), is(notNullValue())); 
+       assertThat(UserType.valueOf("PARTICULAR"), is(notNullValue()));
     } 
     
     

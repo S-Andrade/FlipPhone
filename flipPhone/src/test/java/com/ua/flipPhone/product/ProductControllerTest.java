@@ -2,6 +2,8 @@
 package com.ua.flipPhone.product;
 
 import com.google.common.base.Optional;
+import com.ua.flipPhone.admin.Admin;
+import com.ua.flipPhone.admin.AdminRepository;
 import com.ua.flipPhone.item.ItemSpecification;
 import com.ua.flipPhone.specifications.SearchCriteria;
 import com.ua.flipPhone.specifications.SearchOperation;
@@ -45,10 +47,16 @@ public class ProductControllerTest {
     @MockBean
     private ProductRepository productRepository;
     
+    @MockBean
+    private AdminRepository adminRepository;
+    
     private Product product;
+    
+    private Admin admin;
     
     @BeforeEach
     public void setUp(){
+        admin = new Admin(1,"chavinha","edjhfgeirugh","ze@mail.com");
         product = new Product(1,
                 "Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                 "4 GB", 
@@ -60,7 +68,7 @@ public class ProductControllerTest {
                 "32.0 MP\n f/2.2",
                 "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                 "Smartphone Samsung Galaxy A51 - A515F",
-                "url/image");
+                "url/image", admin);
     }
     
     @AfterEach
@@ -88,20 +96,13 @@ public class ProductControllerTest {
 
     @Test
     public void whenPostProduct_thenCreateProduct() throws Exception {
+        given(adminRepository.findById(admin.getAdmin_id())).willReturn(java.util.Optional.of(admin));
+
         given(productRepository.save(Mockito.any())).willReturn(product);
         
-        mvc.perform(post("/product/add")
-                .param("cpu_gpu", "Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz")
-                .param("ram_rom","4 GB")
-                .param("image","300DPI")
-                .param("screen_size","6,5 \"")
-                .param("screen_type","sAMOLED Infinity-O FHD+ tátil capacitivo com multi-touch")
-                .param("battery","Li-Ion 4000 mAh")
-                .param("os","Android 10.0")
-                .param("selfie_cam","32.0 MP\n f/2.2")
-                .param("camera","f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro")
-                .param("product_name","Smartphone Samsung Galaxy A51 - A515F")
-                .param("photoUrl","url/image"))
+        mvc.perform(post("/product/add?cpu_gpu=Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz&ram_rom=4 GB&image=300DPI&screen_size=6,5 \"&screen_type=sAMOLED Infinity-O FHD+ tátil capacitivo com multi-touch&"
+                + "battery=Li-Ion 4000 mAh&os=Android 10.0&selfie_cam=32.0 MP\n f/2.2&camera=f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro&"
+                + "product_name=Smartphone Samsung Galaxy A51 - A515F&photoUrl=url/image&admin_id=1"))
                 .andExpect(status().isOk());
 
         verify(productRepository, VerificationModeFactory.times(1)).save(Mockito.any());

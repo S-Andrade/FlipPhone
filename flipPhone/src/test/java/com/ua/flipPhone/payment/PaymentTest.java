@@ -25,9 +25,9 @@ public class PaymentTest {
     
     @BeforeEach
     public void setUp() {
-        client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+        client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         order = new Order(1, date, 400, client);
-        seller = new User("password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.SELLER);
+        seller = new User("password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.PARTICULAR);
         payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, date, order,  client, seller);
     }
     
@@ -101,7 +101,7 @@ public class PaymentTest {
     
     @Test
     public void testSetOrder_id(){
-        User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.CLIENT);
+        User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.PARTICULAR);
         Order o;
         o = new Order(new Date(), 500, client);
         payment.setOrder_id(o);
@@ -110,14 +110,14 @@ public class PaymentTest {
     
     @Test
     public void testSetClient_id(){
-        User c = new User("password", "Rafaela", "sdfgdgf", "rafeale@email.com", "Braga", "6789968574", UserType.CLIENT);
+        User c = new User("password", "Rafaela", "sdfgdgf", "rafeale@email.com", "Braga", "6789968574", UserType.PARTICULAR);
         payment.setClient_id(c);
         assertEquals(c, payment.getClient_id());
     }
     
     @Test
     public void testSetSeller_id(){
-        User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", UserType.SELLER);
+        User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", UserType.PROFESSIONAL);
         payment.setSeller_id(s);
         assertEquals(s, payment.getSeller_id());
     }

@@ -21,7 +21,7 @@ public class OrderTest {
     
     @BeforeEach
     public void setUp() {
-        client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+        client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         date = new Date();
         order = new Order(1, date, 400, client);
     }

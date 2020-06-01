@@ -32,7 +32,7 @@ public class OrderRepositoryTest {
     
     @BeforeEach
     public void setUp(){
-        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+        User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         Date date = new Date();
         order = new Order(date, 400, client);
     }

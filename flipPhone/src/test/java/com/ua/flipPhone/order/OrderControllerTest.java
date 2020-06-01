@@ -2,6 +2,7 @@
 package com.ua.flipPhone.order;
 
 import com.google.common.base.Optional;
+import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.item.Item;
 import com.ua.flipPhone.item.ItemGrade;
 import com.ua.flipPhone.item.ItemRepository;
@@ -69,6 +70,8 @@ public class OrderControllerTest {
     private Item item;
     
     private Product product;
+    
+    private Admin admin;
         
     @BeforeEach
     public void setUp(){
@@ -82,10 +85,10 @@ public class OrderControllerTest {
                                         "32.0 MP\n f/2.2",
                                         "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                                         "Smartphone Samsung Galaxy A51 - A515F",
-                                        "url/image");
-        client = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
+                                        "url/image",admin);
+        client = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         order = new Order(1,new Date(), 400, client);
-        seller = new User(1,"password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.SELLER);
+        seller = new User(1,"password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.PARTICULAR);
         
         item = new Item(1,ItemGrade.NEW, "black" , 300.50, "v4", product, order ,seller);
         
@@ -100,6 +103,7 @@ public class OrderControllerTest {
         seller = null;
         item = null;
         product = null;
+        admin = null;
         reset(orderRepository);
         reset(userRepository);
         reset(itemRepository);

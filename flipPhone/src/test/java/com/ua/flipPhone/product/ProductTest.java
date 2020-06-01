@@ -1,6 +1,7 @@
 
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.admin.Admin;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.Test;
 public class ProductTest {
     
     private Product product;
+    
+    private Admin admin;
     
     public ProductTest(){}
     
@@ -26,13 +29,14 @@ public class ProductTest {
                 "32.0 MP\n f/2.2",
                 "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                 "Smartphone Samsung Galaxy A51 - A515F",
-                "url/image");
+                "url/image", admin);
     }
     
     
     @AfterEach
     public void tearDown(){
         product = null;
+        admin = null;
     }
     
     @Test
@@ -76,7 +80,7 @@ public class ProductTest {
     }
     
     @Test
-    public void testSelfie_cam(){
+    public void testGetSelfie_cam(){
         assertEquals("32.0 MP\n f/2.2",product.getSelfie_cam());
     }
     
@@ -93,6 +97,11 @@ public class ProductTest {
     @Test
     public void testGetPhotoUrl(){
         assertEquals("url/image",product.getPhotoUrl());
+    }
+    
+    @Test
+    public void testGetAdmin_id(){
+        assertEquals(admin, product.getAdmin_id());
     }
     
     @Test
@@ -165,5 +174,12 @@ public class ProductTest {
     public void testSetPhotoUrl(){
         product.setPhotoUrl("url/new_Image");
         assertEquals("url/new_Image",product.getPhotoUrl());
+    }
+    
+    @Test
+    public void testSetAdmin_id(){
+        Admin admin2 = new Admin("pass", "dsfaaed", "tono@mail.com");
+        product.setAdmin_id(admin2);
+        assertEquals(admin2,product.getAdmin_id());
     }
 }

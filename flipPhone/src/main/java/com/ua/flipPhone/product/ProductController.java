@@ -1,6 +1,8 @@
 
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.admin.Admin;
+import com.ua.flipPhone.admin.AdminRepository;
 import com.ua.flipPhone.specifications.SearchCriteria;
 import com.ua.flipPhone.specifications.SearchOperation;
 import java.util.Optional;
@@ -15,6 +17,9 @@ public class ProductController {
     
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private AdminRepository adminRepository;
     
     @GetMapping(path="/all")
     public @ResponseBody Iterable<Product> getAllProducts(){
@@ -33,8 +38,19 @@ public class ProductController {
             @RequestParam String selfie_cam,
             @RequestParam String camera,
             @RequestParam String product_name,
-            @RequestParam String photoUrl){
-        Product newProduct = new Product(cpu_gpu, ram_rom, image, screen_size, screen_type, battery, os, selfie_cam,camera,product_name,photoUrl);
+            @RequestParam String photoUrl,
+            @RequestParam Integer admin_id){
+        
+        Admin admin;
+        
+        try{
+            Optional<Admin> op_admin = adminRepository.findById(admin_id);
+            admin = op_admin.get();
+        }catch(Exception e){
+           return null; 
+        }
+        
+        Product newProduct = new Product(cpu_gpu, ram_rom, image, screen_size, screen_type, battery, os, selfie_cam,camera,product_name,photoUrl,admin);
         productRepository.save(newProduct);
         
         return "Saved";

@@ -30,8 +30,8 @@ public class UserRepositoryTest {
        
     @BeforeEach
     public void setUp(){
-        userJoana = new User(1,"password", "Joana", "adfqewrewq", "joana@email.com", "Porto", "52346134", UserType.CLIENT);
-        userPedro = new User(1,"password", "Pedro", "adfqewrewq", "pedro@email.com", "Lisboa", "58746584", UserType.SELLER);
+        userJoana = new User(1,"password", "Joana", "adfqewrewq", "joana@email.com", "Porto", "52346134", UserType.PARTICULAR);
+        userPedro = new User(1,"password", "Pedro", "adfqewrewq", "pedro@email.com", "Lisboa", "58746584", UserType.PARTICULAR);
     }
     
     @AfterEach
