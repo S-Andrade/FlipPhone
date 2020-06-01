@@ -6,6 +6,7 @@
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/payment/PaymentGateway.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/product/ProductRepository.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/product/Product.java
+/home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/swagger/SwaggerConfig.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/item/ItemGrade.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/order/Order.java
 /home/sandra/Desktop/TQS/FlipPhone/flipPhone/src/main/java/com/ua/flipPhone/payment/Payment.java

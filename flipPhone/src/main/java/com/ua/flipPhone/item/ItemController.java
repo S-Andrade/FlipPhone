@@ -24,10 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import org.springframework.data.jpa.domain.Specification;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 @RequestMapping(path="/item")
+@CrossOrigin(origins="http://localhost:3000")
 public class ItemController {
     
     @Autowired
@@ -45,7 +46,7 @@ public class ItemController {
         return itemRepository.findAll();
     }
     
-    @GetMapping(path="/types")
+    @GetMapping(path="/grades")
     public @ResponseBody List<ItemGrade> getUserTypes(){
         return Arrays.asList(ItemGrade.values());
     }
@@ -141,7 +142,23 @@ public class ItemController {
         ItemSpecification filter = new ItemSpecification();
         
         if(grade != null){
-            filter.add(new SearchCriteria("grade",grade, SearchOperation.EQUAL));
+            ItemGrade g = null;
+            if (grade.equals("NEW")){
+                g = ItemGrade.NEW;
+            }
+            else if (grade.equals("LIKE_NEW")){
+                g = ItemGrade.LIKE_NEW;
+            }
+            else if (grade.equals("GOOD_STATE")){
+                g = ItemGrade.GOOD_STATE;
+            }
+            else if (grade.equals("FUNCTIONAL")){
+                g = ItemGrade.FUNCTIONAL;
+            }
+            else{
+                return null;
+            }
+            filter.add(new SearchCriteria("grade",g, SearchOperation.EQUAL));
         }
         if(color != null){
             filter.add(new SearchCriteria("color",color, SearchOperation.MATCH));

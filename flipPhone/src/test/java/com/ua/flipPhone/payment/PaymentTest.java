@@ -19,14 +19,16 @@ public class PaymentTest {
     
     private User seller;
     
+    private Date date;
+    
     public PaymentTest(){}
     
     @BeforeEach
     public void setUp() {
         client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.CLIENT);
-        order = new Order(1, new Date(), 400, client);
+        order = new Order(1, date, 400, client);
         seller = new User("password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.SELLER);
-        payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, new Date(), order,  client, seller);
+        payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, date, order,  client, seller);
     }
     
     @AfterEach
@@ -54,7 +56,7 @@ public class PaymentTest {
     
     @Test
     public void testGetDate(){
-        assertEquals(new Date(), payment.getDate());
+        assertEquals(date, payment.getDate());
     }
     
     @Test
