@@ -2,7 +2,7 @@ class Product {
   final int productId;
 //  final int adminID;
   final String productName;
-  final String image;
+  final String photoUrl;
   final String screenSize;
   final String screenType;
   final String phoneOS;
@@ -16,7 +16,7 @@ class Product {
       {this.productId,
 //      this.adminID,
       this.productName,
-      this.image,
+      this.photoUrl,
       this.screenSize,
       this.screenType,
       this.phoneOS,
@@ -31,7 +31,7 @@ class Product {
       productId: json['product_id'] as int,
 //      adminID: json['admin_id'],
       productName: json['product_name'],
-      image: json['photoUrl'],
+      photoUrl: json['photoUrl'],
       screenSize: json[' screen_size'],
       screenType: json[' screen_type'],
       phoneOS: json['os'],

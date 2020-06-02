@@ -1,5 +1,6 @@
 import 'package:flipphoneapp/product_details.dart';
 import 'package:flipphoneapp/repositories/product_api_client.dart';
+import 'package:flipphoneapp/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'models/Product.dart';
 
@@ -38,6 +39,22 @@ class _ProductListViewState extends State<ProductListView> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Lista de Produtos"),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => ShoppingCart()
+                    ));
+                // do something
+              },
+            )
+          ],
         ),
         body: listProducts());
   }
