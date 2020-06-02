@@ -1,7 +1,6 @@
 import 'package:flipphoneapp/models/Product.dart';
-import 'package:flipphoneapp/repositories/item_repository.dart';
+import 'package:flipphoneapp/repositories/item_api_client.dart';
 import 'package:flutter/material.dart';
-
 import 'models/Item.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -15,13 +14,13 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
 
 
-  ItemRepository _itemRepository;
+  ItemAPIClient _itemAPIClient;
   var items = new List<Item>();
 
 //  ProductDetailsState(this.product);
 
   _getItems() async {
-    items = await _itemRepository.fetchItems();
+    items = await _itemAPIClient.fetchItems();
   }
 
   @override
@@ -53,5 +52,3 @@ class _ProductDetailsState extends State<ProductDetails> {
     );
   }
 }
-
-// + FAZER LISTAGEM DE PRODUTOS NESTA PAGINA

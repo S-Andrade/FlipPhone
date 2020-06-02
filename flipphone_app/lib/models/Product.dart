@@ -1,12 +1,12 @@
 class Product {
   final int productId;
-  final int adminID;
+//  final int adminID;
   final String productName;
   final String image;
   final String screenSize;
   final String screenType;
   final String phoneOS;
-  final int battery;
+  final String battery;
   final String selfieCam;
   final String camera;
   final String cpuGpu;
@@ -14,7 +14,7 @@ class Product {
 
   Product(
       {this.productId,
-      this.adminID,
+//      this.adminID,
       this.productName,
       this.image,
       this.screenSize,
@@ -28,8 +28,8 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      productId: json['product_id'],
-      adminID: json['admin_id'],
+      productId: json['product_id'] as int,
+//      adminID: json['admin_id'],
       productName: json['product_name'],
       image: json['photoUrl'],
       screenSize: json[' screen_size'],

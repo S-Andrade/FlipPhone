@@ -1,20 +1,14 @@
 import 'dart:convert';
 import 'package:flipphoneapp/models/Product.dart';
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 
 class ProductAPIClient {
-  final _baseUrl = '192.168.160.49:8080';
-  final http.Client httpClient;
+  final _baseUrl = 'http://192.168.160.49:8080';
 
-  ProductAPIClient({
-    @required this.httpClient,
-  }) : assert(httpClient != null);
 
   Future<List<Product>> fetchProducts() async {
     final url = '$_baseUrl/product/all';
-    final response = await this.httpClient.get(url);
-
+    final response = await http.get(url);
     if (response.statusCode == 200) {
       List responseJson = json.decode(response.body);
       return responseJson
