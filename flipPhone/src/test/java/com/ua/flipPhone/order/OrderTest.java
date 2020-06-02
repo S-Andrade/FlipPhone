@@ -14,16 +14,13 @@ public class OrderTest {
     private Order order;
     
     private User client;
-    
-    private Date date;
-    
+        
     public OrderTest(){}
     
     @BeforeEach
     public void setUp() {
         client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
-        date = new Date();
-        order = new Order(1, date, 400, client);
+        order = new Order(1, "2020.06.02 20:20:20", 400, client);
     }
     
     @AfterEach
@@ -39,7 +36,7 @@ public class OrderTest {
     
     @Test
     public void testGetDate(){
-        assertEquals(date, order.getDate());
+        assertEquals("2020.06.02 20:20:20", order.getDate());
     }
     
     @Test
@@ -60,8 +57,8 @@ public class OrderTest {
     
     @Test
     public void testSetDate(){
-        order.setDate(new Date());
-        assertEquals(new Date(), order.getDate());
+        order.setDate("2020.06.01 18:18:18");
+        assertEquals("2020.06.01 18:18:18", order.getDate());
     }
     
     @Test

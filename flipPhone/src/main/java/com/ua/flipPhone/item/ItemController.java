@@ -201,7 +201,10 @@ public class ItemController {
             filter.add(new SearchCriteria("seller_id",seller, SearchOperation.EQUAL));
         }
         
-         
+        for (Item i : itemRepository.findAll(filter)){
+            System.out.println(i.getColor());
+        }
+               
         return itemRepository.findAll(filter);
     }
 

@@ -10,10 +10,13 @@ public class SearchCriteriaTest {
     
     private SearchCriteria sc;
     
+    private SearchCriteria scinicial;
+    
        
     @BeforeEach
     public void setUp() {
         sc = new SearchCriteria("color","pink", SearchOperation.MATCH);
+        scinicial = new SearchCriteria();
     }
     
     @AfterEach

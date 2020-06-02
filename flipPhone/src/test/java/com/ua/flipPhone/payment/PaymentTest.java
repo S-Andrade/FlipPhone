@@ -18,17 +18,15 @@ public class PaymentTest {
     private User client;
     
     private User seller;
-    
-    private Date date;
-    
+        
     public PaymentTest(){}
     
     @BeforeEach
     public void setUp() {
         client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
-        order = new Order(1, date, 400, client);
+        order = new Order(1, "31.05.2020 21:30:30", 400, client);
         seller = new User("password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.PARTICULAR);
-        payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, date, order,  client, seller);
+        payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, "31.05.2020 21:30:30", order,  client, seller);
     }
     
     @AfterEach
@@ -56,7 +54,7 @@ public class PaymentTest {
     
     @Test
     public void testGetDate(){
-        assertEquals(date, payment.getDate());
+        assertEquals("31.05.2020 21:30:30", payment.getDate());
     }
     
     @Test
@@ -94,16 +92,15 @@ public class PaymentTest {
     
     @Test
     public void testSetDate(){
-        Date d = new Date();
-        payment.setDate(d);
-        assertEquals(d, payment.getDate());
+        payment.setDate("02.05.2020 21:30:30");
+        assertEquals("02.05.2020 21:30:30", payment.getDate());
     }
     
     @Test
     public void testSetOrder_id(){
         User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.PARTICULAR);
         Order o;
-        o = new Order(new Date(), 500, client);
+        o = new Order("31.05.2020 21:30:30", 500, client);
         payment.setOrder_id(o);
         assertEquals(o, payment.getOrder_id());
     }

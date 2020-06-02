@@ -110,4 +110,15 @@ public class AdminControllerTest {
                 .andExpect(status().isOk());
     }
     
+    @Test
+    public void givenAdmin_whenGetAdminByEmail_thenReturnsJson() throws Exception {
+
+        given(adminRepository.findByEmail(adminMaria.getEmail())).willReturn(adminMaria);
+
+        mvc.perform(get("/admin/byEmail?email=maria@email.com")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+                
+        verify(adminRepository, VerificationModeFactory.times(1)).findByEmail(adminMaria.getEmail());
+    }
 }

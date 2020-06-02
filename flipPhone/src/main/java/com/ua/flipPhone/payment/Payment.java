@@ -37,7 +37,7 @@ public class Payment {
     private PaymentGateway gateway;
     
     @Column(name="date")
-    private Date date;
+    private String date;
     
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
@@ -53,7 +53,7 @@ public class Payment {
 
     public Payment(){}
     
-    public Payment( PaymentStatus status, PaymentGateway gateway, Date date, Order order_id, User client_id, User seller_id) {
+    public Payment( PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, User seller_id) {
         this.status = status;
         this.gateway = gateway;
         this.date = date;
@@ -62,7 +62,7 @@ public class Payment {
         this.seller_id = seller_id;
     }
 
-    public Payment(Integer payment_id, PaymentStatus status, PaymentGateway gateway, Date date, Order order_id, User client_id, User seller_id) {
+    public Payment(Integer payment_id, PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, User seller_id) {
         this.payment_id = payment_id;
         this.status = status;
         this.gateway = gateway;
@@ -96,11 +96,11 @@ public class Payment {
         this.gateway = gateway;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

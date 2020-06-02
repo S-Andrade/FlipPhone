@@ -65,4 +65,9 @@ public class AdminRepositoryTest {
         adminRepository.deleteById(adminMaria.getAdmin_id());
         when(adminRepository.findById(adminMaria.getAdmin_id())).thenReturn(null);
     }
+    
+    @Test
+    public void testFindByEmail(){
+        when(adminRepository.findByEmail(adminMaria.getEmail())).thenReturn(adminMaria);
+    }
 }

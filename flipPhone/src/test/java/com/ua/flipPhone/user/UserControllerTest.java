@@ -121,5 +121,15 @@ public class UserControllerTest {
             .andExpect(status().isOk());
     }
     
-    
+    @Test
+    public void givenUser_whenGetUserByEmail_thenReturnsJson() throws Exception {
+
+        given(userRepository.findByEmail(userJoana.getEmail())).willReturn(userJoana);
+
+        mvc.perform(get("/user/byEmail?email=joana@email.com")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        verify(userRepository, VerificationModeFactory.times(1)).findByEmail(userJoana.getEmail());
+    }
 }

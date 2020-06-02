@@ -66,6 +66,9 @@ public class ItemControllerTest {
     private User seller;
     
     private Admin admin;
+    
+    @MockBean
+    ItemSpecification  filter; 
 
     @BeforeEach
     public void setUp() {
@@ -174,11 +177,13 @@ public class ItemControllerTest {
 
     /*@Test
     public void whenFilter_thenReturnsJsonArray() throws Exception {
+
+
         given(productRepository.findById(product.getProduct_id())).willReturn(java.util.Optional.of(product));
 
         given(userRepository.findById(seller.getUser_id())).willReturn(java.util.Optional.of(seller));
 
-        ItemSpecification filter = new ItemSpecification();
+        filter = new ItemSpecification();
         filter.add(new SearchCriteria("grade", ItemGrade.NEW, SearchOperation.EQUAL));
         filter.add(new SearchCriteria("color", "black", SearchOperation.MATCH));
         filter.add(new SearchCriteria("price", 500, SearchOperation.LESS_THAN_EQUAL));
@@ -186,15 +191,18 @@ public class ItemControllerTest {
         filter.add(new SearchCriteria("productId", product, SearchOperation.EQUAL));
         filter.add(new SearchCriteria("seller_id", seller, SearchOperation.EQUAL));
 
+        
         List<Item> allItem = Arrays.asList(item);
-        given(itemRepository.findAll(filter)).willReturn(allItem);
 
+        given(itemRepository.findAll(filter)).willReturn(allItem);
+        
+               
         mvc.perform(get("/item/filter?grade=NEW&color=black&price=<500&version=4&product=1&seller=1")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-                //.andExpect(jsonPath("$", hasSize(1)))
-                //.andExpect(jsonPath("$[0].color", is(item.getColor())));
-        verify(itemRepository, VerificationModeFactory.times(1)).findAll(filter);
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].color", is(item.getColor())));
+        //verify(itemRepository, VerificationModeFactory.times(1)).findAll(filter);
 
     }*/
 }

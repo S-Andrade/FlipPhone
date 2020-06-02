@@ -55,7 +55,7 @@ public class PaymentController {
     public @ResponseBody String addNewPayment(
             @RequestParam String status,
             @RequestParam String gateway,
-            @RequestParam @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm:ss") Date date,
+            @RequestParam String date,
             @RequestParam Integer order_id,
             @RequestParam Integer client_id,
             @RequestParam Integer seller_id){

@@ -87,13 +87,12 @@ public class OrderControllerTest {
                                         "Smartphone Samsung Galaxy A51 - A515F",
                                         "url/image",admin);
         client = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
-        order = new Order(1,new Date(), 400, client);
+        order = new Order(1,"2020.06.02 20:20:20", 400, client);
         seller = new User(1,"password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.PARTICULAR);
         
         item = new Item(1,ItemGrade.NEW, "black" , 300.50, "v4", product, order ,seller);
         
-        Date date = new Date(2020,5,31,21,30,30);
-        order = new Order(1,date, 400, client);
+        order = new Order(1,"31.05.2020 21:30:30", 400, client);
     }
     
     @AfterEach

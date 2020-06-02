@@ -42,7 +42,7 @@ public class ItemTest {
                                         "url/image",
                                         admin);
         User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
-        order = new Order(new Date(), 400, client);
+        order = new Order("2020.06.02 20:20:20", 400, client);
         seller = new User("password", "Maria", "asfwsadgfa", "maria@email.com", "Lisboa", "21423523", UserType.PARTICULAR);
         
         item = new Item(1,ItemGrade.NEW, "black" , 300.50, "v4", product, order ,seller);
@@ -149,7 +149,7 @@ public class ItemTest {
     public void testSetOrder_id(){
         User client = new User("password", "Joana", "afwwefwQEF", "joana@email.com", "Cucujães", "2544748", UserType.PARTICULAR);
         Order o;
-        o = new Order(new Date(), 500, client);
+        o = new Order("2020.06.02 20:20:20", 500, client);
         item.setOrder_id(o);
         assertEquals(o,item.getOrder_id());
     }

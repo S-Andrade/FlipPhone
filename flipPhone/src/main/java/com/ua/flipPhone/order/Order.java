@@ -23,7 +23,7 @@ public class Order {
     private Integer order_id;
 
     @Column(name="date")
-    private Date date;
+    private String date;
     
     @Column(name="total")
     private double total;
@@ -34,13 +34,13 @@ public class Order {
 
     public Order(){}
     
-    public Order(Date date, double total, User client_id) {
+    public Order(String date, double total, User client_id) {
         this.date = date;
         this.total = total;
         this.client_id = client_id;
     }
 
-    public Order(Integer order_id, Date date, double total, User client_id) {
+    public Order(Integer order_id, String date, double total, User client_id) {
         this.order_id = order_id;
         this.date = date;
         this.total = total;
@@ -55,11 +55,11 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

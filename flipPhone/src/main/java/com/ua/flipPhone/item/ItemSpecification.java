@@ -20,8 +20,12 @@ public class ItemSpecification implements Specification<Item>{
         this.list = new ArrayList<>();
     }
 
-    public void add(SearchCriteria criteria) {
-        list.add(criteria);
+    public boolean add(SearchCriteria criteria) {
+       return list.add(criteria);
+    }
+    
+    public List<SearchCriteria> getList(){
+        return list;
     }
     
     @Override

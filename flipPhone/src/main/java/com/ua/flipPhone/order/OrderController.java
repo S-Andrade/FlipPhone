@@ -43,7 +43,7 @@ public class OrderController {
     
     @PostMapping(path="/add")
     public @ResponseBody String addNewOrder(
-            @RequestParam  @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm:ss") Date date, 
+            @RequestParam  String date, 
             @RequestParam double total, 
             @RequestParam Integer client_id,
             @RequestParam String item_id){

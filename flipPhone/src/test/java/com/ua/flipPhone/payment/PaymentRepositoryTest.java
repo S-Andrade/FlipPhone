@@ -35,9 +35,9 @@ public class PaymentRepositoryTest {
     @BeforeEach
     public void setUp(){
         User client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
-        Order order = new Order(new Date(), 400, client);
+        Order order = new Order("31.05.2020 21:30:30", 400, client);
         User seller = new User("password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.PARTICULAR);
-        payment = new Payment(PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, new Date(), order,  client, seller);
+        payment = new Payment(PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, "31.05.2020 21:30:30", order,  client, seller);
     }
     
     @AfterEach

@@ -65,4 +65,9 @@ public class UserRepositoryTest {
         userRepository.deleteById(userJoana.getUser_id());
         when(userRepository.findById(userJoana.getUser_id())).thenReturn(null);
     }
+    
+    @Test
+    public void testFindByEmail(){
+        when(userRepository.findByEmail(userJoana.getEmail())).thenReturn(userJoana);
+    }
 }
