@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'User.dart';
+
 class Item {
   final int itemId;
   final String grade;
@@ -8,7 +10,7 @@ class Item {
   final String version;
   final int productId;
   final int orderId;
-  final int userId;
+  final User userId;
 
   Item({
     this.itemId,
@@ -30,7 +32,7 @@ class Item {
       version: json['version'],
       productId: json['product_id'] as int,
       orderId: json['order_id'] as int,
-      userId: json['user_id'] as int,
+      userId: User.fromJson(json['seller_id']),
     );
   }
 
