@@ -13,10 +13,10 @@ class Order {
 
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
-      orderID: json['order_id'],
+      orderID: json['order_id'] as int,
       date: json['date'],
-      total: json['total'],
-      userID: json['user_id'],
+      total: json['total'] as double,
+      userID: json['user_id'] as int,
     );
   }
 }
