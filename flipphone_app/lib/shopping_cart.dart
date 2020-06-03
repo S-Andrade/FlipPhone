@@ -78,26 +78,23 @@ class _ShoppingCartState extends State<ShoppingCart> {
               child: ListView.builder(
                   itemCount: cart.length,
                   itemBuilder: (context, index) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(cart[index]),
-                        FutureBuilder(
-                            future: _getItemById(int.parse(cart[index])),
-                            builder: (context, snapshot) {
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(snapshot.data.productObj.productName),
-                                  Text(snapshot.data.itemId.toString()),
-                                  Text(snapshot.data.grade.toString()),
-                                  Text(snapshot.data.color.toString()),
-                                  Text(snapshot.data.price.toString()),
-                                ],
-                              );
-                            }),
-                      ],
-                    );
+                    return FutureBuilder(
+                        future: _getItemById(int.parse(cart[index])),
+                        builder: (context, snapshot) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical:5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(snapshot.data.productObj.productName),
+                                Text(snapshot.data.itemId.toString()),
+                                Text(snapshot.data.grade.toString()),
+                                Text(snapshot.data.color.toString()),
+                                Text(snapshot.data.price.toString()),
+                              ],
+                            ),
+                          );
+                        });
                   }),
             ),
           ]),

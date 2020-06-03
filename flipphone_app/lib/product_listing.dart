@@ -112,7 +112,7 @@ class _ProductListViewState extends State<ProductListView> {
                   child: Text(products[index].productName,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
+                          fontSize: 16.0,
                           color: Colors.black)),
                 ),
                 Image(
