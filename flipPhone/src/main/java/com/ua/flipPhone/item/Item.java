@@ -17,6 +17,8 @@ import com.ua.flipPhone.user.User;
 import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name ="item")
@@ -47,6 +49,7 @@ public class Item {
     
     @ManyToOne(fetch = FetchType.EAGER, optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Order order_id;
     
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
