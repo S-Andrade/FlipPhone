@@ -22,7 +22,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version}}
         uses: actions/setup-node@v1
         with:
-          node-version: §{{matrix.node-version}}
+          node-version: ${{matrix.node-version}}
       - name: run testes React
         run: npm test 
       - name: start the development server 
