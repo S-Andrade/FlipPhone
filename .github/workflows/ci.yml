@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{matrix.node-version}}
+      - name: install
+        run: npm install
       - name: run testes React
         run: npm test 
       - name: start the development server 
