@@ -1,31 +1,48 @@
 
 package com.ua.flipPhone.product;
 
+import com.ua.flipPhone.admin.Admin;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ProductTest {
     
     private Product product;
     
-    public ProductTest(){
-        product = new Product(
+    private Admin admin;
+    
+    public ProductTest(){}
+    
+    @BeforeEach
+    public void setUp() {
+         product = new Product(
+                 1,
                 "Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                 "4 GB", 
-                "image.png", 
+                "300DPI", 
                 "6,5 \"", 
                 "sAMOLED Infinity-O FHD+ tátil capacitivo com multi-touch", 
                 "Li-Ion 4000 mAh", 
                 "Android 10.0", 
                 "32.0 MP\n f/2.2",
                 "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
-                "Smartphone Samsung Galaxy A51 - A515F");
+                "Smartphone Samsung Galaxy A51 - A515F",
+                "url/image", admin);
     }
     
-   /* @Test
+    
+    @AfterEach
+    public void tearDown(){
+        product = null;
+        admin = null;
+    }
+    
+    @Test
     public void testGetProduct_id(){
-        assertEquals(2,product.getProduct_id());
-    }*/
+        assertEquals(1,product.getProduct_id());
+    }
     
     @Test
     public void testGetCpu_gpu(){
@@ -39,7 +56,7 @@ public class ProductTest {
     
     @Test
     public void testGetImage(){
-        assertEquals("image.png",product.getImage());
+        assertEquals("300DPI",product.getImage());
     }
     
     @Test
@@ -63,7 +80,7 @@ public class ProductTest {
     }
     
     @Test
-    public void testSelfie_cam(){
+    public void testGetSelfie_cam(){
         assertEquals("32.0 MP\n f/2.2",product.getSelfie_cam());
     }
     
@@ -75,6 +92,16 @@ public class ProductTest {
     @Test
     public void testGetProduct_name(){
         assertEquals("Smartphone Samsung Galaxy A51 - A515F",product.getProduct_name());
+    }
+    
+    @Test
+    public void testGetPhotoUrl(){
+        assertEquals("url/image",product.getPhotoUrl());
+    }
+    
+    @Test
+    public void testGetAdmin_id(){
+        assertEquals(admin, product.getAdmin_id());
     }
     
     @Test
@@ -97,8 +124,8 @@ public class ProductTest {
     
     @Test
     public void testSetImage(){
-        product.setImage("new_image.png");
-        assertEquals("new_image.png",product.getImage());
+        product.setImage("125DPI");
+        assertEquals("125DPI",product.getImage());
     }
     
     @Test
@@ -141,5 +168,18 @@ public class ProductTest {
     public void testSetProduct_name(){
         product.setProduct_name("Smartphone OnePlus 8");
         assertEquals("Smartphone OnePlus 8",product.getProduct_name());
+    }
+    
+    @Test
+    public void testSetPhotoUrl(){
+        product.setPhotoUrl("url/new_Image");
+        assertEquals("url/new_Image",product.getPhotoUrl());
+    }
+    
+    @Test
+    public void testSetAdmin_id(){
+        Admin admin2 = new Admin("pass", "dsfaaed", "tono@mail.com");
+        product.setAdmin_id(admin2);
+        assertEquals(admin2,product.getAdmin_id());
     }
 }

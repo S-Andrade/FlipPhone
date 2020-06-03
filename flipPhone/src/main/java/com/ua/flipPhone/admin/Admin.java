@@ -28,13 +28,20 @@ public class Admin {
 
     public Admin(){}
     
+    public Admin(String password, String hash, String email) {
+        this.password = password;
+        this.hash = hash;
+        this.email = email;
+    }
+
     public Admin(Integer admin_id, String password, String hash, String email) {
         this.admin_id = admin_id;
         this.password = password;
         this.hash = hash;
         this.email = email;
     }
-
+    
+    
     public Integer getAdmin_id() {
         return admin_id;
     }

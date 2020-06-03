@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.ua.flipPhone.user.User;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="order")
@@ -23,7 +24,7 @@ public class Order {
     private Integer order_id;
 
     @Column(name="date")
-    private Date date;
+    private String date;
     
     @Column(name="total")
     private double total;
@@ -34,13 +35,19 @@ public class Order {
 
     public Order(){}
     
-    public Order(Integer order_id, Date date, double total, User client_id) {
-        this.order_id = order_id;
+    public Order(String date, double total, User client_id) {
         this.date = date;
         this.total = total;
         this.client_id = client_id;
     }
 
+    public Order(Integer order_id, String date, double total, User client_id) {
+        this.order_id = order_id;
+        this.date = date;
+        this.total = total;
+        this.client_id = client_id;
+    }
+    
     public Integer getOrder_id() {
         return order_id;
     }
@@ -49,11 +56,11 @@ public class Order {
         this.order_id = order_id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -15,6 +15,11 @@ import javax.persistence.Column;
 
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -27,13 +32,15 @@ public class Payment {
     private Integer payment_id;
     
     @Column(name="status")
-    private String status;
+    @Enumerated(EnumType.ORDINAL)
+    private PaymentStatus status;
     
     @Column(name="gateway")
-    private String gateway;
+    @Enumerated(EnumType.ORDINAL)
+    private PaymentGateway gateway;
     
     @Column(name="date")
-    private Date date;
+    private String date;
     
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "order_id", nullable = false)
@@ -43,14 +50,13 @@ public class Payment {
     @JoinColumn(name = "client_id", nullable = false)
     private User client_id;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "seller_id", nullable = false)
-    private User seller_id;
+    private List<User> seller_id;
 
     public Payment(){}
     
-    public Payment(Integer payment_id, String status, String gateway, Date date, Order order_id, User client_id, User seller_id) {
-        this.payment_id = payment_id;
+    public Payment( PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, List<User> seller_id) {
         this.status = status;
         this.gateway = gateway;
         this.date = date;
@@ -59,6 +65,16 @@ public class Payment {
         this.seller_id = seller_id;
     }
 
+    public Payment(Integer payment_id, PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, List<User> seller_id) {
+        this.payment_id = payment_id;
+        this.status = status;
+        this.gateway = gateway;
+        this.date = date;
+        this.order_id = order_id;
+        this.client_id = client_id;
+        this.seller_id = seller_id;
+    }
+    
     public Integer getPayment_id() {
         return payment_id;
     }
@@ -67,27 +83,27 @@ public class Payment {
         this.payment_id = payment_id;
     }
 
-    public String getStatus() {
+    public PaymentStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PaymentStatus status) {
         this.status = status;
     }
 
-    public String getGateway() {
+    public PaymentGateway getGateway() {
         return gateway;
     }
 
-    public void setGateway(String gateway) {
+    public void setGateway(PaymentGateway gateway) {
         this.gateway = gateway;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -107,11 +123,11 @@ public class Payment {
         this.client_id = client_id;
     }
 
-    public User getSeller_id() {
+    public List<User> getSeller_id() {
         return seller_id;
     }
 
-    public void setSeller_id(User seller_id) {
+    public void setSeller_id(List<User> seller_id) {
         this.seller_id = seller_id;
     }
     
