@@ -10,7 +10,6 @@ jobs:
     defaults:
       run:
         working-directory: flipphone_app
-        
     steps:
       - uses: actions/checkout@v1
       - name: Setup java
@@ -24,7 +23,7 @@ jobs:
          channel: 'dev'
       - name: get the dependencies
         run: flutter pub get
-      - name: run testes Flutter
-        run: flutter test --coverage
+    #  - name: run testes Flutter
+    #    run: flutter test --coverage
       - name: run app Flutter
         run: flutter build apk
