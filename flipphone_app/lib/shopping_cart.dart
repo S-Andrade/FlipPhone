@@ -1,8 +1,10 @@
 import 'package:flipphoneapp/models/Product.dart';
 import 'package:flipphoneapp/repositories/item_api_client.dart';
 import 'package:flipphoneapp/repositories/product_api_client.dart';
+import 'package:flipphoneapp/sell_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'login_page.dart';
 import 'models/Item.dart';
 
 class ShoppingCart extends StatefulWidget {
@@ -58,15 +60,40 @@ class _ShoppingCartState extends State<ShoppingCart> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
+              Icons.monetization_on,
+              color: Colors.lightGreenAccent,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => SellItem()));
+              // do something
+            },
+          ),
+          IconButton(
+            icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => ShoppingCart()));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => ShoppingCart()));
               // do something
             },
-          )
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => LoginPage()));
+
+              // do something
+            },
+          ),
         ],
       ),
       body: Column(

@@ -1,4 +1,6 @@
 import 'package:flipphoneapp/repositories/user_api_client.dart';
+import 'package:flipphoneapp/sell_item.dart';
+import 'package:flipphoneapp/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/User.dart';
@@ -43,6 +45,44 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Login Page"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.monetization_on,
+              color: Colors.lightGreenAccent,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => SellItem()));
+              // do something
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => ShoppingCart()));
+              // do something
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => LoginPage()));
+
+              // do something
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [

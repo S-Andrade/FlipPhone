@@ -19,7 +19,7 @@ class _ProductListViewState extends State<ProductListView> {
 
   @override
   void initState() {
-//    _getProducts();
+    _getProducts();
     super.initState();
   }
 
@@ -32,9 +32,6 @@ class _ProductListViewState extends State<ProductListView> {
 //      _isLoading = false;
 //    });
   }
-
-//  _filterName
-//  http://192.168.160.49:8080/product/filter?battery=4000mah
 
   @override
   Widget build(BuildContext context) {
