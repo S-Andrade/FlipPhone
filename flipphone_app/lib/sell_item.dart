@@ -38,7 +38,6 @@ class _SellItemState extends State<SellItem> {
   @override
   void initState() {
     _getUserIdSharedPref();
-    print(userID);
     super.initState();
   }
 
@@ -50,14 +49,13 @@ class _SellItemState extends State<SellItem> {
   }
   _getUserByID(int userId) async {
     seller = await _userAPIClient.fetchUserById(userId);
-    print(seller.userID.toString());
   }
 
   _getProductByName(productName) async {
     saleProduct = await _productAPIClient.fetchProductByName(productName);
   }
 
-  _createSaleItem(Item item) async {
+  _createSaleItem(item) async {
     await _itemAPIClient.createItem(item);
   }
 
@@ -191,17 +189,16 @@ class _SellItemState extends State<SellItem> {
       saleVersion = _versionController.text;
       saleUserID = userID;
       _getProductByName(saleProductName);
-      print('aqui'+userID.toString());
-//      _getUserByID(saleUserID);
+      _getUserByID(saleUserID);
     });
 
-//    var saleItem = new Item(
-//        color: saleColor,
-//        grade: saleGrade,
-//        price: salePrice,
-//        productObj: saleProduct,
-//        userId: seller,
-//        version: saleVersion);
-////    _createSaleItem(item);
+    var saleItem = new Item(
+        color: saleColor,
+        grade: saleGrade,
+        price: salePrice,
+        productObj: saleProduct,
+        userId: seller,
+        version: saleVersion);
+    _createSaleItem(saleItem);
   }
 }

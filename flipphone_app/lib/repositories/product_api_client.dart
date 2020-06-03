@@ -36,7 +36,7 @@ class ProductAPIClient {
   Future<Product> fetchProductByName(String productName) async {
     final url = '$_baseUrl/product/filter?product_name=$productName';
     final response = await http.get(url);
-    print(url);
+//    print(url);
     if (response.statusCode == 200) {
       List responseJson = json.decode(response.body);
       return responseJson

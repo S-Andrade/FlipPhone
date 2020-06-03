@@ -31,4 +31,15 @@ class User {
       userType: json['type'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'name': userName,
+    'user_id': userID,
+    'password': userPassword,
+    'salt': userSalt,
+    'email': userEmail,
+    'address': userAddress,
+    'nif': userNIF,
+    'type': userType,
+  };
 }

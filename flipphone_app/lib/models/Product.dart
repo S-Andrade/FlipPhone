@@ -42,4 +42,20 @@ class Product {
       ramRom: json[' ram_rom'],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    'product_id': productId,
+    'product_name': productName,
+    'photoUrl': photoUrl,
+    'screen_size': screenSize,
+    'screen_type': screenType,
+    'os': phoneOS,
+    'battery': battery,
+    'selfie_cam': selfieCam,
+    'camera': camera,
+    'cpu_gpu': cpuGpu,
+    'ram_rom': ramRom,
+  };
+
+
 }

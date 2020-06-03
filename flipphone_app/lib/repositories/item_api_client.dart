@@ -51,10 +51,9 @@ class ItemAPIClient {
 //    );
 //  }
 
-  Future<http.Response> createItem(Item item) async {
-    print('chegou aqui');
+  Future<http.Response> createItemAlternative(Item item) async {
     print(json.encode(item.toJson()));
-    final url = '$_baseUrl/item/add/';
+    final url = '$_baseUrl/item/add';
     final response = await http.post(
       '$url',
       headers: {
@@ -65,4 +64,36 @@ class ItemAPIClient {
     );
     return response;
   }
+
+  Future<http.Response> createItem(Item item) async {
+//    print(json.encode(item.toJson()));
+    final color = item.color;
+    final grade = item.grade;
+    final price = item.price;
+    final productId = item.productObj.productId;
+    final sellerId = item.userId.userID;
+    final version = item.version;
+
+    final url =
+        '$_baseUrl/item/add?color=$color&grade=$grade&price=$price&product_id=$productId&seller_id=$sellerId&version=$version';
+    final response = await http.post(
+      '$url',
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.authorizationHeader: ''
+      },
+    );
+    return response;
+  }
 }
+
+//Future<http.Response> createAlbum(String title) {
+//  return http.post(
+//    'https://jsonplaceholder.typicode.com/albums',
+//    headers: <String, String>{
+//      'Content-Type': 'application/json; charset=UTF-8',
+//    },
+//    body: jsonEncode(<String, String>{
+//      'title': title,
+//    }),
+//  );
