@@ -15,8 +15,11 @@ import javax.persistence.Column;
 
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -47,13 +50,13 @@ public class Payment {
     @JoinColumn(name = "client_id", nullable = false)
     private User client_id;
     
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "seller_id", nullable = false)
-    private User seller_id;
+    private List<User> seller_id;
 
     public Payment(){}
     
-    public Payment( PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, User seller_id) {
+    public Payment( PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, List<User> seller_id) {
         this.status = status;
         this.gateway = gateway;
         this.date = date;
@@ -62,7 +65,7 @@ public class Payment {
         this.seller_id = seller_id;
     }
 
-    public Payment(Integer payment_id, PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, User seller_id) {
+    public Payment(Integer payment_id, PaymentStatus status, PaymentGateway gateway, String date, Order order_id, User client_id, List<User> seller_id) {
         this.payment_id = payment_id;
         this.status = status;
         this.gateway = gateway;
@@ -120,11 +123,11 @@ public class Payment {
         this.client_id = client_id;
     }
 
-    public User getSeller_id() {
+    public List<User> getSeller_id() {
         return seller_id;
     }
 
-    public void setSeller_id(User seller_id) {
+    public void setSeller_id(List<User> seller_id) {
         this.seller_id = seller_id;
     }
     

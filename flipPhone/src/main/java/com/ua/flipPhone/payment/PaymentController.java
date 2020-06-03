@@ -1,9 +1,11 @@
 package com.ua.flipPhone.payment;
 
+import com.ua.flipPhone.item.Item;
  import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.order.OrderRepository;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -58,7 +60,7 @@ public class PaymentController {
             @RequestParam String date,
             @RequestParam Integer order_id,
             @RequestParam Integer client_id,
-            @RequestParam Integer seller_id){
+            @RequestParam String seller_id){
         
         Order order;
         User client;
@@ -82,11 +84,17 @@ public class PaymentController {
             return null;
         }
         
-        try{
-            Optional<User> op_seller = userRepository.findById(seller_id);
-            seller = op_seller.get();
-        }catch(Exception e){
-            return null;
+              
+        
+        List<User> listSeller = new ArrayList<>();
+        String[] list_seller = seller_id.split(",");
+        for(String i: list_seller){
+            try{
+                Optional<User> op_seller = userRepository.findById(Integer.parseInt(i));
+                listSeller.add(op_seller.get());
+            }catch (Exception e){
+                return null;
+            }
         }
         
         
@@ -121,7 +129,7 @@ public class PaymentController {
         }
         
         
-        Payment newPayment = new Payment(s, g, date, order, client, seller);
+        Payment newPayment = new Payment(s, g, date, order, client, listSeller);
         paymentRepository.save(newPayment);
         return "Saved";
         

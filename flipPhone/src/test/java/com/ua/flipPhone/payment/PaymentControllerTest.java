@@ -12,6 +12,7 @@ import com.ua.flipPhone.product.ProductRepository;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
 import com.ua.flipPhone.user.UserType;
+import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -72,7 +73,9 @@ public class PaymentControllerTest {
         client = new User(1,"password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         order = new Order(1,"31.05.2020 21:30:30", 400, client);
         seller = new User(1,"password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.PARTICULAR);
-        payment = new Payment(1,PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, "31.05.2020 21:30:30", order,  client, seller);
+        List<User> sellers =new ArrayList<>();
+        sellers.add(seller);
+        payment = new Payment(1,PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, "31.05.2020 21:30:30", order,  client, sellers);
     }
     
     @AfterEach

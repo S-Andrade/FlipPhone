@@ -2,6 +2,7 @@ package com.ua.flipPhone.product;
 
 import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.user.User;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

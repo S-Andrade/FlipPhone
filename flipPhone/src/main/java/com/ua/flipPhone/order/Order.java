@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.ua.flipPhone.user.User;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="order")

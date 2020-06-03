@@ -175,7 +175,7 @@ public class ItemControllerTest {
         verify(itemRepository, VerificationModeFactory.times(1)).findByProductId(item.getProductId());
     }
 
-    /*@Test
+   /* @Test
     public void whenFilter_thenReturnsJsonArray() throws Exception {
 
 
@@ -186,15 +186,19 @@ public class ItemControllerTest {
         filter = new ItemSpecification();
         filter.add(new SearchCriteria("grade", ItemGrade.NEW, SearchOperation.EQUAL));
         filter.add(new SearchCriteria("color", "black", SearchOperation.MATCH));
-        filter.add(new SearchCriteria("price", 500, SearchOperation.LESS_THAN_EQUAL));
         filter.add(new SearchCriteria("version", "4", SearchOperation.MATCH));
+        filter.add(new SearchCriteria("price", 500.0, SearchOperation.LESS_THAN_EQUAL));
         filter.add(new SearchCriteria("productId", product, SearchOperation.EQUAL));
         filter.add(new SearchCriteria("seller_id", seller, SearchOperation.EQUAL));
 
         
         List<Item> allItem = Arrays.asList(item);
+        
+                System.out.println(filter);
 
+        
         given(itemRepository.findAll(filter)).willReturn(allItem);
+        
         
                
         mvc.perform(get("/item/filter?grade=NEW&color=black&price=<500&version=4&product=1&seller=1")

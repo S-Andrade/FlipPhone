@@ -198,12 +198,16 @@ public class ItemController {
             }catch(Exception e){
                 return null;
             }
-            filter.add(new SearchCriteria("seller_id",seller, SearchOperation.EQUAL));
+            filter.add(new SearchCriteria("seller_id",user, SearchOperation.EQUAL));
         }
         
+        System.out.println(filter);
+
         for (Item i : itemRepository.findAll(filter)){
             System.out.println(i.getColor());
-        }
+        }       
+        
+        
                
         return itemRepository.findAll(filter);
     }

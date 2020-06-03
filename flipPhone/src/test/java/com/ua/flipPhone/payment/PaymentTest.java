@@ -3,7 +3,9 @@ package com.ua.flipPhone.payment;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserType;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +20,8 @@ public class PaymentTest {
     private User client;
     
     private User seller;
+    
+    private List<User> sellers;
         
     public PaymentTest(){}
     
@@ -26,7 +30,9 @@ public class PaymentTest {
         client = new User("password", "João", "adfqewrewq", "joao@email.com", "Porto", "52346134", UserType.PARTICULAR);
         order = new Order(1, "31.05.2020 21:30:30", 400, client);
         seller = new User("password", "Joana", "sadfwv", "joana@email.com", "Faro", "5687687468", UserType.PARTICULAR);
-        payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, "31.05.2020 21:30:30", order,  client, seller);
+        sellers =new ArrayList<>();
+        sellers.add(seller);
+        payment = new Payment(1, PaymentStatus.PENDING, PaymentGateway.CREDIT_CARD, "31.05.2020 21:30:30", order,  client, sellers);
     }
     
     @AfterEach
@@ -69,7 +75,7 @@ public class PaymentTest {
     
     @Test
     public void testGetSeller_id(){
-        assertEquals(seller, payment.getSeller_id());
+        assertEquals(sellers, payment.getSeller_id());
     }
     
     @Test
@@ -115,7 +121,9 @@ public class PaymentTest {
     @Test
     public void testSetSeller_id(){
         User s = new User("password", "Joaquim", "adsfqe", "joaquim@email.com", "Coimbra", "14447747", UserType.PROFESSIONAL);
-        payment.setSeller_id(s);
-        assertEquals(s, payment.getSeller_id());
+        List<User> sellers =new ArrayList<>();
+        sellers.add(s);
+        payment.setSeller_id(sellers);
+        assertEquals(sellers, payment.getSeller_id());
     }
 }
