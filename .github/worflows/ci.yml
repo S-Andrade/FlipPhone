@@ -1,0 +1,31 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  
+  React:
+    name: React
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node-version: [8.x,10.x,12.x]
+
+    defaults:
+      run:
+        working-directory: fliphone_react
+    
+    
+   
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: §{{matrix.node-version}}
+      - name: run testes React
+        run: npm test 
+      - name: start the development server 
+        run: npm start
+      - name: bundles the app into static files for production
+        run: npm run build
