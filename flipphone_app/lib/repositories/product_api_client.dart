@@ -32,4 +32,20 @@ class ProductAPIClient {
       throw Exception('Failed to load products from API');
     }
   }
+
+  Future<Product> fetchProductByName(String productName) async {
+    final url = '$_baseUrl/product/filter?product_name=$productName';
+    final response = await http.get(url);
+    print(url);
+    if (response.statusCode == 200) {
+      List responseJson = json.decode(response.body);
+      return responseJson
+          .map((product) => new Product.fromJson(product))
+          .toList()[0];
+    } else {
+      throw Exception('Failed to load products from API');
+    }
+  }
+
+
 }

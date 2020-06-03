@@ -35,12 +35,17 @@ dependencies:
   shared_preferences: ^0.5.7+3
   equatable: ^1.2.0
   provider: ^4.1.2
+  test_coverage: ^0.4.1
+  test:
+
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

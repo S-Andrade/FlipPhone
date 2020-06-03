@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flipphoneapp/models/User.dart';
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 
 class UserAPIClient {
   final _baseUrl = '192.168.160.49:8080';
@@ -19,6 +18,16 @@ class UserAPIClient {
   }
   Future<User> fetchUserByEmail(String email) async {
     final url = 'http://$_baseUrl/user/byEmail?email=$email';
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      return User.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load user from API');
+    }
+  }
+  Future<User> fetchUserById(int userId) async {
+    final url = 'http://$_baseUrl/user/$userId';
     final response = await http.get(url);
 
     if (response.statusCode == 200) {

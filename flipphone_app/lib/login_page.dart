@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String _password;
   UserAPIClient _userAPIClient = new UserAPIClient();
-  var user = new User();
+  User user;
 //  int userId;
 
   @override
@@ -26,6 +26,12 @@ class _LoginPageState extends State<LoginPage> {
   _addUserIdSharedPref(int userId) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.setInt('userId', userId);
+    print(userId);
+  }
+
+  _removeUserIdSharedPref() async {
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.remove('userId');
   }
 
   _getUserByEmail(String email) async {
@@ -38,9 +44,27 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text("Login Page"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: _loginBody(context),
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: _loginBody(context),
+          ),
+          Positioned(
+            child: Align(
+              alignment: Alignment.center,
+              child: FlatButton(
+                padding: const EdgeInsets.all(10.0),
+                color: Colors.red,
+                child: Text("Logout",
+                    style: TextStyle(color: Colors.white, fontSize: 18.0)),
+                onPressed: () {
+                  _removeUserIdSharedPref();
+                },
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -116,10 +140,10 @@ class _LoginPageState extends State<LoginPage> {
     final loginPass = _passwordController.text;
     print(loginPass);
     _getUserByEmail(loginEmail);
-    if (user != null){
-        if(user.userPassword == loginPass)
-        _addUserIdSharedPref(user.userID);
-    } else { print('email errado');}
-
+    if (user != null) {
+      if (user.userPassword == loginPass) _addUserIdSharedPref(user.userID);
+    } else {
+      print('email errado');
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flipphoneapp/product_details.dart';
 import 'package:flipphoneapp/repositories/product_api_client.dart';
+import 'package:flipphoneapp/sell_item.dart';
 import 'package:flipphoneapp/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
@@ -18,7 +19,7 @@ class _ProductListViewState extends State<ProductListView> {
 
   @override
   void initState() {
-    _getProducts();
+//    _getProducts();
     super.initState();
   }
 
@@ -37,10 +38,26 @@ class _ProductListViewState extends State<ProductListView> {
 
   @override
   Widget build(BuildContext context) {
+    _getProducts();
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Lista de Produtos"),
           actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.monetization_on,
+                color: Colors.lightGreenAccent,
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => SellItem()
+                    ));
+                // do something
+              },
+            ),
             IconButton(
               icon: Icon(
                 Icons.shopping_cart,
@@ -66,9 +83,11 @@ class _ProductListViewState extends State<ProductListView> {
                     new MaterialPageRoute(
                         builder: (context) => LoginPage()
                     ));
+
                 // do something
               },
-            )
+            ),
+
           ],
         ),
         body: listProducts());
