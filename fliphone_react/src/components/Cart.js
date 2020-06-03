@@ -15,6 +15,7 @@ class Cart extends Component {
             dformat:'',
             userID:'',
             seller_ids:'',
+            gateway:'CREDIT_CARD',//default gateway
             checkout:''
         }
     }
@@ -165,8 +166,8 @@ class Cart extends Component {
 
 
     PostPayment= () => {
-
-        console.log(this.state.order_id,this.state.userID,this.state.seller_ids, this.state.dformat, this.state.seller_ids);
+        //mudar o gateway to the selected one!!!!!
+        //console.log(this.state.order_id,this.state.userID,this.state.seller_ids, this.state.dformat, this.state.seller_ids);
 
         let order_id= parseInt(this.state.order_id);
         let client_id=parseInt(this.state.userID);
@@ -185,14 +186,19 @@ class Cart extends Component {
     }
 
 
+    selectChange= event => {
+        alert(event.target.value);
+        //this.setState({'gateway':event.target.value})
+    }
+
 
     render() {
 
         let items = this.state.items;
-        console.log(items);
-        console.log(this.state.order_id);
+        //console.log(items);
+        //console.log(this.state.order_id);
 
-        console.log(this.state.checkout);
+        //console.log(this.state.checkout);
 
         if (items.length === 0) {
             return (<p>The cart is empty</p>);
@@ -204,13 +210,18 @@ class Cart extends Component {
 
             return(
                 <div>
-                    <select  >
-                        <option></option>
+                    <select onChange={this.selectChange}>
+                        <option value="CREDIT_CARD">CREDIT_CARD</option>
+                        <option value="DEBIT_CARD">DEBIT_CARD</option>
+                        <option value="PAYPAL">PAYPAL</option>
+                        <option value="MBWAY">MBWAY</option>
                     </select>
+
                     <Button onClick={() => this.PostPayment()}  primary enabled>
                         Confirm purchase
                     </Button>
                 </div>
+
             );
         }
 
