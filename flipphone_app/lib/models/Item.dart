@@ -10,7 +10,7 @@ class Item {
   final double price;
   final String version;
   final Product productObj;
-  final Order orderObj;
+//  final Order orderObj;
   final User userId;
 
   Item({
@@ -20,7 +20,7 @@ class Item {
     this.price,
     this.version,
     this.productObj,
-    this.orderObj,
+//    this.orderObj,
     this.userId,
   });
 
@@ -32,15 +32,10 @@ class Item {
       price: json['price'] as double,
       version: json['version'],
       productObj: Product.fromJson(json['productId']),
-      orderObj: Order.fromJson(json['order_id']),
+//      orderObj: Order.fromJson(json['order_id']),
       userId: User.fromJson(json['seller_id']),
     );
   }
-
-//  String itemToJson(Item data) {
-//    final dyn = data.toJson();
-//    return json.encode(dyn);
-//  }
 
   Map<String, dynamic> toJson() => {
         'color': color,

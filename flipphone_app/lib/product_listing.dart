@@ -50,11 +50,8 @@ class _ProductListViewState extends State<ProductListView> {
                 color: Colors.lightGreenAccent,
               ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => SellItem()
-                    ));
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => SellItem()));
                 // do something
               },
             ),
@@ -67,8 +64,7 @@ class _ProductListViewState extends State<ProductListView> {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) => ShoppingCart()
-                    ));
+                        builder: (context) => ShoppingCart()));
                 // do something
               },
             ),
@@ -78,37 +74,64 @@ class _ProductListViewState extends State<ProductListView> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                        builder: (context) => LoginPage()
-                    ));
+                Navigator.push(context,
+                    new MaterialPageRoute(builder: (context) => LoginPage()));
 
                 // do something
               },
             ),
-
           ],
         ),
         body: listProducts());
   }
 
   listProducts() {
-    return ListView.builder(
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(products[index].productName,
-              style: TextStyle(fontSize: 20.0, color: Colors.black)),
-          onTap: () {
-            Navigator.push(
-                context,
-                new MaterialPageRoute(
-                    builder: (context) =>
-                        ProductDetails(product: products[index])));
-          },
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: GridView.builder(
+        itemCount: products.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            childAspectRatio: 0.8,
+            crossAxisCount: 2,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) =>
+                          ProductDetails(product: products[index])));
+            },
+            child: Column(
+//            mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(products[index].productName,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20.0,
+                          color: Colors.black)),
+                ),
+                Image(
+                  fit: BoxFit.contain,
+                  image: NetworkImage(
+                      'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s10-1.jpg'),
+                ),
+              ],
+//          onTap: () {
+//            Navigator.push(
+//                context,
+//                new MaterialPageRoute(
+//                    builder: (context) =>
+//                        ProductDetails(product: products[index])));
+//          },
+            ),
+          );
+        },
+      ),
     );
   }
 }
