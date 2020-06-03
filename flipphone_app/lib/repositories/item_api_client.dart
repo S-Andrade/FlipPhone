@@ -28,6 +28,20 @@ class ItemAPIClient {
     }
   }
 
+  Future<Item> fetchItemsById(int itemID) async {
+    final url = '$_baseUrl/item/$itemID';
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+//      List responseJson = json.decode(response.body);
+      return Item.fromJson(json.decode(response.body));
+//      return Album.fromJson(json.decode(response.body));
+//      return responseJson.map((item) => new Item.fromJson(item)).toList();
+    } else {
+      throw Exception('Failed to load items from API');
+    }
+  }
+
+
 //  Future<http.Response> addItem(String color, String grade, double price,
 //      int product_id, int seller_id, String version) {
 //    return http.post(

@@ -1,5 +1,7 @@
+import 'package:flipphoneapp/repositories/item_api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'models/Item.dart';
 
 class ShoppingCart extends StatefulWidget {
   @override
@@ -9,49 +11,94 @@ class ShoppingCart extends StatefulWidget {
 class _ShoppingCartState extends State<ShoppingCart> {
   int userID;
   List<String> cart;
+  ItemAPIClient _itemAPIClient = new ItemAPIClient();
+//  var items = new List<Item>();
 
   @override
   void initState() {
     _getCartSharedPref();
     super.initState();
-    userID = 9;
-
   }
 
-//  Future<int> getUserIdSharedPref() async {
-////    SharedPreferences sp = await SharedPreferences.getInstance();
-////    int userID = sp.getInt('userId');
-////    return userID;
+  Future<Item>_getItemById(int itemId) async {
+    Item fetchedItem = await _itemAPIClient.fetchItemsById(itemId);
 //    setState(() {
-//      userID = 9;
+//      items.add(fetchedItem);
 //    });
-//    return userID;
-//  }
+    return fetchedItem;
+  }
 
-   _getCartSharedPref() async {
+  _getUserIdSharedPref() async {
+//    SharedPreferences sp = await SharedPreferences.getInstance();
+//    int userID = sp.getInt('userId');
+//    return userID;
+    setState(() {
+      userID = 9;
+    });
+    return userID;
+  }
+
+  _getCartSharedPref() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    final cart = sp.getStringList('$userID') ?? ['1'];
-//    return cart;
+    final userID = _getUserIdSharedPref();
+    List<String> spCart = sp.getStringList('$userID') ?? [];
+    setState(() {
+      cart = spCart;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(userID);
     print(cart);
-    return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Flexible(
-            child: ListView.builder(
-                itemCount: cart.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    child: Text(cart[index]),
-                  );
-                }),
-          ),
-        ]);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Shopping Cart"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => ShoppingCart()));
+              // do something
+            },
+          )
+        ],
+      ),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Flexible(
+              child: ListView.builder(
+                  itemCount: cart.length,
+                  itemBuilder: (context, index) {
+//                    var fetchedItem = new Item();
+//                    _getItemById(int itemId) async {
+//                      fetchedItem = await _itemAPIClient.fetchItemsById(itemId);
+//                          print('teste' + fetchedItem.itemId.toString());
+//                    }
+//                    print(int.parse(cart[index]));
+//                    _getItemById(int.parse(cart[index]));
+//                    print(fetchedItem.itemId);
+                    return Row(
+                      children: [
+                        Text(cart[index]),
+                        FutureBuilder(
+                            future: _getItemById(int.parse(cart[index])),
+                            builder: (context, snapshot) {
+                              print('snap' + snapshot.data.itemId.toString());
+                              return Text(snapshot.data.itemId.toString());
+                            }),
+//                        Text(fetchedItem.itemId.toString()),
+                      ],
+                    );
+                  }),
+            ),
+          ]),
+    );
   }
 }

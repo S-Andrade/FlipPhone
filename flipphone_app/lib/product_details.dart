@@ -1,5 +1,6 @@
 import 'package:flipphoneapp/models/Product.dart';
 import 'package:flipphoneapp/repositories/item_api_client.dart';
+import 'package:flipphoneapp/shopping_cart.dart';
 import 'package:flutter/material.dart';
 import 'models/Item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,12 +45,11 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   _addCartSharedPref(int itemId) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    final item = itemId.toString();
+    final itemCart = itemId.toString();
     final userID = _getUserIdSharedPref();
     final cart = sp.getStringList('$userID') ?? [];
-    cart.add(item);
+    cart.add(itemCart);
     sp.setStringList('$userID', cart);
-    print(sp.getStringList('$userID').toString());
   }
 
 //  _getCartSharedPref() async {
@@ -59,13 +59,11 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   _removeItemCartSharedPref(int itemId) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
-    final item = itemId.toString();
+    final itemCart = itemId.toString();
     final userID = _getUserIdSharedPref();
     final cart = sp.getStringList('$userID') ?? [];
-    cart.remove(item);
-    sp.setStringList('userID', cart);
-    print('pufff  item id'+item);
-
+    cart.remove(itemCart);
+    sp.setStringList('$userID', cart);
   }
 
 //  Future<bool> _checkCart(int itemId) async {
@@ -81,6 +79,22 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.product.productName),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => ShoppingCart()
+                  ));
+              // do something
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
