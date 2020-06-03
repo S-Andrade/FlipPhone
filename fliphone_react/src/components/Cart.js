@@ -203,9 +203,14 @@ class Cart extends Component {
         if (this.state.checkout==1){
 
             return(
-                <Button onClick={() => this.PostPayment()}  primary enabled>
-                    Confirm purchase
-                </Button>
+                <div>
+                    <select  >
+                        <option></option>
+                    </select>
+                    <Button onClick={() => this.PostPayment()}  primary enabled>
+                        Confirm purchase
+                    </Button>
+                </div>
             );
         }
 
