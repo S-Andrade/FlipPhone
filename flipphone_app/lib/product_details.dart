@@ -34,13 +34,11 @@ class _ProductDetailsState extends State<ProductDetails> {
   }
 
   _getUserIdSharedPref() async {
-//    SharedPreferences sp = await SharedPreferences.getInstance();
-//    int userID = sp.getInt('userId');
-//    return userID;
+    SharedPreferences sp = await SharedPreferences.getInstance();
     setState(() {
-      userID = 9;
+      userID = sp.getInt('userId');
     });
-    return userID;
+    print(userID);
   }
 
   _addCartSharedPref(int itemId) async {

@@ -2,6 +2,7 @@ import 'package:flipphoneapp/product_details.dart';
 import 'package:flipphoneapp/repositories/product_api_client.dart';
 import 'package:flipphoneapp/shopping_cart.dart';
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 import 'models/Product.dart';
 
 class ProductListView extends StatefulWidget {
@@ -50,6 +51,20 @@ class _ProductListViewState extends State<ProductListView> {
                     context,
                     new MaterialPageRoute(
                         builder: (context) => ShoppingCart()
+                    ));
+                // do something
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => LoginPage()
                     ));
                 // do something
               },

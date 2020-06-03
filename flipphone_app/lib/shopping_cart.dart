@@ -28,19 +28,16 @@ class _ShoppingCartState extends State<ShoppingCart> {
     return fetchedItem;
   }
 
-  Future<Product> _getProductById(int productId) async {
-    Product fetchedProduct = await _productAPIClient.fetchProductsById(productId);
-    return fetchedProduct;
-  }
+//  Future<Product> _getProductById(int productId) async {
+//    Product fetchedProduct = await _productAPIClient.fetchProductsById(productId);
+//    return fetchedProduct;
+//  }
 
   _getUserIdSharedPref() async {
-//    SharedPreferences sp = await SharedPreferences.getInstance();
-//    int userID = sp.getInt('userId');
-//    return userID;
+    SharedPreferences sp = await SharedPreferences.getInstance();
     setState(() {
-      userID = 9;
+      userID = sp.getInt('userId');
     });
-    return userID;
   }
 
   _getCartSharedPref() async {
@@ -91,18 +88,11 @@ class _ShoppingCartState extends State<ShoppingCart> {
                               return Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-//                                  FutureBuilder(
-//                                    future: _getProductById(itemProductID),
-//                                    builder: (context, snapshot) {
-//                                      return Text('');
-////                                      return Text(snapshot.data.productName);
-//                                    }),
                                   Text(snapshot.data.productObj.productName),
                                   Text(snapshot.data.itemId.toString()),
                                   Text(snapshot.data.grade.toString()),
                                   Text(snapshot.data.color.toString()),
                                   Text(snapshot.data.price.toString()),
-
                                 ],
                               );
                             }),
