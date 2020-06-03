@@ -1,5 +1,7 @@
 # FlipPhone
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6426c8d718904f57ae141a45044c9194)](https://app.codacy.com/manual/S-Andrade/FlipPhone?utm_source=github.com&utm_medium=referral&utm_content=S-Andrade/FlipPhone&utm_campaign=Badge_Grade_Settings)
+
 Marketplace para a venda de equipamentos móveis novos ou usados. 
 Agrega tantos vendedores particulares como profissionais (lojas certificadas). 
 Lista os produtos de forma organizada, fornece informação completa e permite a comparação.  
