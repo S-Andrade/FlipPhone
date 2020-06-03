@@ -1,10 +1,18 @@
 import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
+import {faList} from '@fortawesome/free-solid-svg-icons';
 import {Link} from 'react-router-dom'
 
 
 class NavigationBar extends React.Component {
+
+    clearCache() {
+        console.log("clear cache!");
+        localStorage.clear();
+    }
+
     render () {
+
         return (
             <Navbar bg="dark" variant="dark">
                 <Link to={"/main"} className="navbar-brand">
@@ -16,8 +24,8 @@ class NavigationBar extends React.Component {
                     <Link to={"/add"} className="nav-link">Sell Phones</Link>
                     <Link to={"/list"} className="nav-link">Filters</Link>
                     <Link to={"/users"} className="nav-link">User List</Link>
-                    <Link to={"/cart"} className="nav-link">Cart</Link>
-                    <Link to={"/logout"} className="nav-link">Logout</Link>
+                    <Link to={"/cart"} icon={faList } className="nav-link">Cart</Link>
+                    <Link onClick={this.clearCache} to={"/logout"} className="nav-link">Logout</Link>
                 </Nav>
                 </Navbar>
         );

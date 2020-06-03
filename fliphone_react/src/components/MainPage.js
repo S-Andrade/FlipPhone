@@ -11,7 +11,7 @@ class MainPage extends React.Component {
         this.state = {
             phones: []
         }
-        global.MyVar = 'test';
+        //global.MyVar = 'test';
     }
 
 
@@ -29,9 +29,8 @@ class MainPage extends React.Component {
 
 
     render() {
-        let Products = this.state.phones;
+        //let Products = this.state.phones;
         //console.log(Products);
-
 
 
 

@@ -11,14 +11,20 @@ import Phone from './components/Phone'
 import Filters from "./components/Filters";
 import UserList from "./components/UserList";
 import MainPage from "./components/MainPage";
-import {FormUserLogin} from "./components/FormUserLogin";
+import {FormUserRegister} from "./components/FormUserRegister";
 import listItems from './components/listItems';
-import Cart from './components/Cart'
+import Cart from './components/Cart';
+import UserLogin from './components/UserLogin';
+import SellItem  from "./components/SellItem";
+
+
 
 function App() {
     const marginTop ={
           marginTop:"20px"
     };
+
+
   return (
     <Router>
 
@@ -28,11 +34,12 @@ function App() {
                 <Col lg={12} style = {marginTop}>
                     <Switch>
                         <Route path="/" exact component={Welcome}/>
-                        <Route path="/add" exact component={Phone}/>
+                        <Route path="/add" exact component={SellItem}/>
                         <Route path="/list" exact component={Filters}/>
                         <Route path="/users" exact component={UserList}/>
                         <Route path="/logout" exact component={Welcome}/>
-                        <Route path="/login" exact component={FormUserLogin}/>
+                        <Route path="/register" exact component={FormUserRegister}/>
+                        <Route path="/login" exact component={UserLogin}/>
                         <Route path="/main" exact component={MainPage}/>
                         <Route path="/cart" exact component={Cart}/>
                         <Route path='/items/:product_id'  component={listItems}/>

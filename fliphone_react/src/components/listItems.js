@@ -23,6 +23,7 @@ class listItems extends Component {
     }
 
 
+
     componentDidMount() {
         const product_id = this.props.match.params.product_id;
         //console.log(this.props.match.params.product_id);
@@ -34,12 +35,7 @@ class listItems extends Component {
     }
 
 
-    /*addToCart = (param) => {
-        alert("submit trigered");
-        //event.preventDefault();
-        alert(param);
 
-    }*/
 
     addToCart = (param) => {
         //console.log(param);
@@ -74,7 +70,6 @@ class listItems extends Component {
             let id = item.item_id;
             //alert(id);
             return (
-                this.state.items.map(item => (
                     <Row className='show-grid' >
                         <Col xs={4} md={2}> color : {item.color}</Col>
                         <Col xs={4} md={2} > price :  {item.price}</Col>
@@ -87,7 +82,6 @@ class listItems extends Component {
                         </Col>
 
                     </Row>
-                ))
             )})
 
         return (
@@ -100,4 +94,7 @@ class listItems extends Component {
 
     }
 }
+
+
+
 export default listItems;

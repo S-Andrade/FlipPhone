@@ -47,6 +47,7 @@ export default class Phone extends Component{
                 if(response.data != null){
                     this.setState(this.initialState);
                     alert("Sell order successfull");
+                    window.location.replace("http://localhost:3000/main"); // redirect to main page
                 }
 
             })
@@ -61,6 +62,7 @@ export default class Phone extends Component{
     }
 
     render() {
+        // only render if its an admin account
         const {cpu_gpu,ram_rom,image,screen_size,screen_type,battery, os,selfie_cam , camera, product_name, photoUrl} = this.state;
 
         return(

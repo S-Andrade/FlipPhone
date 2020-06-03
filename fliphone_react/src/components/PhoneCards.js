@@ -26,7 +26,8 @@ class PhoneCards extends Component {
                         <Card.Text>
                             <p> Phone's image: {this.props.phone.image}</p>
                             <p> Phone's cpu_gpu: {this.props.phone.cpu_gpu}</p>
-                            <p>This product has no items (out of stock), so there is no price</p>
+                            <p> Phone's image: {this.props.phone.image}</p>
+                            <p> Phone's battery: {this.props.phone.battery}</p>
                             <a href={route} > see more info</a>
                         </Card.Text>
                     </Card.Body>
