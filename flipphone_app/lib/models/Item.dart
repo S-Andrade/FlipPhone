@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'Product.dart';
 import 'User.dart';
 
 class Item {
@@ -8,7 +8,7 @@ class Item {
   final String color;
   final double price;
   final String version;
-  final int productId;
+  final Product productObj;
   final int orderId;
   final User userId;
 
@@ -18,7 +18,7 @@ class Item {
     this.color,
     this.price,
     this.version,
-    this.productId,
+    this.productObj,
     this.orderId,
     this.userId,
   });
@@ -30,7 +30,7 @@ class Item {
       color: json['color'],
       price: json['price'] as double,
       version: json['version'],
-      productId: json['product_id'] as int,
+      productObj: Product.fromJson(json['productId']),
       orderId: json['order_id'] as int,
       userId: User.fromJson(json['seller_id']),
     );
@@ -45,7 +45,7 @@ class Item {
         'color': color,
         'grade': grade,
         'price': price,
-        'product_id': productId,
+        'productId': productObj,
         'seller_id': userId,
         'version': version,
       };

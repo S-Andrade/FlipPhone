@@ -41,7 +41,6 @@ class ItemAPIClient {
     }
   }
 
-
 //  Future<http.Response> addItem(String color, String grade, double price,
 //      int product_id, int seller_id, String version) {
 //    return http.post(

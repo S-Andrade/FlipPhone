@@ -1,4 +1,6 @@
+import 'package:flipphoneapp/models/Product.dart';
 import 'package:flipphoneapp/repositories/item_api_client.dart';
+import 'package:flipphoneapp/repositories/product_api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'models/Item.dart';
@@ -12,6 +14,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
   int userID;
   List<String> cart;
   ItemAPIClient _itemAPIClient = new ItemAPIClient();
+  ProductAPIClient _productAPIClient = new ProductAPIClient();
 //  var items = new List<Item>();
 
   @override
@@ -22,10 +25,12 @@ class _ShoppingCartState extends State<ShoppingCart> {
 
   Future<Item>_getItemById(int itemId) async {
     Item fetchedItem = await _itemAPIClient.fetchItemsById(itemId);
-//    setState(() {
-//      items.add(fetchedItem);
-//    });
     return fetchedItem;
+  }
+
+  Future<Product> _getProductById(int productId) async {
+    Product fetchedProduct = await _productAPIClient.fetchProductsById(productId);
+    return fetchedProduct;
   }
 
   _getUserIdSharedPref() async {
@@ -76,24 +81,31 @@ class _ShoppingCartState extends State<ShoppingCart> {
               child: ListView.builder(
                   itemCount: cart.length,
                   itemBuilder: (context, index) {
-//                    var fetchedItem = new Item();
-//                    _getItemById(int itemId) async {
-//                      fetchedItem = await _itemAPIClient.fetchItemsById(itemId);
-//                          print('teste' + fetchedItem.itemId.toString());
-//                    }
-//                    print(int.parse(cart[index]));
-//                    _getItemById(int.parse(cart[index]));
-//                    print(fetchedItem.itemId);
                     return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(cart[index]),
                         FutureBuilder(
                             future: _getItemById(int.parse(cart[index])),
                             builder: (context, snapshot) {
-                              print('snap' + snapshot.data.itemId.toString());
-                              return Text(snapshot.data.itemId.toString());
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+//                                  FutureBuilder(
+//                                    future: _getProductById(itemProductID),
+//                                    builder: (context, snapshot) {
+//                                      return Text('');
+////                                      return Text(snapshot.data.productName);
+//                                    }),
+                                  Text(snapshot.data.productObj.productName),
+                                  Text(snapshot.data.itemId.toString()),
+                                  Text(snapshot.data.grade.toString()),
+                                  Text(snapshot.data.color.toString()),
+                                  Text(snapshot.data.price.toString()),
+
+                                ],
+                              );
                             }),
-//                        Text(fetchedItem.itemId.toString()),
                       ],
                     );
                   }),

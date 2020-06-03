@@ -17,4 +17,19 @@ class ProductAPIClient {
       throw Exception('Failed to load products from API');
     }
   }
+
+  Future<Product> fetchProductsById(int productId) async {
+    final url = '$_baseUrl/product/$productId';
+    final response = await http.get(url);
+    print(url);
+    if (response.statusCode == 200) {
+      return Product.fromJson(json.decode(response.body));
+//      List responseJson = json.decode(response.body);
+//      return responseJson
+//          .map((product) => new Product.fromJson(product))
+//          .toList();
+    } else {
+      throw Exception('Failed to load products from API');
+    }
+  }
 }
