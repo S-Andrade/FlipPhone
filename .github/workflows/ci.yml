@@ -16,14 +16,14 @@ jobs:
       - name: Setup java
         uses: actions/setup-java@v1
         with:
-          java-version: '12.x'
+          java-version: '11.x'
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-         flutter-version: '1.12.x'
+         flutter-version: '1.19.x'
       - name: get the dependencies
         run: flutter pub get
       - name: run testes Flutter
-        run: flutter test
+        run: flutter test --coverage
       - name: run app Flutter
         run: flutter build apk
