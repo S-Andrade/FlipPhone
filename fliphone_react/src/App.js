@@ -7,7 +7,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import NavigationBar from "./components/NavigationBar";
 import Welcome from "./components/Welcome";
-import Phone from './components/Phone'
 import Filters from "./components/Filters";
 import UserList from "./components/UserList";
 import MainPage from "./components/MainPage";
@@ -16,6 +15,7 @@ import listItems from './components/listItems';
 import Cart from './components/Cart';
 import UserLogin from './components/UserLogin';
 import SellItem  from "./components/SellItem";
+import Phone  from "./components/Phone";
 
 
 
@@ -43,6 +43,7 @@ function App() {
                         <Route path="/main" exact component={MainPage}/>
                         <Route path="/cart" exact component={Cart}/>
                         <Route path='/items/:product_id'  component={listItems}/>
+                        <Route path='/addProduct'  component={Phone}/>
                     </Switch>
                 </Col>
             </Row>

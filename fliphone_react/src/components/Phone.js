@@ -8,7 +8,9 @@ export default class Phone extends Component{
 
     constructor(props){
         super(props);
-        this.state = { cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:'',photoUrl:''}
+        let admin_id = localStorage.getItem("userID");
+        admin_id = parseInt(admin_id);
+        this.state = { cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:'',photoUrl:'',admin_id:admin_id}
         this.phoneChange = this.phoneChange.bind(this);
         this.submitPhone = this.submitPhone.bind(this);
     }
@@ -23,7 +25,7 @@ export default class Phone extends Component{
 
 
     submitPhone = event => {
-        alert("name: "+ this.state.product_name +" ram_rom: "+this.state.ram_rom+" image: "+this.state.image+ "screen_size:" + this.state.screen_size + "battery:" + this.state.battery + " os:"+this.state.os + " selfie_cam" + this.state.selfie_cam + " camera" + this.state.camera  );
+        //alert("name: "+ this.state.product_name +" ram_rom: "+this.state.ram_rom+" image: "+this.state.image+ "screen_size:" + this.state.screen_size + "battery:" + this.state.battery + " os:"+this.state.os + " selfie_cam" + this.state.selfie_cam + " camera" + this.state.camera  );
         event.preventDefault();
 
         const phone = {
@@ -41,7 +43,7 @@ export default class Phone extends Component{
 
         };
 
-        axios.post("http://localhost:8080/product/add?cpu_gpu="+this.state.cpu_gpu+"&ram_rom="+this.state.ram_rom+"&image="+this.state.image+"&screen_size="+this.state.screen_size+"&screen_type="+this.state.screen_type+"&battery="+this.state.battery+"&os="+this.state.os+"&selfie_cam="+this.state.selfie_cam+"&camera="+this.state.camera+"&product_name="+this.state.product_name+"&photoUrl="+this.state.photoUrl)
+        axios.post("http://localhost:8080/product/add?cpu_gpu="+this.state.cpu_gpu+"&ram_rom="+this.state.ram_rom+"&image="+this.state.image+"&screen_size="+this.state.screen_size+"&screen_type="+this.state.screen_type+"&battery="+this.state.battery+"&os="+this.state.os+"&selfie_cam="+this.state.selfie_cam+"&camera="+this.state.camera+"&product_name="+this.state.product_name+"&photoUrl="+this.state.photoUrl+"&admin_id="+this.state.admin_id)
             .then(response => {
                 //alert(this.state.initialState);
                 if(response.data != null){
@@ -64,6 +66,11 @@ export default class Phone extends Component{
     render() {
         // only render if its an admin account
         const {cpu_gpu,ram_rom,image,screen_size,screen_type,battery, os,selfie_cam , camera, product_name, photoUrl} = this.state;
+
+        if (localStorage.getItem("Permissions") != "Admin"){
+            return (<p>Only admins can add products</p>)
+        }
+
 
         return(
            <Card className={"border border-dark bg-dark text-white"}>

@@ -35,6 +35,7 @@ class Cart extends Component {
             }
 
         }
+
         console.log(values);
         return values;
 

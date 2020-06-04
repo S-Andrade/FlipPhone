@@ -33,13 +33,6 @@ describe('Filters', () => {
 
 
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-});
-
-
-
 describe('First React component test with Enzyme', () => {
   it('renders without crashing', () => {
     shallow(<App />); });
@@ -48,7 +41,7 @@ describe('First React component test with Enzyme', () => {
 
 
 
-/*
+
 test('User fectched name should be Joana', () => {
   expect.assertions(1);
   return functions.fetchUser()
@@ -58,11 +51,11 @@ test('User fectched name should be Joana', () => {
 });
 
 
-test('Product fectched name should be Sansung Galaxy', () => {
+test('Product fectched name should be Samsung Galaxy', () => {
     expect.assertions(1);
     return functions.fetchProduct()
         .then(data => {
-            expect(data.product_name).toEqual('Sansung Galaxy');
+            expect(data.product_name).toEqual('Samsung Galaxy');
 
         })
 });
@@ -75,8 +68,26 @@ test('Item fectched Grade should be NEW', () => {
 
         })
 });
-*/
 
+
+test('Order total price should be 300', () => {
+  expect.assertions(1);
+  return functions.fetchOrder()
+      .then(data => {
+        expect(data.total).toEqual(300);
+
+      })
+});
+
+
+test('Payment gateway should be MBWAY', () => {
+  expect.assertions(1);
+  return functions.fetchPayment()
+      .then(data => {
+        expect(data.gateway).toEqual("MBWAY");
+
+      })
+});
 
 /*
 test('calls onSubmit with the username and password when submitted',() => {

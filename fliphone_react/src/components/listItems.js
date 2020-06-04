@@ -45,7 +45,10 @@ class listItems extends Component {
 
         console.log(this.state.CacheItems);
 
-        localStorage.setItem("item"+this.state.CacheItems,this.state.CacheItems);
+        for (let i in this.state.CacheItems){
+            localStorage.setItem("item"+this.state.CacheItems[i],this.state.CacheItems[i]);
+        }
+
     }
 
 

@@ -5,6 +5,7 @@ import Filters from "../components/Filters";
 import Cart from "../components/Cart";
 import UserLogin from "../components/UserLogin";
 import renderer from 'react-test-renderer';
+import {FormUserRegister} from "../components/FormUserRegister";
 
 
 
@@ -53,7 +54,7 @@ describe('UserLogin', () => {
 
 
 
-describe('SellItem', () => { // Instead of rendering the graphical UI, which would require building the entire app, you can use a test renderer
+describe('SellItem Form Snapshot', () => { // Instead of rendering the graphical UI, which would require building the entire app, you can use a test renderer
     it('renders a form', () => {
         const SellItems = shallow(<SellItem/>);
         const tree = renderer
@@ -64,3 +65,14 @@ describe('SellItem', () => { // Instead of rendering the graphical UI, which wou
 });
 
 
+/*
+describe('Register Snapshot', () => { // Instead of rendering the graphical UI, which would require building the entire app, you can use a test renderer
+    it('renders a form', () => {
+        const Register = shallow(<FormUserRegister />);
+        const tree = renderer
+            .create(Register.find("Form").html())
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
+*/

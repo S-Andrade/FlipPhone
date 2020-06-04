@@ -47,10 +47,10 @@ export class UserLogin extends Component {
                 localStorage.setItem("userID",user_id)    //guardar na cache o user_id
                 if(data.password === this.state.password){
                     alert("Login successfull");
-
-                    //final step --> redirecionar para a main
                     window.location.replace("http://localhost:3000/main");
+
                 }
+
                 else if (data == []){
                     alert("email is not registered in our platform");
                 }
@@ -58,9 +58,19 @@ export class UserLogin extends Component {
                     alert("wrong password");
                 }
 
+        });
 
+        let userID = localStorage.getItem("userID")
+        axios.get("http://localhost:8080/admin/all")
+            .then(response => response.data)
+            .then((data) => {
+                for (let i in data){
+                    //alert(data[i].user_id);
+                    if (data[i].user_id === userID){
+                        localStorage.setItem("Permissions","Admin")
+                    }
+                }
             });
-
 
         //final step --> redirecionar para a main
         //window.location.replace("http://localhost:3000/main");
