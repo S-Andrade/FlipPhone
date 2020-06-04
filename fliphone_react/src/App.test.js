@@ -8,27 +8,6 @@ import * as functions from "./functions";
 
 
 
-  //checkar value dos inputs.. quando sao enumerados
-
-
-
-/*
-describe('Filters', () => {
-  it('renders filter output for one product', () => {
-    const filter = shallow (<Filters />);
-    const expectedOutput =
-        "<td>"+"samsung"+"</td>"+
-    "<td>"+"octacore"+"</td>";
-
-    filter.setState({phones:["samsung","octacore","8GB","420dpi","5","LED","400mAH","Android","20px","20px"]});
-
-    const realOutput = filter.find('Table').html();
-    expect(realOutput.indexOf(expectedOutput)<-1).toEqual(true);
-
-  });
-});*/
-
-
 
 
 
@@ -41,7 +20,7 @@ describe('First React component test with Enzyme', () => {
 
 
 
-/*
+
 test('User fectched name should be Joana', () => {
   expect.assertions(1);
   return functions.fetchUser()
@@ -59,6 +38,7 @@ test('Product fectched name should be Samsung Galaxy', () => {
 
         })
 });
+
 
 test('Item fectched Grade should be NEW', () => {
     expect.assertions(1);
@@ -87,15 +67,15 @@ test('Payment gateway should be MBWAY', () => {
         expect(data.gateway).toEqual("MBWAY");
 
       })
-});*/
+});
 
 // Unit Test for cart component
 //console.log(totalPrice([2,3]);
 
 
-/*
+
 test('totalPrice', () => {
   const value = totalPrice([2,3,5]);
   expect(value).toBe(10);
-})*/
+})
 

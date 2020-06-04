@@ -129,7 +129,7 @@ export default class Phone extends Component{
                                 <br/>
                                 <label >Choose ProductName:</label>
 
-                                <select onChange={this.selectChange} >
+                                <select id='select' onChange={this.selectChange} >
                                     {RenderProducts}
                                 </select>
                             </Form.Group>
