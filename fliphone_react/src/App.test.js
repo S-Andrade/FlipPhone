@@ -39,7 +39,7 @@ describe('First React component test with Enzyme', () => {
 });
 
 
-/*
+
 
 
 test('User fectched name should be Joana', () => {
@@ -87,13 +87,15 @@ test('Payment gateway should be MBWAY', () => {
         expect(data.gateway).toEqual("MBWAY");
 
       })
-}); */
+});
 
 // Unit Test for cart component
 //console.log(totalPrice([2,3]);
 
+
+/*
 test('totalPrice', () => {
   const value = totalPrice([2,3,5]);
   expect(value).toBe(10);
-})
+})*/
 
