@@ -39,7 +39,7 @@ describe('First React component test with Enzyme', () => {
 });
 
 
-
+/*
 
 
 test('User fectched name should be Joana', () => {
@@ -88,7 +88,7 @@ test('Payment gateway should be MBWAY', () => {
 
       })
 });
-
+*/
 /*
 test('calls onSubmit with the username and password when submitted',() => {
   const handleSubmit = jest.fn()
