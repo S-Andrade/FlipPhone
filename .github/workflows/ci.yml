@@ -35,7 +35,29 @@ jobs:
           run: mvn -B package --file pom.xml -Dmaven.test.skip=true
      
 
-    
+    React:
+      name: React
+      runs-on: ubuntu-18.04
+      strategy:
+        matrix:
+          node-version: [10.x]
+
+      defaults:
+        run:
+          working-directory: fliphone_react
+
+
+
+      steps:
+        - uses: actions/checkout@v1
+        - name: Use Node.js ${{ matrix.node-version}}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{matrix.node-version}}
+        - name: install
+          run: npm install
+        - name: run testes React
+          run: npm test 
   
   
     Flutter:
