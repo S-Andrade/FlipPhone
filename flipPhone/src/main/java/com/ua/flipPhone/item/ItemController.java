@@ -1,14 +1,12 @@
 package com.ua.flipPhone.item;
 
-import com.ua.flipPhone.order.Order;
-import com.ua.flipPhone.order.OrderRepository;
+
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.product.ProductRepository;
 import com.ua.flipPhone.specifications.SearchCriteria;
 import com.ua.flipPhone.specifications.SearchOperation;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller

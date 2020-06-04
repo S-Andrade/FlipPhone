@@ -1,9 +1,7 @@
 package com.ua.flipPhone.item;
 
-import com.google.common.base.Optional;
 import com.ua.flipPhone.admin.Admin;
-import com.ua.flipPhone.order.Order;
-import com.ua.flipPhone.order.OrderRepository;
+
 import com.ua.flipPhone.product.Product;
 import com.ua.flipPhone.product.ProductRepository;
 import com.ua.flipPhone.specifications.SearchCriteria;
@@ -22,7 +20,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -31,19 +28,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willReturn;
-import org.mockito.Mock;
+
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(MockitoJUnitRunner.class)
 @WebMvcTest(ItemController.class)

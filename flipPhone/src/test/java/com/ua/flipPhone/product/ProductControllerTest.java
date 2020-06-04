@@ -1,10 +1,8 @@
 
 package com.ua.flipPhone.product;
 
-import com.google.common.base.Optional;
 import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.admin.AdminRepository;
-import com.ua.flipPhone.item.ItemSpecification;
 import com.ua.flipPhone.specifications.SearchCriteria;
 import com.ua.flipPhone.specifications.SearchOperation;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,11 +24,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willReturn;
-import org.mockito.Mock;
+
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

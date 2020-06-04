@@ -9,26 +9,15 @@ import com.ua.flipPhone.specifications.SearchOperation;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserType;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.isIn;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import static org.mockito.BDDMockito.given;
-import org.mockito.Mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.when;
-import org.mockito.junit.MockitoJUnitRunner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
