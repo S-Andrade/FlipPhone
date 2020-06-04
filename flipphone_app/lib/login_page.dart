@@ -27,6 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _addUserIdSharedPref(int userId) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
+    _removeUserIdSharedPref();
     sp.setInt('userId', userId);
     print(userId);
   }
@@ -37,7 +38,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _getUserByEmail(String email) async {
-    user = await _userAPIClient.fetchUserByEmail(email);
+    User fetchedUser = await _userAPIClient.fetchUserByEmail(email);
+    setState(() {
+      user = fetchedUser;
+    });
   }
 
   @override
@@ -47,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
         title: Text("Login Page"),
         actions: <Widget>[
           IconButton(
+            key: Key('sellingPageBtn'),
             icon: Icon(
               Icons.monetization_on,
               color: Colors.lightGreenAccent,
@@ -58,6 +63,8 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
           IconButton(
+            key: Key('shoppingCartPageBtn'),
+
             icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
@@ -71,6 +78,7 @@ class _LoginPageState extends State<LoginPage> {
             },
           ),
           IconButton(
+            key: Key('loginPageBtn'),
             icon: Icon(
               Icons.person,
               color: Colors.white,
@@ -184,7 +192,9 @@ class _LoginPageState extends State<LoginPage> {
     final loginPass = _passwordController.text;
     print(loginPass);
     _getUserByEmail(loginEmail);
+    //mover/fix > BUG de premir 2x
     if (user != null) {
+      print(user.userID);
       if (user.userPassword == loginPass) _addUserIdSharedPref(user.userID);
     } else {
       print('email errado');

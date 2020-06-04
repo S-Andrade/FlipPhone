@@ -2,40 +2,6 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
 void main() {
-
-//  group('Product Details', () {
-//    final buttonAddCart = find.byValueKey('add_to_cart');
-//    final counterTextFinder = find.byValueKey('counter');
-//
-//    FlutterDriver driver;
-//
-//    setUpAll(() async {
-//      driver = await FlutterDriver.connect();
-//    });
-//
-//    tearDownAll(() async {
-//      if (driver != null) {
-//        driver.close();
-//      }
-//    });
-//
-//    test('adds item to sharepreferences aka cart', () async{
-//      await driver.tap(buttonAddCart);
-//      expect(await driver.getText(counterTextFinder), "1");
-//    });
-////    test('starts at 0', () async {
-////      // Use the `driver.getText` method to verify the counter starts at 0.
-////      expect(await driver.getText(counterTextFinder), "0");
-////    });
-////
-////    test('increments the counter', () async {
-////      // First, tap the button.
-////      await driver.tap(buttonFinder);
-////
-////      // Then, verify the counter text is incremented by 1.
-////      expect(await driver.getText(counterTextFinder), "1");
-////    });
-//  });
   group('Login Page', () {
     final loginPageBtnFinder = find.byValueKey('loginPageBtn');
     final logoutBtnFinder = find.byValueKey('logoutBtn');
@@ -82,8 +48,102 @@ void main() {
       await driver.tap(logoutBtnFinder);
       //...
     });
+  });
+  group('Product List', () {
+    FlutterDriver driver;
 
+    setUpAll(() async {
+      driver = await FlutterDriver.connect();
+    });
 
+    tearDownAll(() async {
+      if (driver != null) {
+        driver.close();
+      }
+    });
+  });
+  group('Sell Item', () {
+    final modelTextFormField = find.byValueKey('modelTextFormField');
+    final colorTextFormField = find.byValueKey('colorTextFormField');
+    final priceTextFormField = find.byValueKey('priceTextFormField');
+    final gradeTextFormField = find.byValueKey('gradeTextFormField');
+    final versionTextFormField = find.byValueKey('versionTextFormField');
+    final sellBtn = find.byValueKey('sellBtn');
 
+    FlutterDriver driver;
+
+    setUpAll(() async {
+      driver = await FlutterDriver.connect();
+    });
+
+    tearDownAll(() async {
+      if (driver != null) {
+        driver.close();
+      }
+    });
+
+    test('Input Model', () async {
+      await driver.waitFor(modelTextFormField);
+      await driver.tap(modelTextFormField);
+      await driver.enterText("Samsung Galaxy");
+      await driver.waitFor(find.text('Samsung Galaxy'));
+    });
+    test('Input Color', () async {
+      await driver.waitFor(colorTextFormField);
+      await driver.tap(colorTextFormField);
+      await driver.enterText("Test Shade");
+      await driver.waitFor(find.text('Test Shade'));
+    });
+    test('Input Price', () async {
+      await driver.waitFor(priceTextFormField);
+      await driver.tap(priceTextFormField);
+      await driver.enterText("999.50");
+      await driver.waitFor(find.text('999.50'));
+    });
+    test('Input Grade', () async {
+      await driver.waitFor(gradeTextFormField);
+      await driver.tap(gradeTextFormField);
+      await driver.enterText("NEW");
+      await driver.waitFor(find.text('NEW'));
+    });
+    test('Input Version', () async {
+      await driver.waitFor(versionTextFormField);
+      await driver.tap(versionTextFormField);
+      await driver.enterText("Special Edition");
+      await driver.waitFor(find.text('Special Edition'));
+    });
+    test('Sell Button (Post Item)', () async {
+      await driver.waitFor(sellBtn);
+      await driver.tap(sellBtn);
+      //...
+    });
+    //...
+
+  });
+  group('Shopping Cart', () {
+    FlutterDriver driver;
+
+    setUpAll(() async {
+      driver = await FlutterDriver.connect();
+    });
+
+    tearDownAll(() async {
+      if (driver != null) {
+        driver.close();
+      }
+    });
+  });
+  group('Product Details', () {
+    FlutterDriver driver;
+
+    setUpAll(() async {
+      driver = await FlutterDriver.connect();
+    });
+
+    tearDownAll(() async {
+      if (driver != null) {
+        driver.close();
+      }
+    });
   });
 }

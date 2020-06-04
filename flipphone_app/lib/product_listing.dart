@@ -42,6 +42,7 @@ class _ProductListViewState extends State<ProductListView> {
           title: Text("Lista de Produtos"),
           actions: <Widget>[
             IconButton(
+              key: Key('sellingPageBtn'),
               icon: Icon(
                 Icons.monetization_on,
                 color: Colors.lightGreenAccent,
@@ -53,6 +54,8 @@ class _ProductListViewState extends State<ProductListView> {
               },
             ),
             IconButton(
+              key: Key('shoppingCartPageBtn'),
+
               icon: Icon(
                 Icons.shopping_cart,
                 color: Colors.white,

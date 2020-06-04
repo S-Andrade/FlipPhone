@@ -68,6 +68,7 @@ class _SellItemState extends State<SellItem> {
         title: Text("Vender o meu"),
         actions: <Widget>[
           IconButton(
+            key: Key('sellingPageBtn'),
             icon: Icon(
               Icons.monetization_on,
               color: Colors.lightGreenAccent,
@@ -79,17 +80,22 @@ class _SellItemState extends State<SellItem> {
             },
           ),
           IconButton(
+            key: Key('shoppingCartPageBtn'),
+
             icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => ShoppingCart()));
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => ShoppingCart()));
               // do something
             },
           ),
           IconButton(
+            key: Key('loginPageBtn'),
             icon: Icon(
               Icons.person,
               color: Colors.white,
@@ -97,6 +103,7 @@ class _SellItemState extends State<SellItem> {
             onPressed: () {
               Navigator.push(context,
                   new MaterialPageRoute(builder: (context) => LoginPage()));
+
               // do something
             },
           ),
@@ -116,6 +123,7 @@ class _SellItemState extends State<SellItem> {
               ),
               // subs por select field
               TextFormField(
+                  key: Key('modelTextFormField'),
                   controller: _productNameController,
                   keyboardType: TextInputType.text,
                   style: TextStyle(color: Colors.black),
@@ -125,6 +133,7 @@ class _SellItemState extends State<SellItem> {
                           TextStyle(fontSize: 18.0, color: Colors.black),
                       hintText: "Samsung Galaxy")),
               TextFormField(
+                  key: Key('colorTextFormField'),
                   controller: _colorController,
                   keyboardType: TextInputType.text,
                   style: TextStyle(color: Colors.black),
@@ -134,6 +143,7 @@ class _SellItemState extends State<SellItem> {
                           TextStyle(fontSize: 18.0, color: Colors.black),
                       hintText: "Fancy Blue")),
               TextFormField(
+                  key: Key('gradeTextFormField'),
                   controller: _gradeController,
                   keyboardType: TextInputType.text,
                   style: TextStyle(color: Colors.black),
@@ -143,6 +153,7 @@ class _SellItemState extends State<SellItem> {
                           TextStyle(fontSize: 18.0, color: Colors.black),
                       hintText: "New / Good condition / etc")),
               TextFormField(
+                  key: Key('priceTextFormField'),
                   controller: _priceController,
                   keyboardType: TextInputType.text,
                   style: TextStyle(color: Colors.black),
@@ -152,6 +163,7 @@ class _SellItemState extends State<SellItem> {
                           TextStyle(fontSize: 18.0, color: Colors.black),
                       hintText: "how many moneros")),
               TextFormField(
+                  key: Key('versionTextFormField'),
                   controller: _versionController,
                   keyboardType: TextInputType.text,
                   style: TextStyle(color: Colors.black),
@@ -165,6 +177,7 @@ class _SellItemState extends State<SellItem> {
                 child: Container(
                   width: 160,
                   child: FlatButton(
+                    key: Key('sellBtn'),
                     padding: const EdgeInsets.all(10.0),
                     color: Colors.blue,
                     child: Text("Sell this",

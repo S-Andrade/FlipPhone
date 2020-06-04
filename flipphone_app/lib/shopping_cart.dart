@@ -59,6 +59,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
         title: Text("Shopping Cart"),
         actions: <Widget>[
           IconButton(
+            key: Key('sellingPageBtn'),
             icon: Icon(
               Icons.monetization_on,
               color: Colors.lightGreenAccent,
@@ -70,6 +71,8 @@ class _ShoppingCartState extends State<ShoppingCart> {
             },
           ),
           IconButton(
+            key: Key('shoppingCartPageBtn'),
+
             icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
@@ -83,6 +86,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
             },
           ),
           IconButton(
+            key: Key('loginPageBtn'),
             icon: Icon(
               Icons.person,
               color: Colors.white,
