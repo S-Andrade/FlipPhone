@@ -159,9 +159,7 @@ class Cart extends Component {
         //clear all items
         localStorage.clear();
 
-        //redirect to main page
-        // the user will have to login again
-        window.location.replace("http://localhost:3000/");
+
     }
 
 
@@ -172,7 +170,10 @@ class Cart extends Component {
         let order_id= parseInt(this.state.order_id);
         let client_id=parseInt(this.state.userID);
 
-        axios.post("http://localhost:8080/payment/add?status="+"SENT"+"&gateway="+"PAYPAL"+'&date='+this.state.dformat+"&order_id="+ order_id +"&client_id="+client_id+"&seller_id="+this.state.seller_ids)
+        let gateway = this.state.gateway;
+        //console.log(gateway);
+
+        axios.post("http://localhost:8080/payment/add?status="+"SENT"+"&gateway="+gateway+'&date='+this.state.dformat+"&order_id="+ order_id +"&client_id="+client_id+"&seller_id="+this.state.seller_ids)
             .then(response => {
                 if(response.data != null){
                     alert("Buy order successfull");
@@ -183,12 +184,16 @@ class Cart extends Component {
                 }
 
             })
+
+        //redirect to main page
+        // the user will have to login again
+        window.location.replace("http://localhost:3000/");
     }
 
 
     selectChange= event => {
-        alert(event.target.value);
-        //this.setState({'gateway':event.target.value})
+        //alert(event.target.value);
+        this.setState({'gateway':event.target.value})
     }
 
 
@@ -210,13 +215,14 @@ class Cart extends Component {
 
             return(
                 <div>
+                    <label >Choose the right gateway:</label>
                     <select onChange={this.selectChange}>
                         <option value="CREDIT_CARD">CREDIT_CARD</option>
                         <option value="DEBIT_CARD">DEBIT_CARD</option>
                         <option value="PAYPAL">PAYPAL</option>
                         <option value="MBWAY">MBWAY</option>
                     </select>
-
+                    <br/>
                     <Button onClick={() => this.PostPayment()}  primary enabled>
                         Confirm purchase
                     </Button>
