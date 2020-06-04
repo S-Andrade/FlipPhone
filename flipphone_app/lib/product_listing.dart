@@ -66,6 +66,7 @@ class _ProductListViewState extends State<ProductListView> {
               },
             ),
             IconButton(
+              key: Key('loginPageBtn'),
               icon: Icon(
                 Icons.person,
                 color: Colors.white,

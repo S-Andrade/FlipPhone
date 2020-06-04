@@ -1,7 +1,9 @@
 import 'package:flipphoneapp/models/Product.dart';
 import 'package:flipphoneapp/repositories/item_api_client.dart';
+import 'package:flipphoneapp/sell_item.dart';
 import 'package:flipphoneapp/shopping_cart.dart';
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 import 'models/Item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -80,6 +82,17 @@ class _ProductDetailsState extends State<ProductDetails> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
+              Icons.monetization_on,
+              color: Colors.lightGreenAccent,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => SellItem()));
+              // do something
+            },
+          ),
+          IconButton(
+            icon: Icon(
               Icons.shopping_cart,
               color: Colors.white,
             ),
@@ -87,11 +100,22 @@ class _ProductDetailsState extends State<ProductDetails> {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => ShoppingCart()
-                  ));
+                      builder: (context) => ShoppingCart()));
               // do something
             },
-          )
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => LoginPage()));
+
+              // do something
+            },
+          ),
         ],
       ),
       body: Padding(
@@ -109,7 +133,9 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             ),
             // true link: widget.product.photoUrl,
-            Text(widget.product.productName,
+            Text(
+                widget.product.productName,
+                key: Key('passed_product_name'),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.normal)),
             Text('Disponiveis:',
@@ -181,11 +207,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   color: Colors.black)),
 
                            IconButton(
+                             key: Key('add_to_cart'),
                              icon: Icon(Icons.add_shopping_cart),
                              color: Colors.indigo,
                             onPressed: () =>  _addCartSharedPref(items[index].itemId),
                           ),
                           IconButton(
+                            key: Key('remove_from_cart'),
                             icon: Icon(Icons.remove_shopping_cart),
                             color: Colors.red,
                             onPressed: () =>  _removeItemCartSharedPref(items[index].itemId),

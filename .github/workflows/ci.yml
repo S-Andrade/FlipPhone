@@ -57,8 +57,9 @@ jobs:
            channel: 'dev'
         - name: get the dependencies
           run: flutter pub get
-      #  - name: run testes Flutter
+        - name: run integration tests Flutter
       #    run: flutter test --coverage
+          run: flutter drive --target=test_driver/app.dart
         - name: run app Flutter
           run: flutter build apk
 

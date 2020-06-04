@@ -94,6 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Align(
               alignment: Alignment.center,
               child: FlatButton(
+                key: Key('logoutBtn'),
                 padding: const EdgeInsets.all(10.0),
                 color: Colors.red,
                 child: Text("Logout",
@@ -137,6 +138,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextFormField textFormFieldEmail() {
     return TextFormField(
+        key: Key('emailTextField'),
         controller: _emailController,
 //        validator: _validateUser,
         keyboardType: TextInputType.text,
@@ -149,6 +151,7 @@ class _LoginPageState extends State<LoginPage> {
 
   TextFormField textFormFieldPassword() {
     return TextFormField(
+        key: Key('passTextField'),
         controller: _passwordController,
 //        validator: _validatePass,
         obscureText: true,
@@ -163,6 +166,7 @@ class _LoginPageState extends State<LoginPage> {
   Container submitBtn(BuildContext context) {
     return Container(
       child: FlatButton(
+        key: Key('loginBtn'),
         padding: const EdgeInsets.all(10.0),
         color: Colors.blue,
         child: Text("Login",
