@@ -41,7 +41,7 @@ describe('First React component test with Enzyme', () => {
 
 
 
-
+/*
 test('User fectched name should be Joana', () => {
   expect.assertions(1);
   return functions.fetchUser()
@@ -87,7 +87,7 @@ test('Payment gateway should be MBWAY', () => {
         expect(data.gateway).toEqual("MBWAY");
 
       })
-});
+});*/
 
 // Unit Test for cart component
 //console.log(totalPrice([2,3]);
