@@ -22,6 +22,6 @@ Tem o papel de intermediário, vem eliminar as incertezas envolvidas em comprar 
 
 ### Recursos relevantes
 - [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2448184)
-- [![Codacy Badge](https://app.codacy.com/project/badge/Grade/799abdc381ec4ee3b1598fe6df04a1f8)](https://www.codacy.com/manual/S-Andrade/FlipPhone?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=S-Andrade/FlipPhone&amp;utm_campaign=Badge_Grade)
+- [![Codacy Badge](https://app.codacy.com/project/badge/Grade/75ca31a7e21843408abf086d5199c62a)](https://www.codacy.com/manual/S-Andrade/FlipPhone?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=S-Andrade/FlipPhone&amp;utm_campaign=Badge_Grade)
 - [Swagger](http://192.168.160.49:8080/swagger-ui.html) (Só dentro da VPN da UA)
 
