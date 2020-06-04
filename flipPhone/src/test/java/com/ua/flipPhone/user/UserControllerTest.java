@@ -112,6 +112,7 @@ public class UserControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/user/delete")
                 .param("user_id", String.valueOf(userJoana.getUser_id())))
                 .andExpect(status().isOk());
+        verify(userRepository, VerificationModeFactory.times(1)).deleteById(userJoana.getUser_id());
     }
     
     @Test

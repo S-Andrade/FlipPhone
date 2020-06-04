@@ -24,10 +24,6 @@ public class ItemSpecification implements Specification<Item>{
        return list.add(criteria);
     }
     
-    public List<SearchCriteria> getList(){
-        return list;
-    }
-    
     @Override
     public Predicate toPredicate(Root<Item> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 

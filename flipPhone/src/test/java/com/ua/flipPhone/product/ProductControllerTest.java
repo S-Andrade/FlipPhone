@@ -24,6 +24,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willReturn;
 import org.mockito.Mock;
@@ -126,9 +127,10 @@ public class ProductControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/product/delete")
                 .param("product_id", String.valueOf(product.getProduct_id())))
                 .andExpect(status().isOk());
+        verify(productRepository, VerificationModeFactory.times(1)).deleteById(product.getProduct_id());
     }
     
-    /*@Test
+    @Test
     public void whenFilter_thenReturnsJsonArray() throws Exception {
        
         ProductSpecification filter = new ProductSpecification();
@@ -144,15 +146,15 @@ public class ProductControllerTest {
         filter.add(new SearchCriteria("product_name", "Samsung", SearchOperation.MATCH));
 
         List<Product> allProduct = Arrays.asList(product);
-        given(productRepository.findAll(filter)).willReturn(allProduct);
+        given(productRepository.findAll(any(ProductSpecification.class))).willReturn(allProduct);
 
         mvc.perform(get("/product/filter?cpu_gpu=Quad&ram_rom=4&image=300&screen_size=6,5&screen_type=multi-touch&battery=4000&os=Android&selfie_cam=32.0&camera=f/2.0&product_name=Samsung")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].product_name", is(product.getProduct_name())));
-        //verify(productRepository, VerificationModeFactory.times(1)).findAll(filter);
+        verify(productRepository, VerificationModeFactory.times(1)).findAll(any(ProductSpecification.class));
 
-    }*/
+    }
     
 }

@@ -140,6 +140,7 @@ public class PaymentControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/payment/delete")
                 .param("payment_id", String.valueOf(payment.getPayment_id())))
                 .andExpect(status().isOk());
+        verify(paymentRepository, VerificationModeFactory.times(1)).deleteById(payment.getPayment_id());
     }
     
     @Test

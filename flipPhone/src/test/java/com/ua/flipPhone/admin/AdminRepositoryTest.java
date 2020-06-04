@@ -2,72 +2,100 @@
 package com.ua.flipPhone.admin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.List;
 import java.util.Optional;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import static org.mockito.Mockito.reset;
-import static org.mockito.Mockito.when;
-import org.mockito.junit.MockitoJUnitRunner;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
-@RunWith(MockitoJUnitRunner.class)
 public class AdminRepositoryTest {
     
-    @Mock
+    @Autowired
+    private TestEntityManager entityManager;
+
+    
+    @Autowired
     private AdminRepository adminRepository;
        
-    private Admin adminMaria;
+      
+   
     
-    private Admin adminJoao;
-       
-    @BeforeEach
-    public void setUp(){
-        adminMaria = new Admin("pasord", "asdfsdfxzv", "maria@email.com");
-        adminJoao = new Admin("passrd", "gvserfve", "joao@email.com");
-    }
-    
-    @AfterEach
-    public void tearDown() {
-        adminMaria = null;
-        adminJoao = null;
-        reset(adminRepository);
+    @Test
+    public void testFindAll(){
+        
+        Admin adminMaria = new Admin("pasord", "asdfsdfxzv", "maria@email.com");
+        entityManager.persistAndFlush(adminMaria);
+        Admin adminJoao = new Admin("passrd", "gvserfve", "joao@email.com");
+        entityManager.persistAndFlush(adminJoao);
+        
+        List<Admin> expected = new ArrayList<Admin>();
+        expected.add(adminMaria);
+        expected.add(adminJoao);
+        
+         List<Admin> result = adminRepository.findAll();
+        
+        assertThat(expected.equals(result));
     }
     
     @Test
     public void testSave(){
-        when(adminRepository.save(adminMaria)).thenReturn(adminMaria);
+        
+        Admin adminMaria = new Admin("pasord", "asdfsdfxzv", "maria@email.com");
+        
+        adminRepository.save(adminMaria);
+        
+        Optional<Admin> result = adminRepository.findById(adminMaria.getAdmin_id());
+        
+        assertThat(Optional.of(adminMaria).equals(result));
+        
     }
     
     @Test
     public void testFindById(){
-        when(adminRepository.findById(adminMaria.getAdmin_id())).thenReturn(Optional.of(adminMaria));
+        
+        Admin adminMaria = new Admin("pasord", "asdfsdfxzv", "maria@email.com");
+        entityManager.persistAndFlush(adminMaria);
+        
+        Optional<Admin> result = adminRepository.findById(adminMaria.getAdmin_id());
+        
+        assertThat(Optional.of(adminMaria).equals(result));
     }
     
-    @Test
-    public void testFindAll(){
-        List<Admin> listAdmin = new ArrayList<Admin>();
-        listAdmin.add(adminMaria);
-        listAdmin.add(adminJoao);
-        when(adminRepository.findAll()).thenReturn(listAdmin);
-    }
+    
     
     @Test
     public void testDeleteById(){
+        Admin adminMaria = new Admin("pasord", "asdfsdfxzv", "maria@email.com");
+        entityManager.persistAndFlush(adminMaria);
+        
         adminRepository.deleteById(adminMaria.getAdmin_id());
-        when(adminRepository.findById(adminMaria.getAdmin_id())).thenReturn(null);
+        
+        Optional<Admin> result =  adminRepository.findById(adminMaria.getAdmin_id());
+        
+        assertEquals(Optional.empty(), result);
+        
     }
     
     @Test
     public void testFindByEmail(){
-        when(adminRepository.findByEmail(adminMaria.getEmail())).thenReturn(adminMaria);
+        Admin adminMaria = new Admin("pasord", "asdfsdfxzv", "maria@email.com");
+        entityManager.persistAndFlush(adminMaria);
+        
+        Admin result = adminRepository.findByEmail(adminMaria.getEmail());
+        
+        assertEquals(adminMaria, result);
     }
 }

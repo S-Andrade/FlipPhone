@@ -158,6 +158,7 @@ public class OrderControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/order/delete")
                 .param("order_id", String.valueOf(order.getOrder_id())))
                 .andExpect(status().isOk());
+        verify(orderRepository, VerificationModeFactory.times(1)).deleteById(order.getOrder_id());
     }
     
     @Test

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path="/user")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://192.168.160.49:3000")
 public class UserController {
     
     @Autowired

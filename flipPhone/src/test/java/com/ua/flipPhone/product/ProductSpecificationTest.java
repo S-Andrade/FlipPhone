@@ -1,6 +1,7 @@
 
 package com.ua.flipPhone.product;
 
+import com.google.common.base.Predicate;
 import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.order.Order;
 import com.ua.flipPhone.product.Product;
@@ -11,6 +12,9 @@ import com.ua.flipPhone.user.UserType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.isIn;
@@ -23,28 +27,34 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import static org.springframework.jdbc.core.JdbcOperationsExtensionsKt.query;
+import org.springframework.util.Assert;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 
 @AutoConfigureTestDatabase(replace=AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
-@RunWith(MockitoJUnitRunner.class)
 public class ProductSpecificationTest {
     
-    @MockBean
+    @Autowired
+    private TestEntityManager entityManager;
+    
+    @Autowired
     private ProductRepository productRepository;
     
-    private Product product1;
+   
     
-    private Product product2;
-    
-    
-    @BeforeEach
-    public void setUp(){
+    @Test
+    public void testMatch() {
         Admin admin = new Admin("pass","sdifg","toze@mail.com");
-        product1 = new Product("Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
+        entityManager.persistAndFlush(admin);
+        Product product1 = new Product("Samsung Exynos 9611\n Hz + Quad Core 1.7 GHz", 
                                         "4 GB", 
                                         "300DPI", 
                                         "6,5 \"", 
@@ -55,8 +65,8 @@ public class ProductSpecificationTest {
                                         "f/2.0 Principal + f/2.2 Ultra Grande Angular + f/2.2 Profundidade + f/2.4 Macro",
                                         "Smartphone Samsung Galaxy A51 - A515F",
                                         "url/image", admin);
-        
-        product2 = new Product("Qualcomm Snapdragon 865", 
+        entityManager.persistAndFlush(product1);
+        Product product2 = new Product("Qualcomm Snapdragon 865", 
                                         "8 GB", 
                                         "125DPI", 
                                         "6,55 \"", 
@@ -67,25 +77,20 @@ public class ProductSpecificationTest {
                                         "48.0 MP + 16.0 MP + 2.0 MP",
                                         "Smartphone OnePlus 8",
                                         "url/image", admin);
+        entityManager.persistAndFlush(product2);
         
-    }
-    
-    @AfterEach
-    public void tearDown() {
-        product1 = null;
-        product2 = null;
-        reset(productRepository);
-    }
-    
-   
-    
-    @Test
-    public void testMatch() {
+        
         ProductSpecification spec = new ProductSpecification();
         spec.add(new SearchCriteria("product_name", "Samsung", SearchOperation.MATCH));
         
-        List<Product> listProduct = new ArrayList<Product>();
-        listProduct.add(product1);
-        given(productRepository.findAll(spec)).willReturn(listProduct);
+        List<Product> expected = new ArrayList<Product>();
+        expected.add(product1);
+        
+        List<Product> result = productRepository.findAll(spec);
+        
+        assertThat(expected.equals(result));
+        
     }
+    
+    
 }

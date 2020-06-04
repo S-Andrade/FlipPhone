@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
 @RequestMapping(path="/item")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://192.168.160.49:3000")
 public class ItemController {
     
     @Autowired
@@ -200,15 +200,7 @@ public class ItemController {
             }
             filter.add(new SearchCriteria("seller_id",user, SearchOperation.EQUAL));
         }
-        
-        System.out.println(filter);
-
-        for (Item i : itemRepository.findAll(filter)){
-            System.out.println(i.getColor());
-        }       
-        
-        
-               
+              
         return itemRepository.findAll(filter);
     }
 

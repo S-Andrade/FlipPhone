@@ -29,6 +29,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.willReturn;
 import org.mockito.Mock;
@@ -36,6 +37,7 @@ import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -67,8 +69,6 @@ public class ItemControllerTest {
     
     private Admin admin;
     
-    @MockBean
-    ItemSpecification  filter; 
 
     @BeforeEach
     public void setUp() {
@@ -149,6 +149,7 @@ public class ItemControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/item/delete")
                 .param("item_id", String.valueOf(item.getItem_id())))
                 .andExpect(status().isOk());
+        verify(itemRepository, VerificationModeFactory.times(1)).deleteById(item.getItem_id());
     }
 
     @Test
@@ -175,7 +176,7 @@ public class ItemControllerTest {
         verify(itemRepository, VerificationModeFactory.times(1)).findByProductId(item.getProductId());
     }
 
-   /* @Test
+    @Test
     public void whenFilter_thenReturnsJsonArray() throws Exception {
 
 
@@ -183,7 +184,7 @@ public class ItemControllerTest {
 
         given(userRepository.findById(seller.getUser_id())).willReturn(java.util.Optional.of(seller));
 
-        filter = new ItemSpecification();
+        ItemSpecification filter = new ItemSpecification();
         filter.add(new SearchCriteria("grade", ItemGrade.NEW, SearchOperation.EQUAL));
         filter.add(new SearchCriteria("color", "black", SearchOperation.MATCH));
         filter.add(new SearchCriteria("version", "4", SearchOperation.MATCH));
@@ -193,20 +194,16 @@ public class ItemControllerTest {
 
         
         List<Item> allItem = Arrays.asList(item);
+                
+        given(itemRepository.findAll(any(ItemSpecification.class))).willReturn(allItem);
         
-                System.out.println(filter);
-
-        
-        given(itemRepository.findAll(filter)).willReturn(allItem);
-        
-        
-               
+              
         mvc.perform(get("/item/filter?grade=NEW&color=black&price=<500&version=4&product=1&seller=1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].color", is(item.getColor())));
-        //verify(itemRepository, VerificationModeFactory.times(1)).findAll(filter);
+        verify(itemRepository, VerificationModeFactory.times(1)).findAll(any(ItemSpecification.class));
 
-    }*/
+    }
 }

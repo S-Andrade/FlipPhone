@@ -108,6 +108,7 @@ public class AdminControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/admin/delete")
                 .param("admin_id", String.valueOf(adminMaria.getAdmin_id())))
                 .andExpect(status().isOk());
+        verify(adminRepository, VerificationModeFactory.times(1)).deleteById(adminMaria.getAdmin_id());
     }
     
     @Test
