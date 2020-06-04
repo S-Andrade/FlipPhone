@@ -268,4 +268,13 @@ class Cart extends Component {
     }
 }
 
+export const totalPrice = (items) => {
+    let total= 0;
+    for (let i in items){
+        total+=items[i];
+    }
+    return total;
+};
+
+
 export default Cart;

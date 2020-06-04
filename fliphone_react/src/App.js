@@ -8,7 +8,6 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import NavigationBar from "./components/NavigationBar";
 import Welcome from "./components/Welcome";
 import Filters from "./components/Filters";
-import UserList from "./components/UserList";
 import MainPage from "./components/MainPage";
 import {FormUserRegister} from "./components/FormUserRegister";
 import listItems from './components/listItems';
@@ -36,7 +35,6 @@ function App() {
                         <Route path="/" exact component={Welcome}/>
                         <Route path="/add" exact component={SellItem}/>
                         <Route path="/list" exact component={Filters}/>
-                        <Route path="/users" exact component={UserList}/>
                         <Route path="/logout" exact component={Welcome}/>
                         <Route path="/register" exact component={FormUserRegister}/>
                         <Route path="/login" exact component={UserLogin}/>

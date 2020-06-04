@@ -6,11 +6,14 @@ import Cart from "../components/Cart";
 import UserLogin from "../components/UserLogin";
 import renderer from 'react-test-renderer';
 import {FormUserRegister} from "../components/FormUserRegister";
+import NavigationBar from "../components/NavigationBar";
+import MainPage from "../components/MainPage";
+import Welcome from "../components/Welcome";
 
 
 
-//testing the view of a component //--> next checkar value dos inputs.. quando sao enumerados
 describe('SellItem', () => {
+
     it('renders a form', () => {
         const SellItems = shallow(<SellItem />);
         expect(SellItems.find('Form').length).toEqual(1);
@@ -26,6 +29,7 @@ describe('SellItem', () => {
 
 });
 
+
 describe('filters', () => {
 
     it('renders inputs', () => {
@@ -37,6 +41,7 @@ describe('filters', () => {
         const filter = shallow(<Filters />);
         expect(filter.find('Card').length).toEqual(1);
     });
+
 
 });
 
@@ -51,6 +56,52 @@ describe('UserLogin', () => {
 
 
 });
+
+
+
+describe('NavigationBar', () => {
+
+    it('renders  Navbar', () => {
+        const navbar = shallow(<NavigationBar />);
+        expect(navbar.find('Navbar').length).toEqual(1);
+    });
+
+    it('renders  Nav', () => {
+        const navbar = shallow(<NavigationBar />);
+        expect(navbar.find('Nav').length).toEqual(1);
+    });
+
+
+});
+
+
+describe('MainPage', () => {
+
+    it('renders  PhoneCard', () => {
+        const main = shallow(<MainPage />);
+        expect(main.find('Container').length).toEqual(1);
+    });
+
+
+
+});
+
+
+describe('Welcome', () => {
+
+    it('renders  welcome', () => {
+        const welcome = shallow(<Welcome />);
+        expect(welcome.find('Carousel').length).toEqual(1);
+    });
+
+    it('renders  welcome', () => {
+        const welcome = shallow(<Welcome />);
+        expect(welcome.find('img').length).toEqual(3);
+    });
+
+
+});
+
 
 
 

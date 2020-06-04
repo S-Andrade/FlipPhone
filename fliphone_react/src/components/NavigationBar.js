@@ -23,7 +23,6 @@ class NavigationBar extends React.Component {
                 <Nav className="mr-auto">
                     <Link to={"/add"} className="nav-link">Sell Phones</Link>
                     <Link to={"/list"} className="nav-link">Filters</Link>
-                    <Link to={"/users"} className="nav-link">User List</Link>
                     <Link to={"/addProduct"} className="nav-link">Add Products</Link>
                     <Link to={"/cart"} className="nav-link">Cart</Link>
                     <Link onClick={this.clearCache} to={"/logout"} className="nav-link">Logout</Link>

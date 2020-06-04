@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import App from './App';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme'; // allows to render the component (not sub components)
-
+import {totalPrice} from "./components/Cart"
 import * as functions from "./functions";
 
 
@@ -87,32 +87,13 @@ test('Payment gateway should be MBWAY', () => {
         expect(data.gateway).toEqual("MBWAY");
 
       })
-});
-*/
-/*
-test('calls onSubmit with the username and password when submitted',() => {
-  const handleSubmit = jest.fn()
-  const container = document.createElement('div')
-  const form = container.querySelector('form')
-  const {username, password} = form.element
-  username.value = 'Kenny'
-  passwords.value = 'pineapples'
+}); */
 
+// Unit Test for cart component
+//console.log(totalPrice([2,3]);
 
-  form.dispatchEvent(new window.event('submit'))
-  expect{handleSubmit}.toHaveBeenCalledTimes(1)
-  expect{handleSubmit}.toHaveBeenCalledWith({
-    username: username.value,
-    password: password.value,
-  })
-
-  ReactDOM.render(<Login onSubmit = {handleSubmit} />, container)
-
-}) */
-
-
-/*
-it('should find PARTICULAR or PROFESSIONAL', function (){
-  browser.url(/add);
+test('totalPrice', () => {
+  const value = totalPrice([2,3,5]);
+  expect(value).toBe(10);
 })
-*/
+
