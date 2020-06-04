@@ -1,7 +1,6 @@
 
 package com.ua.flipPhone.admin;
 
-import com.google.common.base.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,11 +19,8 @@ import static org.hamcrest.Matchers.hasSize;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willReturn;
-import org.mockito.Mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -108,6 +104,7 @@ public class AdminControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/admin/delete")
                 .param("admin_id", String.valueOf(adminMaria.getAdmin_id())))
                 .andExpect(status().isOk());
+        verify(adminRepository, VerificationModeFactory.times(1)).deleteById(adminMaria.getAdmin_id());
     }
     
     @Test

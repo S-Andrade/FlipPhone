@@ -5,11 +5,9 @@ import com.ua.flipPhone.item.ItemRepository;
 import com.ua.flipPhone.user.User;
 import com.ua.flipPhone.user.UserRepository;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path="/order")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://192.168.160.49:3000")
 public class OrderController {
     
     @Autowired

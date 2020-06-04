@@ -1,7 +1,6 @@
 
 package com.ua.flipPhone.order;
 
-import com.google.common.base.Optional;
 import com.ua.flipPhone.admin.Admin;
 import com.ua.flipPhone.item.Item;
 import com.ua.flipPhone.item.ItemGrade;
@@ -22,7 +21,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -30,11 +28,9 @@ import static org.hamcrest.Matchers.hasSize;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.runner.RunWith;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willReturn;
-import org.mockito.Mock;
+
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -158,6 +154,7 @@ public class OrderControllerTest {
         mvc.perform(MockMvcRequestBuilders.delete("/order/delete")
                 .param("order_id", String.valueOf(order.getOrder_id())))
                 .andExpect(status().isOk());
+        verify(orderRepository, VerificationModeFactory.times(1)).deleteById(order.getOrder_id());
     }
     
     @Test

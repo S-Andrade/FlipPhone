@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(path="/product")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin(origins="http://192.168.160.49:3000")
 public class ProductController {
     
     @Autowired
@@ -111,6 +111,7 @@ public class ProductController {
         if(product_name != null){
             filter.add(new SearchCriteria("product_name",product_name, SearchOperation.MATCH));
         }
+        
         return productRepository.findAll(filter);
     }
 }
