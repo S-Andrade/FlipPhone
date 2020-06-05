@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {CardColumns,Card,Row,Col,Container} from 'react-bootstrap';
 import axios from "axios";
+
 import PhoneCard from "./PhoneCards";
 
 class MainPage extends React.Component {
@@ -8,8 +9,9 @@ class MainPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            phones: [],
+            phones: []
         }
+        //global.MyVar = 'test';
     }
 
 
@@ -21,14 +23,14 @@ class MainPage extends React.Component {
                 //console.log(this.state.phones);
             });
 
+
     }
 
 
 
     render() {
-        let Products = this.state.phones;
+        //let Products = this.state.phones;
         //console.log(Products);
-
 
 
 

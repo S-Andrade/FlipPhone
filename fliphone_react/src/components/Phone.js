@@ -8,13 +8,15 @@ export default class Phone extends Component{
 
     constructor(props){
         super(props);
-        this.state = { cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:''}
+        let admin_id = localStorage.getItem("userID");
+        admin_id = parseInt(admin_id);
+        this.state = { cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:'',photoUrl:'',admin_id:admin_id}
         this.phoneChange = this.phoneChange.bind(this);
         this.submitPhone = this.submitPhone.bind(this);
     }
 
     initialState = {
-         cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:''
+         cpu_gpu:'',ram_rom:'',image:'',screen_size:'',screen_type:'',battery:'',os:'',selfie_cam:'',camera:'', product_name:'', photoUrl:''
     }
 
     resetSellOrder = () => {
@@ -23,7 +25,7 @@ export default class Phone extends Component{
 
 
     submitPhone = event => {
-        alert("name: "+this.state.product_name+" ram_rom: "+this.state.ram_rom+" image: "+this.state.image+ "screen_size:" + this.state.screen_size + "battery:" + this.state.battery + " os:"+this.state.os + " selfie_cam" + this.state.selfie_cam + " camera" + this.state.camera );
+        //alert("name: "+ this.state.product_name +" ram_rom: "+this.state.ram_rom+" image: "+this.state.image+ "screen_size:" + this.state.screen_size + "battery:" + this.state.battery + " os:"+this.state.os + " selfie_cam" + this.state.selfie_cam + " camera" + this.state.camera  );
         event.preventDefault();
 
         const phone = {
@@ -41,13 +43,15 @@ export default class Phone extends Component{
 
         };
 
-        axios.post("http://localhost:8080/product/add?cpu_gpu="+this.state.cpu_gpu+"&ram_rom="+this.state.ram_rom+"&image="+this.state.image+"&screen_size="+this.state.screen_size+"&screen_type="+this.state.screen_type+"&battery="+this.state.battery+"&os="+this.state.os+"&selfie_cam="+this.state.selfie_cam+"&camera="+this.state.camera+"&product_name="+this.state.product_name)
+        axios.post("http://localhost:8080/product/add?cpu_gpu="+this.state.cpu_gpu+"&ram_rom="+this.state.ram_rom+"&image="+this.state.image+"&screen_size="+this.state.screen_size+"&screen_type="+this.state.screen_type+"&battery="+this.state.battery+"&os="+this.state.os+"&selfie_cam="+this.state.selfie_cam+"&camera="+this.state.camera+"&product_name="+this.state.product_name+"&photoUrl="+this.state.photoUrl+"&admin_id="+this.state.admin_id)
             .then(response => {
-                alert(this.state.initialState);
+                //alert(this.state.initialState);
                 if(response.data != null){
                     this.setState(this.initialState);
                     alert("Sell order successfull");
+                    window.location.replace("http://localhost:3000/main"); // redirect to main page
                 }
+
             })
 
     }
@@ -60,7 +64,13 @@ export default class Phone extends Component{
     }
 
     render() {
-        const {cpu_gpu,ram_rom,image,screen_size,screen_type,battery, os,selfie_cam , camera, product_name} = this.state;
+        // only render if its an admin account
+        const {cpu_gpu,ram_rom,image,screen_size,screen_type,battery, os,selfie_cam , camera, product_name, photoUrl} = this.state;
+
+        if (localStorage.getItem("Permissions") != "Admin"){
+            return (<p>Only admins can add products</p>)
+        }
+
 
         return(
            <Card className={"border border-dark bg-dark text-white"}>
@@ -70,7 +80,7 @@ export default class Phone extends Component{
                 <Form.Row>
                     <Form.Group as={Col} controlId="formGridName">
                        <Form.Label> Phone's Model </Form.Label>
-                       <Form.Control required autoComplete="off" type="text" name="product_name" value={product_name} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's model" />
+                       <Form.Control required autoComplete="off" type="text" name="product_name"  onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter your phone's model" />
                      </Form.Group>
                      <Form.Group as={Col} FontAwesomeIcon controlId="formGridPrice">
                         <Form.Label> cpu_gpu </Form.Label>
@@ -114,7 +124,13 @@ export default class Phone extends Component{
                       </Form.Group>
                       <Form.Group as={Col} controlId="formGridCamera">
                           <Form.Label> Phone camera </Form.Label>
-                          <Form.Control required autoComplete="off" type="text" name="camera" value={camera} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter picture of the phone URL " />
+                          <Form.Control required autoComplete="off" type="text" name="camera" value={camera} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter phone's camera " />
+                      </Form.Group>
+                  </Form.Row>
+                  <Form.Row>
+                      <Form.Group as={Col} controlId="formGridCamera">
+                          <Form.Label> photoUrl </Form.Label>
+                          <Form.Control required autoComplete="off" type="text" name="photoUrl" value={photoUrl} onChange={this.phoneChange} className={"bg-dark text-white"} placeholder="Enter  phone picture URL " />
                       </Form.Group>
                   </Form.Row>
                </Card.Body>

@@ -82,7 +82,7 @@ export default class Filters extends Component {
                 <input type="text" placeholder="Search by image"  style={elementStyle} value={this.state.searchByImage} onChange={this.updateSearchByImage.bind(this)}/>
 
                 <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header> All phones ({this.state.phones.length} phones available in total) </Card.Header>
+                <Card.Header> All products: ({this.state.phones.length} products available in total) </Card.Header>
 
                 <Card.Body>
                     <Table striped bordered hover variant="dark" >
@@ -103,7 +103,7 @@ export default class Filters extends Component {
                         <tbody>
                         {filteredProducts.length === 0 ?
                             <tr align={'center'}>
-                                <td colSpan={"10"}> No Phones Available</td>
+                                <td colSpan={"10"}> No Products Available</td>
                             </tr> :
                             filteredProducts.map((phone) => (
                                <tr key={phone.id}>

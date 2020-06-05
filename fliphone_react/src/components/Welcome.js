@@ -18,6 +18,8 @@ class Welcome extends React.Component {
                 <Carousel.Caption>
                     <h3>Welcome to FlipPhone</h3>
                     <p>A marketplace for used/new phones</p>
+                    <a href="/register">Register here if you dont have an account</a>
+                    <p></p>
                     <a href="/login">Login here</a>
                 </Carousel.Caption>
             </Carousel.Item>
