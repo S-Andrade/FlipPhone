@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Card, CardColumns} from "react-bootstrap";
 
 
-class PhoneCards extends React.Component {
+class PhoneCards extends Component {
 
 
     constructor(props) {
@@ -11,6 +11,12 @@ class PhoneCards extends React.Component {
 
 
     render() {
+
+        let route = "/items/"+this.props.phone.product_id;
+
+        //console.log(this.props.phone);
+        //alert(route);
+
         return(
             <CardColumns>
                 <Card style={{width:"300px"}}>
@@ -20,8 +26,9 @@ class PhoneCards extends React.Component {
                         <Card.Text>
                             <p> Phone's image: {this.props.phone.image}</p>
                             <p> Phone's cpu_gpu: {this.props.phone.cpu_gpu}</p>
-                            The price for this item is missing
-                            <a href=""> see more info</a>
+                            <p> Phone's image: {this.props.phone.image}</p>
+                            <p> Phone's battery: {this.props.phone.battery}</p>
+                            <a href={route} > see more info</a>
                         </Card.Text>
                     </Card.Body>
                 </Card>

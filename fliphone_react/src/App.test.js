@@ -2,35 +2,80 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
-import Welcome from './components/Welcome'
-
-
-/*
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});*/
+import { shallow } from 'enzyme'; // allows to render the component (not sub components)
+import {totalPrice} from "./components/Cart"
+import * as functions from "./functions";
 
 
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
+
+
+
+
+describe('First React component test with Enzyme', () => {
+  it('renders without crashing', () => {
+    shallow(<App />); });
 });
 
 
 
-test('Fake test', () => {
-  expect(true).toBeTruthy();
+
+
+test('User fectched name should be Joana', () => {
+  expect.assertions(1);
+  return functions.fetchUser()
+      .then(data => {
+        expect(data.name).toEqual('Joana');
+      })
+});
+
+
+test('Product fectched name should be Samsung Galaxy', () => {
+    expect.assertions(1);
+    return functions.fetchProduct()
+        .then(data => {
+            expect(data.product_name).toEqual('Samsung Galaxy');
+
+        })
+});
+
+
+test('Item fectched Grade should be NEW', () => {
+    expect.assertions(1);
+    return functions.fetchItem()
+        .then(data => {
+            expect(data.grade).toEqual('NEW');
+
+        })
+});
+
+
+test('Order total price should be 300', () => {
+  expect.assertions(1);
+  return functions.fetchOrder()
+      .then(data => {
+        expect(data.total).toEqual(300);
+
+      })
+});
+
+
+test('Payment gateway should be MBWAY', () => {
+  expect.assertions(1);
+  return functions.fetchPayment()
+      .then(data => {
+        expect(data.gateway).toEqual("MBWAY");
+
+      })
+});
+
+// Unit Test for cart component
+//console.log(totalPrice([2,3]);
+
+
+
+test('totalPrice', () => {
+  const value = totalPrice([2,3,5]);
+  expect(value).toBe(10);
 })
-
-
-
-it('renders without crashing', () => {
-  shallow(<App />);
-});
-
-
 
