@@ -63,6 +63,7 @@ void main() {
     });
   });
   group('Sell Item', () {
+    final sellingPageBtn = find.byValueKey('sellingPageBtn');
     final modelTextFormField = find.byValueKey('modelTextFormField');
     final colorTextFormField = find.byValueKey('colorTextFormField');
     final priceTextFormField = find.byValueKey('priceTextFormField');
@@ -80,6 +81,11 @@ void main() {
       if (driver != null) {
         driver.close();
       }
+    });
+
+    test('Open selling page', () async {
+      await driver.waitFor(sellingPageBtn);
+      await driver.tap(sellingPageBtn);
     });
 
     test('Input Model', () async {
